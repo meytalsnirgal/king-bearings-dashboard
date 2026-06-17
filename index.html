@@ -8,24 +8,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
   :root {
-    --bg: #f5f5f3;
-    --card: #ffffff;
-    --border: #e5e5e3;
-    --text: #1a1a1a;
-    --text2: #6b6b6b;
-    --blue: #042C53;
-    --blue-light: #B5D4F4;
-    --green: #27500A;
-    --green-bg: #eaf3de;
-    --red: #A32D2D;
-    --red-bg: #FCEBEB;
-    --orange: #633806;
-    --orange-bg: #FAEEDA;
-    --radius: 12px;
-    --radius-sm: 8px;
+    --bg: #f5f5f3; --card: #ffffff; --border: #e5e5e3; --text: #1a1a1a; --text2: #6b6b6b;
+    --blue: #042C53; --blue-light: #B5D4F4; --green: #27500A; --green-bg: #eaf3de;
+    --red: #A32D2D; --red-bg: #FCEBEB; --orange: #633806; --radius: 12px; --radius-sm: 8px;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); }
   .container { max-width: 480px; margin: 0 auto; padding: 16px; }
   .header { display: flex; align-items: center; justify-content: space-between; padding: 16px 0 20px; border-bottom: 1px solid var(--border); margin-bottom: 20px; }
   .header-left h1 { font-size: 18px; font-weight: 600; }
@@ -39,8 +27,7 @@
   .metric-label { font-size: 11px; color: var(--text2); margin-bottom: 4px; }
   .metric-val { font-size: 22px; font-weight: 500; }
   .metric-sub { font-size: 11px; margin-top: 2px; color: var(--text2); }
-  .up { color: var(--green); }
-  .down { color: var(--red); }
+  .up { color: var(--green); } .down { color: var(--red); }
   .tab-row { display: flex; gap: 6px; margin-bottom: 12px; }
   .tab { font-size: 12px; padding: 5px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--card); color: var(--text2); cursor: pointer; }
   .tab.active { background: var(--blue); color: var(--blue-light); border-color: var(--blue); }
@@ -58,20 +45,13 @@
   .error-msg { background: var(--red-bg); color: var(--red); border-radius: var(--radius-sm); padding: 10px 14px; font-size: 12px; margin-bottom: 10px; }
   .alert-bar { background: var(--red-bg); border-left: 3px solid var(--red); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 10px 14px; font-size: 12px; color: #791F1F; margin-bottom: 12px; line-height: 1.5; }
   .search-btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 12px; background: var(--blue); color: var(--blue-light); border: none; border-radius: var(--radius); font-size: 14px; font-weight: 500; cursor: pointer; margin-bottom: 14px; }
-  .search-btn:active { opacity: 0.85; }
   .search-btn:disabled { opacity: 0.6; cursor: not-allowed; }
   .mention-section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; display: flex; align-items: center; gap: 5px; }
-  .label-urgent { color: #791F1F; }
-  .label-positive { color: var(--green); }
-  .label-question { color: #0C447C; }
-  .label-neutral { color: var(--orange); }
+  .label-urgent { color: #791F1F; } .label-positive { color: var(--green); } .label-question { color: #0C447C; } .label-neutral { color: var(--orange); }
   .mention-row { display: flex; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--border); }
   .mention-row:last-child { border-bottom: none; }
   .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
-  .dot-urgent { background: #E24B4A; }
-  .dot-positive { background: #639922; }
-  .dot-question { background: #185FA5; }
-  .dot-neutral { background: #BA7517; }
+  .dot-urgent { background: #E24B4A; } .dot-positive { background: #639922; } .dot-question { background: #185FA5; } .dot-neutral { background: #BA7517; }
   .mention-source { font-size: 11px; color: var(--text2); margin-bottom: 2px; }
   .mention-text { font-size: 13px; color: var(--text); line-height: 1.45; }
   .mention-link { font-size: 11px; color: #185FA5; text-decoration: none; display: inline-flex; align-items: center; gap: 3px; margin-top: 3px; }
@@ -86,30 +66,26 @@
   .brand-pct { font-size: 11px; color: var(--text2); min-width: 30px; text-align: right; }
   .chart-wrap { position: relative; height: 180px; }
   .connect-banner { background: var(--bg); border: 1px dashed var(--border); border-radius: var(--radius-sm); padding: 10px 14px; font-size: 12px; color: var(--text2); display: flex; align-items: center; gap: 8px; margin-top: 8px; }
-  .stat-row { display: flex; justify-content: space-between; padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
-  .stat-row:last-child { border-bottom: none; }
-  .stat-lbl { color: var(--text2); }
-  .stat-val { font-weight: 500; }
   .update-note { font-size: 11px; color: var(--text2); text-align: center; margin-top: 10px; }
+  .mentions-stats { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; margin-bottom: 14px; }
+  .mentions-stat { background: var(--bg); border-radius: var(--radius-sm); padding: 10px 12px; }
+  .mentions-stat-val { font-size: 20px; font-weight: 500; }
+  .mentions-stat-lbl { font-size: 11px; color: var(--text2); margin-top: 2px; }
   .config-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 100; padding: 16px; }
   .config-box { background: var(--card); border-radius: var(--radius); padding: 24px; width: 100%; max-width: 400px; }
   .config-box h2 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
   .config-box p { font-size: 13px; color: var(--text2); margin-bottom: 16px; line-height: 1.5; }
   .config-box input { width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 13px; margin-bottom: 10px; font-family: monospace; }
   .config-btn { width: 100%; padding: 12px; background: var(--blue); color: white; border: none; border-radius: var(--radius-sm); font-size: 14px; font-weight: 500; cursor: pointer; }
-  .mentions-stats { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; margin-bottom: 14px; }
-  .mentions-stat { background: var(--bg); border-radius: var(--radius-sm); padding: 10px 12px; }
-  .mentions-stat-val { font-size: 20px; font-weight: 500; }
-  .mentions-stat-lbl { font-size: 11px; color: var(--text2); margin-top: 2px; }
+  @keyframes spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
 </style>
 </head>
 <body>
 
-<!-- CONFIG OVERLAY -->
 <div class="config-overlay" id="configOverlay">
   <div class="config-box">
     <h2>🔐 Setup Required</h2>
-    <p>Enter your Instagram Access Token to connect live data. This is stored only in your browser and never shared.</p>
+    <p>Enter your Instagram Access Token to connect live data. Stored only in your browser.</p>
     <input type="password" id="tokenInput" placeholder="Paste your Instagram access token here..." />
     <button class="config-btn" onclick="saveToken()">Connect Dashboard</button>
   </div>
@@ -117,14 +93,10 @@
 
 <div class="container">
   <div class="header">
-    <div class="header-left">
-      <h1>Marketing Dashboard</h1>
-      <p>King Engine Bearings</p>
-    </div>
+    <div class="header-left"><h1>Marketing Dashboard</h1><p>King Engine Bearings</p></div>
     <div class="header-date" id="headerDate"></div>
   </div>
 
-  <!-- ECOMMERCE -->
   <div class="section">
     <div class="section-title"><i class="ti ti-shopping-cart"></i> eCommerce Sales</div>
     <div class="metric-grid">
@@ -149,7 +121,6 @@
     <div class="connect-banner"><i class="ti ti-plug"></i> Connect Magento to show live sales data</div>
   </div>
 
-  <!-- BRAND MENTIONS -->
   <div class="section">
     <div class="section-title"><i class="ti ti-messages"></i> Brand Mentions</div>
     <div class="last-searched" id="mentionsLastSearch">Never searched — tap below to fetch latest</div>
@@ -166,7 +137,6 @@
     </div>
   </div>
 
-  <!-- INSTAGRAM -->
   <div class="section">
     <div class="section-title"><i class="ti ti-brand-instagram"></i> Instagram — @kingbearings</div>
     <div id="igError"></div>
@@ -176,13 +146,11 @@
 </div>
 
 <script>
-// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-// CONFIG — PASTE YOUR KEYS HERE
-// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-const GOOGLE_API_KEY = 'AIzaSyCvQdZM3jRa1G2qyvQR2DKj_t5M1W7Nygc';
-const GOOGLE_CSE_ID  = '519204b44cd394624';
-const IG_ID          = '17841402254973060';
-// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// PASTE YOUR SERPAPI KEY HERE (between the quotes)
+const SERPAPI_KEY = '13a68ac549cc50198398d9f2a4f884dd369a76036e648704eb10e8de5ee98295';
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+const IG_ID = '17841402254973060';
 
 function getToken() { return localStorage.getItem('keb_ig_token'); }
 function saveToken() {
@@ -201,7 +169,6 @@ window.addEventListener('DOMContentLoaded', () => {
   loadSavedMentions();
 });
 
-// ── SALES CHART ──────────────────────────────────────────
 const salesData = {
   '3m':{ labels:['Apr','May','Jun'], data:[68400,74100,84200] },
   '6m':{ labels:['Jan','Feb','Mar','Apr','May','Jun'], data:[51200,55800,61400,68400,74100,84200] },
@@ -223,7 +190,6 @@ function switchPeriod(p,el) {
   buildSalesChart(p);
 }
 
-// ── INSTAGRAM ────────────────────────────────────────────
 async function loadInstagram() {
   const TOKEN = getToken();
   const BASE = 'https://graph.facebook.com/v19.0';
@@ -263,84 +229,64 @@ async function loadInstagram() {
   }
 }
 
-// ── BRAND MENTIONS via Google Custom Search ───────────────
-const MENTIONS_KEY = 'keb_mentions_data';
-const MENTIONS_DATE_KEY = 'keb_mentions_date';
-
-const SEARCH_QUERIES = [
-  '"King Engine Bearings" -site:kingenginebuilders.com -site:amazon.com -site:ebay.com',
-  '"King bearings" engine forum -site:amazon.com -site:ebay.com -buy -shop',
-  '"kingbearings" forum reddit blog'
+const EXCLUDE = ['amazon','ebay','aliexpress','walmart','kingenginebuilders.com','king-bearings.com','shop','catalog'];
+const SEARCHES = [
+  '"King Engine Bearings" -site:amazon.com -site:ebay.com',
+  '"King bearings" engine forum reddit -site:amazon.com -site:ebay.com',
 ];
 
-const EXCLUDE_DOMAINS = ['amazon','ebay','aliexpress','walmart','shop','store','catalog','parts','buy','price'];
-
-function classifyMention(title, snippet, url) {
-  const text = (title + ' ' + snippet + ' ' + url).toLowerCase();
-  const urgentWords = ['warning','bad','fail','broke','problem','issue','defect','complaint','avoid','terrible','worst','wrong','damaged','leak','burned','seized','return'];
-  const positiveWords = ['great','excellent','recommend','best','love','perfect','quality','good','happy','amazing','works','satisfied','solid','reliable','winner'];
-  const questionWords = ['vs','versus','compare','which','should i','anyone','advice','help','question','difference','better','alternative'];
-  if (urgentWords.some(w=>text.includes(w))) return 'URGENT';
-  if (questionWords.some(w=>text.includes(w))) return 'QUESTION';
-  if (positiveWords.some(w=>text.includes(w))) return 'POSITIVE';
+function classify(title, snippet) {
+  const t = (title+' '+snippet).toLowerCase();
+  if (['warning','fail','broke','problem','issue','defect','bad','avoid','terrible','wrong','damaged','seized'].some(w=>t.includes(w))) return 'URGENT';
+  if (['vs','versus','compare','which','should i','anyone','advice','better','alternative','difference'].some(w=>t.includes(w))) return 'QUESTION';
+  if (['great','excellent','recommend','best','love','perfect','quality','good','amazing','reliable','solid'].some(w=>t.includes(w))) return 'POSITIVE';
   return 'NEUTRAL';
 }
 
-function isRelevantResult(item) {
-  const url = (item.link || '').toLowerCase();
-  const title = (item.title || '').toLowerCase();
-  if (EXCLUDE_DOMAINS.some(d=>url.includes(d))) return false;
-  if (url.includes('kingenginebuilders.com')) return false;
-  if (url.includes('king-bearings.com')) return false;
-  return true;
-}
-
-function getSourceName(url) {
-  try {
-    const host = new URL(url).hostname.replace('www.','');
-    return host;
-  } catch(e) { return url; }
+function getSource(url) {
+  try { return new URL(url).hostname.replace('www.',''); } catch(e) { return url; }
 }
 
 async function searchMentions() {
   const btn = document.getElementById('searchBtn');
   btn.disabled = true;
-  btn.innerHTML = '<i class="ti ti-loader" style="animation:spin 1s linear infinite;"></i> Searching...';
-  document.getElementById('mentionsLastSearch').textContent = 'Searching across forums, Reddit, blogs...';
-  document.getElementById('mentionsResults').innerHTML = '<div class="loading">Fetching mentions...</div>';
+  btn.innerHTML = '<i class="ti ti-loader" style="animation:spin 1s linear infinite;display:inline-block;"></i> Searching...';
+  document.getElementById('mentionsLastSearch').textContent = 'Searching...';
+  document.getElementById('mentionsResults').innerHTML = '<div class="loading">Fetching mentions from forums, Reddit, blogs...</div>';
 
   try {
-    const allItems = [];
-    for (const q of SEARCH_QUERIES) {
-      const url = `https://www.googleapis.com/customsearch/v1?key=${AIzaSyCvQdZM3jRa1G2qyvQR2DKj_t5M1W7Nygc}&cx=${GOOGLE_CSE_ID}&q=${encodeURIComponent(q)}&num=10&dateRestrict=m3`;
+    const allResults = [];
+    for (const q of SEARCHES) {
+      const url = `https://serpapi.com/search.json?engine=google&q=${encodeURIComponent(q)}&api_key=${SERPAPI_KEY}&num=10&tbs=qdr:m3`;
       const res = await fetch(url);
       const data = await res.json();
-      if (data.items) allItems.push(...data.items);
+      if (data.organic_results) allResults.push(...data.organic_results);
     }
 
-    // Deduplicate by URL
     const seen = new Set();
-    const unique = allItems.filter(item => {
-      if (seen.has(item.link) || !isRelevantResult(item)) return false;
-      seen.add(item.link);
-      return true;
-    });
-
-    const mentions = unique.map(item => ({
-      category: classifyMention(item.title, item.snippet||'', item.link),
-      source: getSourceName(item.link),
-      snippet: item.snippet ? item.snippet.substring(0,150) : item.title,
-      url: item.link
-    }));
+    const mentions = allResults
+      .filter(r => {
+        const url = (r.link||'').toLowerCase();
+        if (seen.has(r.link)) return false;
+        if (EXCLUDE.some(e=>url.includes(e))) return false;
+        seen.add(r.link);
+        return true;
+      })
+      .map(r => ({
+        category: classify(r.title||'', r.snippet||''),
+        source: getSource(r.link),
+        snippet: (r.snippet||r.title||'').substring(0,150),
+        url: r.link
+      }));
 
     const now = new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}) + ' ' + new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
-    localStorage.setItem(MENTIONS_KEY, JSON.stringify(mentions));
-    localStorage.setItem(MENTIONS_DATE_KEY, now);
+    localStorage.setItem('keb_mentions_data', JSON.stringify(mentions));
+    localStorage.setItem('keb_mentions_date', now);
     document.getElementById('mentionsLastSearch').textContent = 'Last searched: ' + now;
     renderMentions(mentions);
   } catch(e) {
     document.getElementById('mentionsResults').innerHTML = `<div class="error-msg">Search failed: ${e.message}</div>`;
-    document.getElementById('mentionsLastSearch').textContent = 'Search failed — check your Google API key';
+    document.getElementById('mentionsLastSearch').textContent = 'Search failed';
   }
 
   btn.disabled = false;
@@ -349,61 +295,31 @@ async function searchMentions() {
 
 function loadSavedMentions() {
   try {
-    const saved = localStorage.getItem(MENTIONS_KEY);
-    const date = localStorage.getItem(MENTIONS_DATE_KEY);
-    if (saved && date) {
-      document.getElementById('mentionsLastSearch').textContent = 'Last searched: ' + date;
-      renderMentions(JSON.parse(saved));
-    }
+    const saved = localStorage.getItem('keb_mentions_data');
+    const date = localStorage.getItem('keb_mentions_date');
+    if (saved && date) { document.getElementById('mentionsLastSearch').textContent = 'Last searched: ' + date; renderMentions(JSON.parse(saved)); }
   } catch(e) {}
 }
 
 function renderMentions(mentions) {
-  if (!mentions || !mentions.length) {
-    document.getElementById('mentionsResults').innerHTML = '<div class="card" style="text-align:center;color:var(--text2);font-size:13px;padding:20px;">No mentions found.</div>';
-    return;
-  }
-  const urgent = mentions.filter(m=>m.category==='URGENT');
-  const positive = mentions.filter(m=>m.category==='POSITIVE');
-  const question = mentions.filter(m=>m.category==='QUESTION');
-  const neutral = mentions.filter(m=>m.category==='NEUTRAL');
-
+  if (!mentions||!mentions.length) { document.getElementById('mentionsResults').innerHTML = '<div class="card" style="text-align:center;color:var(--text2);font-size:13px;padding:20px;">No mentions found.</div>'; return; }
+  const urgent=mentions.filter(m=>m.category==='URGENT'), positive=mentions.filter(m=>m.category==='POSITIVE'), question=mentions.filter(m=>m.category==='QUESTION'), neutral=mentions.filter(m=>m.category==='NEUTRAL');
   document.getElementById('totalCount').textContent = mentions.length;
   document.getElementById('urgentCount').textContent = urgent.length;
   document.getElementById('mentionsStats').style.display = 'grid';
-
-  let html = '';
-  if (urgent.length) html += mentionSection('⚠ Needs attention','urgent',urgent);
-  if (positive.length) html += mentionSection('✓ Positive','positive',positive);
-  if (question.length) html += mentionSection('? Questions & comparisons','question',question);
-  if (neutral.length) html += mentionSection('General discussion','neutral',neutral);
+  let html='';
+  if (urgent.length) html+=ms('⚠ Needs attention','urgent',urgent);
+  if (positive.length) html+=ms('✓ Positive','positive',positive);
+  if (question.length) html+=ms('? Questions','question',question);
+  if (neutral.length) html+=ms('General','neutral',neutral);
   document.getElementById('mentionsResults').innerHTML = html;
 }
 
-function mentionSection(title,cls,items) {
-  return `<div class="mention-wrap">
-    <div class="mention-section-label label-${cls}">${title} (${items.length})</div>
-    <div class="card">${items.map(m=>`
-      <div class="mention-row">
-        <div class="dot dot-${cls}"></div>
-        <div>
-          <div class="mention-source">${esc(m.source)}</div>
-          <div class="mention-text">${esc(m.snippet)}</div>
-          ${m.url?`<a class="mention-link" href="${esc(m.url)}" target="_blank"><i class="ti ti-external-link" style="font-size:11px;"></i> View</a>`:''}
-        </div>
-      </div>`).join('')}</div>
-  </div>`;
+function ms(title,cls,items) {
+  return `<div class="mention-wrap"><div class="mention-section-label label-${cls}">${title} (${items.length})</div><div class="card">${items.map(m=>`<div class="mention-row"><div class="dot dot-${cls}"></div><div><div class="mention-source">${esc(m.source)}</div><div class="mention-text">${esc(m.snippet)}</div>${m.url?`<a class="mention-link" href="${esc(m.url)}" target="_blank"><i class="ti ti-external-link" style="font-size:11px;"></i> View</a>`:''}</div></div>`).join('')}</div></div>`;
 }
 
-function esc(s) {
-  if (!s) return '';
-  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
-
-// Spinner animation
-const style = document.createElement('style');
-style.textContent = '@keyframes spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }';
-document.head.appendChild(style);
+function esc(s) { if(!s)return''; return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 </script>
 </body>
 </html>
