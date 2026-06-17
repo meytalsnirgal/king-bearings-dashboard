@@ -9,8 +9,8 @@
 <style>
   :root {
     --bg: #f5f5f3; --card: #ffffff; --border: #e5e5e3; --text: #1a1a1a; --text2: #6b6b6b;
-    --blue: #042C53; --blue-light: #B5D4F4; --green: #27500A; --green-bg: #eaf3de;
-    --red: #A32D2D; --red-bg: #FCEBEB; --orange: #633806; --radius: 12px; --radius-sm: 8px;
+    --blue: #042C53; --blue-light: #B5D4F4; --green: #27500A; --red: #A32D2D;
+    --red-bg: #FCEBEB; --orange: #633806; --radius: 12px; --radius-sm: 8px;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); }
@@ -46,7 +46,7 @@
   .alert-bar { background: var(--red-bg); border-left: 3px solid var(--red); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 10px 14px; font-size: 12px; color: #791F1F; margin-bottom: 12px; line-height: 1.5; }
   .search-btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 12px; background: var(--blue); color: var(--blue-light); border: none; border-radius: var(--radius); font-size: 14px; font-weight: 500; cursor: pointer; margin-bottom: 14px; }
   .search-btn:disabled { opacity: 0.6; cursor: not-allowed; }
-  .mention-section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; display: flex; align-items: center; gap: 5px; }
+  .mention-section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
   .label-urgent { color: #791F1F; } .label-positive { color: var(--green); } .label-question { color: #0C447C; } .label-neutral { color: var(--orange); }
   .mention-row { display: flex; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--border); }
   .mention-row:last-child { border-bottom: none; }
@@ -132,7 +132,7 @@
     <div id="mentionsResults">
       <div class="card" style="text-align:center;color:var(--text2);font-size:13px;padding:24px;">
         <i class="ti ti-antenna-bars-1" style="font-size:28px;display:block;margin-bottom:8px;opacity:0.4;"></i>
-        Tap above to scan Reddit, forums, blogs and YouTube for people talking about King Engine Bearings
+        Tap above to scan Reddit, forums and blogs for people talking about King Engine Bearings
       </div>
     </div>
   </div>
@@ -146,10 +146,6 @@
 </div>
 
 <script>
-// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-// PASTE YOUR SERPAPI KEY HERE (between the quotes)
-const SERPAPI_KEY = '13a68ac549cc50198398d9f2a4f884dd369a76036e648704eb10e8de5ee98295';
-// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 const IG_ID = '17841402254973060';
 
 function getToken() { return localStorage.getItem('keb_ig_token'); }
@@ -229,10 +225,10 @@ async function loadInstagram() {
   }
 }
 
-const EXCLUDE = ['amazon','ebay','aliexpress','walmart','kingenginebuilders.com','king-bearings.com','shop','catalog'];
+const EXCLUDE = ['amazon','ebay','aliexpress','walmart','kingenginebuilders.com','king-bearings.com'];
 const SEARCHES = [
-  '"King Engine Bearings" -site:amazon.com -site:ebay.com',
-  '"King bearings" engine forum reddit -site:amazon.com -site:ebay.com',
+  '"King Engine Bearings" -site:amazon.com -site:ebay.com -buy -shop',
+  '"King bearings" engine forum reddit -site:amazon.com -site:ebay.com'
 ];
 
 function classify(title, snippet) {
@@ -252,13 +248,12 @@ async function searchMentions() {
   btn.disabled = true;
   btn.innerHTML = '<i class="ti ti-loader" style="animation:spin 1s linear infinite;display:inline-block;"></i> Searching...';
   document.getElementById('mentionsLastSearch').textContent = 'Searching...';
-  document.getElementById('mentionsResults').innerHTML = '<div class="loading">Fetching mentions from forums, Reddit, blogs...</div>';
+  document.getElementById('mentionsResults').innerHTML = '<div class="loading">Fetching mentions...</div>';
 
   try {
     const allResults = [];
     for (const q of SEARCHES) {
-      const url = `https://serpapi.com/search.json?engine=google&q=${encodeURIComponent(q)}&api_key=${SERPAPI_KEY}&num=10&tbs=qdr:m3`;
-      const res = await fetch(url);
+      const res = await fetch(`/.netlify/functions/search?q=${encodeURIComponent(q)}`);
       const data = await res.json();
       if (data.organic_results) allResults.push(...data.organic_results);
     }
