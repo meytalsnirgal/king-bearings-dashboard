@@ -71,25 +71,10 @@
   .mentions-stat { background: var(--bg); border-radius: var(--radius-sm); padding: 10px 12px; }
   .mentions-stat-val { font-size: 20px; font-weight: 500; }
   .mentions-stat-lbl { font-size: 11px; color: var(--text2); margin-top: 2px; }
-  .config-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 100; padding: 16px; }
-  .config-box { background: var(--card); border-radius: var(--radius); padding: 24px; width: 100%; max-width: 400px; }
-  .config-box h2 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
-  .config-box p { font-size: 13px; color: var(--text2); margin-bottom: 16px; line-height: 1.5; }
-  .config-box input { width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 13px; margin-bottom: 10px; font-family: monospace; }
-  .config-btn { width: 100%; padding: 12px; background: var(--blue); color: white; border: none; border-radius: var(--radius-sm); font-size: 14px; font-weight: 500; cursor: pointer; }
   @keyframes spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
 </style>
 </head>
 <body>
-
-<div class="config-overlay" id="configOverlay">
-  <div class="config-box">
-    <h2>🔐 Setup Required</h2>
-    <p>Enter your Instagram Access Token to connect live data. Stored only in your browser.</p>
-    <input type="password" id="tokenInput" placeholder="Paste your Instagram access token here..." />
-    <button class="config-btn" onclick="saveToken()">Connect Dashboard</button>
-  </div>
-</div>
 
 <div class="container">
   <div class="header">
@@ -139,30 +124,17 @@
 
   <div class="section">
     <div class="section-title"><i class="ti ti-brand-instagram"></i> Instagram — @kingbearings</div>
-    <div id="igError"></div>
     <div id="igContent"><div class="loading">Loading Instagram data...</div></div>
     <div class="update-note" id="igLastUpdate"></div>
   </div>
 </div>
 
 <script>
-const IG_ID = '17841402254973060';
-
-function getToken() { return localStorage.getItem('keb_ig_token'); }
-function saveToken() {
-  const t = document.getElementById('tokenInput').value.trim();
-  if (!t) { alert('Please paste your token'); return; }
-  localStorage.setItem('keb_ig_token', t);
-  document.getElementById('configOverlay').style.display = 'none';
-  loadInstagram();
-}
-function resetToken() { localStorage.removeItem('keb_ig_token'); location.reload(); }
-
 window.addEventListener('DOMContentLoaded', () => {
   document.getElementById('headerDate').textContent = new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
-  if (getToken()) { document.getElementById('configOverlay').style.display = 'none'; loadInstagram(); }
   buildSalesChart('3m');
   loadSavedMentions();
+  loadInstagram();
 });
 
 const salesData = {
@@ -187,15 +159,12 @@ function switchPeriod(p,el) {
 }
 
 async function loadInstagram() {
-  const TOKEN = getToken();
-  const BASE = 'https://graph.facebook.com/v19.0';
   try {
-    const [account, media] = await Promise.all([
-      fetch(`${BASE}/${IG_ID}?fields=username,followers_count,media_count&access_token=${TOKEN}`).then(r=>r.json()),
-      fetch(`${BASE}/${IG_ID}/media?fields=caption,media_type,like_count,comments_count,media_url,timestamp&limit=6&access_token=${TOKEN}`).then(r=>r.json())
-    ]);
-    if (account.error) throw new Error(account.error.message);
-    const posts = media.data || [];
+    const res = await fetch('/.netlify/functions/search?type=instagram');
+    const data = await res.json();
+    if (data.error) throw new Error(data.error);
+    const account = data.account;
+    const posts = data.media.data || [];
     const totalLikes = posts.reduce((s,p)=>s+p.like_count,0);
     const totalComments = posts.reduce((s,p)=>s+p.comments_count,0);
     const engRate = ((totalLikes+totalComments)/account.followers_count*100).toFixed(2);
@@ -217,11 +186,10 @@ async function loadInstagram() {
               <div class="ig-post-stats">❤️ ${p.like_count} · 💬 ${p.comments_count} · ${new Date(p.timestamp).toLocaleDateString('en-GB',{day:'numeric',month:'short'})}</div>
             </div>
           </div>`).join('')}
-      </div>
-      <div style="text-align:right;margin-top:8px;"><button onclick="resetToken()" style="font-size:11px;color:var(--text2);background:none;border:none;cursor:pointer;text-decoration:underline;">Reset token</button></div>`;
+      </div>`;
     document.getElementById('igLastUpdate').textContent = 'Live data · Updated ' + new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
   } catch(e) {
-    document.getElementById('igContent').innerHTML = `<div class="error-msg">${e.message}</div><button onclick="resetToken()" style="font-size:12px;color:#185FA5;background:none;border:none;cursor:pointer;text-decoration:underline;">Re-enter token</button>`;
+    document.getElementById('igContent').innerHTML = `<div class="error-msg">Instagram error: ${e.message}</div>`;
   }
 }
 
@@ -253,7 +221,7 @@ async function searchMentions() {
   try {
     const allResults = [];
     for (const q of SEARCHES) {
-      const res = await fetch(`/.netlify/functions/search?q=${encodeURIComponent(q)}`);
+      const res = await fetch(`/.netlify/functions/search?type=search&q=${encodeURIComponent(q)}`);
       const data = await res.json();
       if (data.organic_results) allResults.push(...data.organic_results);
     }
