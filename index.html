@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>King Engine Bearings — Marketing Dashboard</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  :root {
+    --bg: #f5f5f3;
+    --card: #ffffff;
+    --border: #e5e5e3;
+    --text: #1a1a1a;
+    --text2: #6b6b6b;
+    --blue: #042C53;
+    --blue-light: #B5D4F4;
+    --green: #27500A;
+    --green-bg: #eaf3de;
+    --red: #A32D2D;
+    --red-bg: #FCEBEB;
+    --orange: #633806;
+    --orange-bg: #FAEEDA;
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+  .container { max-width: 480px; margin: 0 auto; padding: 16px; }
+
+  /* HEADER */
+  .header { display: flex; align-items: center; justify-content: space-between; padding: 16px 0 20px; border-bottom: 1px solid var(--border); margin-bottom: 20px; }
+  .header-left h1 { font-size: 18px; font-weight: 600; }
+  .header-left p { font-size: 12px; color: var(--text2); margin-top: 2px; }
+  .header-date { font-size: 12px; color: var(--text2); }
+
+  /* SECTION */
+  .section { margin-bottom: 28px; }
+  .section-title { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text2); margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
+
+  /* CARDS */
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; margin-bottom: 10px; }
+  .metric-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 12px; }
+  .metric { background: var(--bg); border-radius: var(--radius-sm); padding: 12px 14px; }
+  .metric-label { font-size: 11px; color: var(--text2); margin-bottom: 4px; }
+  .metric-val { font-size: 22px; font-weight: 500; }
+  .metric-sub { font-size: 11px; margin-top: 2px; color: var(--text2); }
+  .up { color: var(--green); }
+  .down { color: var(--red); }
+
+  /* TABS */
+  .tab-row { display: flex; gap: 6px; margin-bottom: 12px; }
+  .tab { font-size: 12px; padding: 5px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--card); color: var(--text2); cursor: pointer; }
+  .tab.active { background: var(--blue); color: var(--blue-light); border-color: var(--blue); }
+
+  /* INSTAGRAM */
+  .ig-stat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .ig-stat { background: var(--bg); border-radius: var(--radius-sm); padding: 12px 14px; }
+  .ig-stat-val { font-size: 22px; font-weight: 500; }
+  .ig-stat-lbl { font-size: 11px; color: var(--text2); margin-top: 2px; }
+  .ig-post-row { display: flex; gap: 10px; align-items: flex-start; padding: 9px 0; border-bottom: 1px solid var(--border); }
+  .ig-post-row:last-child { border-bottom: none; }
+  .ig-post-thumb { width: 40px; height: 40px; border-radius: 6px; background: var(--bg); flex-shrink: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  .ig-post-thumb img { width: 100%; height: 100%; object-fit: cover; border-radius: 6px; }
+  .ig-post-caption { font-size: 12px; color: var(--text); line-height: 1.4; margin-bottom: 3px; }
+  .ig-post-stats { font-size: 11px; color: var(--text2); }
+  .loading { text-align: center; padding: 20px; color: var(--text2); font-size: 13px; }
+  .error-msg { background: var(--red-bg); color: var(--red); border-radius: var(--radius-sm); padding: 10px 14px; font-size: 12px; margin-bottom: 10px; }
+  .alert-bar { background: var(--red-bg); border-left: 3px solid var(--red); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 10px 14px; font-size: 12px; color: #791F1F; margin-bottom: 12px; line-height: 1.5; }
+
+  /* MENTIONS */
+  .search-btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 12px; background: var(--blue); color: var(--blue-light); border: none; border-radius: var(--radius); font-size: 14px; font-weight: 500; cursor: pointer; margin-bottom: 14px; }
+  .search-btn:active { opacity: 0.85; }
+  .mention-section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; display: flex; align-items: center; gap: 5px; }
+  .label-urgent { color: #791F1F; }
+  .label-positive { color: var(--green); }
+  .label-question { color: #0C447C; }
+  .label-neutral { color: var(--orange); }
+  .mention-row { display: flex; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--border); }
+  .mention-row:last-child { border-bottom: none; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+  .dot-urgent { background: #E24B4A; }
+  .dot-positive { background: #639922; }
+  .dot-question { background: #185FA5; }
+  .dot-neutral { background: #BA7517; }
+  .mention-source { font-size: 11px; color: var(--text2); margin-bottom: 2px; }
+  .mention-text { font-size: 13px; color: var(--text); line-height: 1.45; }
+  .mention-link { font-size: 11px; color: #185FA5; text-decoration: none; display: inline-flex; align-items: center; gap: 3px; margin-top: 3px; }
+  .last-searched { font-size: 11px; color: var(--text2); margin-bottom: 12px; }
+  .mention-wrap { margin-bottom: 14px; }
+
+  /* BRAND BREAKDOWN */
+  .brand-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--border); }
+  .brand-row:last-child { border-bottom: none; }
+  .brand-name { font-size: 13px; flex: 1; }
+  .brand-bar-wrap { width: 80px; height: 6px; background: var(--bg); border-radius: 3px; overflow: hidden; }
+  .brand-bar { height: 100%; border-radius: 3px; }
+  .brand-val { font-size: 13px; font-weight: 500; min-width: 44px; text-align: right; }
+  .brand-pct { font-size: 11px; color: var(--text2); min-width: 30px; text-align: right; }
+
+  /* CHART */
+  .chart-wrap { position: relative; height: 180px; }
+  .chart-wrap-sm { position: relative; height: 140px; }
+
+  /* CONNECT BANNER */
+  .connect-banner { background: var(--bg); border: 1px dashed var(--border); border-radius: var(--radius-sm); padding: 10px 14px; font-size: 12px; color: var(--text2); display: flex; align-items: center; gap: 8px; margin-top: 8px; }
+
+  /* STAT ROW */
+  .stat-row { display: flex; justify-content: space-between; padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+  .stat-row:last-child { border-bottom: none; }
+  .stat-lbl { color: var(--text2); }
+  .stat-val { font-weight: 500; }
+
+  /* UPDATE NOTE */
+  .update-note { font-size: 11px; color: var(--text2); text-align: center; margin-top: 10px; }
+
+  /* CONFIG OVERLAY */
+  .config-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 100; padding: 16px; }
+  .config-box { background: var(--card); border-radius: var(--radius); padding: 24px; width: 100%; max-width: 400px; }
+  .config-box h2 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+  .config-box p { font-size: 13px; color: var(--text2); margin-bottom: 16px; line-height: 1.5; }
+  .config-box input { width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 13px; margin-bottom: 10px; font-family: monospace; }
+  .config-btn { width: 100%; padding: 12px; background: var(--blue); color: white; border: none; border-radius: var(--radius-sm); font-size: 14px; font-weight: 500; cursor: pointer; }
+</style>
+</head>
+<body>
+
+<!-- CONFIG OVERLAY -->
+<div class="config-overlay" id="configOverlay">
+  <div class="config-box">
+    <h2>🔐 Setup Required</h2>
+    <p>Enter your Instagram Access Token to connect live data. This is stored only in your browser and never shared.</p>
+    <input type="password" id="tokenInput" placeholder="Paste your Instagram access token here..." />
+    <button class="config-btn" onclick="saveToken()">Connect Dashboard</button>
+  </div>
+</div>
+
+<div class="container">
+  <div class="header">
+    <div class="header-left">
+      <h1>Marketing Dashboard</h1>
+      <p>King Engine Bearings</p>
+    </div>
+    <div class="header-date" id="headerDate"></div>
+  </div>
+
+  <!-- ECOMMERCE SECTION -->
+  <div class="section">
+    <div class="section-title"><i class="ti ti-shopping-cart"></i> eCommerce Sales</div>
+    <div class="metric-grid">
+      <div class="metric">
+        <div class="metric-label">Revenue (MTD)</div>
+        <div class="metric-val">$84.2K</div>
+        <div class="metric-sub up">+12% vs last mo.</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Orders (MTD)</div>
+        <div class="metric-val">1,340</div>
+        <div class="metric-sub up">+8% vs last mo.</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Avg. Order Value</div>
+        <div class="metric-val">$62.8</div>
+        <div class="metric-sub up">+3% vs last mo.</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Conversion Rate</div>
+        <div class="metric-val">3.4%</div>
+        <div class="metric-sub down">-0.2pp vs last mo.</div>
+      </div>
+    </div>
+    <div class="tab-row">
+      <button class="tab active" onclick="switchPeriod('3m',this)">3 months</button>
+      <button class="tab" onclick="switchPeriod('6m',this)">6 months</button>
+      <button class="tab" onclick="switchPeriod('1y',this)">12 months</button>
+    </div>
+    <div class="card">
+      <div class="chart-wrap"><canvas id="salesChart"></canvas></div>
+    </div>
+    <div class="card" style="margin-top:0;">
+      <div class="brand-row">
+        <div class="brand-name">Engine Bearings</div>
+        <div class="brand-bar-wrap"><div class="brand-bar" style="width:80%;background:#185FA5;"></div></div>
+        <div class="brand-val">$40.4K</div><div class="brand-pct">48%</div>
+      </div>
+      <div class="brand-row">
+        <div class="brand-name">Pistons</div>
+        <div class="brand-bar-wrap"><div class="brand-bar" style="width:44%;background:#1D9E75;"></div></div>
+        <div class="brand-val">$17.7K</div><div class="brand-pct">21%</div>
+      </div>
+      <div class="brand-row">
+        <div class="brand-name">Con Rods</div>
+        <div class="brand-bar-wrap"><div class="brand-bar" style="width:31%;background:#BA7517;"></div></div>
+        <div class="brand-val">$12.6K</div><div class="brand-pct">15%</div>
+      </div>
+      <div class="brand-row">
+        <div class="brand-name">King Kits</div>
+        <div class="brand-bar-wrap"><div class="brand-bar" style="width:21%;background:#D85A30;"></div></div>
+        <div class="brand-val">$8.4K</div><div class="brand-pct">10%</div>
+      </div>
+      <div class="brand-row">
+        <div class="brand-name">Other</div>
+        <div class="brand-bar-wrap"><div class="brand-bar" style="width:12%;background:#888780;"></div></div>
+        <div class="brand-val">$5.1K</div><div class="brand-pct">6%</div>
+      </div>
+    </div>
+    <div class="connect-banner"><i class="ti ti-plug"></i> Connect Magento to show live sales data</div>
+  </div>
+
+  <!-- BRAND MENTIONS SECTION -->
+  <div class="section">
+    <div class="section-title"><i class="ti ti-messages"></i> Brand Mentions</div>
+    <div class="last-searched" id="mentionsLastSearch">Never searched — tap below to fetch latest</div>
+    <button class="search-btn" onclick="searchMentions()"><i class="ti ti-refresh"></i> Search mentions now</button>
+    <div id="mentionsResults">
+      <div class="card" style="text-align:center; color:var(--text2); font-size:13px; padding:24px;">
+        <i class="ti ti-antenna-bars-1" style="font-size:28px; display:block; margin-bottom:8px; opacity:0.4;"></i>
+        Tap above to scan Reddit, forums, blogs and YouTube for people talking about King Engine Bearings
+      </div>
+    </div>
+  </div>
+
+  <!-- INSTAGRAM SECTION -->
+  <div class="section">
+    <div class="section-title"><i class="ti ti-brand-instagram"></i> Instagram — @kingbearings</div>
+    <div id="igError"></div>
+    <div id="igContent">
+      <div class="loading">Loading Instagram data...</div>
+    </div>
+    <div class="update-note" id="igLastUpdate"></div>
+  </div>
+</div>
+
+<script>
+// ── CONFIG ──────────────────────────────────────────────
+const IG_ID = '17841402254973060';
+
+function getToken() { return localStorage.getItem('keb_ig_token'); }
+function saveToken() {
+  const t = document.getElementById('tokenInput').value.trim();
+  if (!t) { alert('Please paste your token'); return; }
+  localStorage.setItem('keb_ig_token', t);
+  document.getElementById('configOverlay').style.display = 'none';
+  loadInstagram();
+}
+function resetToken() { localStorage.removeItem('keb_ig_token'); location.reload(); }
+
+// ── INIT ─────────────────────────────────────────────────
+window.addEventListener('DOMContentLoaded', () => {
+  // Date
+  document.getElementById('headerDate').textContent = new Date().toLocaleDateString('en-GB', {day:'numeric',month:'short',year:'numeric'});
+  // Token check
+  if (getToken()) {
+    document.getElementById('configOverlay').style.display = 'none';
+    loadInstagram();
+  }
+  // Sales chart
+  buildSalesChart('3m');
+  // Mentions
+  loadMentions();
+});
+
+// ── SALES CHART ──────────────────────────────────────────
+const salesData = {
+  '3m': { labels:['Apr','May','Jun'], data:[68400,74100,84200] },
+  '6m': { labels:['Jan','Feb','Mar','Apr','May','Jun'], data:[51200,55800,61400,68400,74100,84200] },
+  '1y': { labels:['Jul','Aug','Sep','Oct','Nov','Dec','Jan','Feb','Mar','Apr','May','Jun'], data:[41000,43500,47200,52100,58600,62300,51200,55800,61400,68400,74100,84200] }
+};
+let salesChart;
+function buildSalesChart(p) {
+  const d = salesData[p];
+  if (salesChart) salesChart.destroy();
+  salesChart = new Chart(document.getElementById('salesChart'), {
+    type:'bar',
+    data:{ labels:d.labels, datasets:[{ data:d.data, backgroundColor:'#185FA5', borderRadius:4, borderSkipped:false }] },
+    options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{display:false}, tooltip:{ callbacks:{ label:c=>'$'+Math.round(c.raw/1000)+'K' } } }, scales:{ x:{grid:{display:false},ticks:{font:{size:11},color:'#888'}}, y:{grid:{color:'rgba(0,0,0,0.06)'},ticks:{font:{size:11},color:'#888',callback:v=>'$'+Math.round(v/1000)+'K'}} } }
+  });
+}
+function switchPeriod(p,el) {
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  buildSalesChart(p);
+}
+
+// ── INSTAGRAM ────────────────────────────────────────────
+async function loadInstagram() {
+  const TOKEN = getToken();
+  const BASE = 'https://graph.facebook.com/v19.0';
+  try {
+    const [account, media] = await Promise.all([
+      fetch(`${BASE}/${IG_ID}?fields=username,followers_count,media_count&access_token=${TOKEN}`).then(r=>r.json()),
+      fetch(`${BASE}/${IG_ID}/media?fields=caption,media_type,like_count,comments_count,thumbnail_url,media_url,timestamp&limit=6&access_token=${TOKEN}`).then(r=>r.json())
+    ]);
+    if (account.error) throw new Error(account.error.message);
+
+    const posts = media.data || [];
+    const totalLikes = posts.reduce((s,p)=>s+p.like_count,0);
+    const totalComments = posts.reduce((s,p)=>s+p.comments_count,0);
+    const engRate = ((totalLikes+totalComments)/account.followers_count*100).toFixed(2);
+
+    document.getElementById('igContent').innerHTML = `
+      ${account.followers_count < 80900 ? '<div class="alert-bar"><i class="ti ti-trending-down"></i> Follower count declining — lost followers this period. Consider reducing posting frequency and focusing on higher-quality content.</div>' : ''}
+      <div class="ig-stat-grid" style="margin-bottom:12px;">
+        <div class="ig-stat"><div class="ig-stat-val">${(account.followers_count/1000).toFixed(1)}K</div><div class="ig-stat-lbl">Followers</div></div>
+        <div class="ig-stat"><div class="ig-stat-val">${engRate}%</div><div class="ig-stat-lbl">Eng. rate</div></div>
+        <div class="ig-stat"><div class="ig-stat-val">${totalLikes}</div><div class="ig-stat-lbl">Likes (last 6 posts)</div></div>
+        <div class="ig-stat"><div class="ig-stat-val">${totalComments}</div><div class="ig-stat-lbl">Comments (last 6)</div></div>
+      </div>
+      <div class="card">
+        <div style="font-size:12px;font-weight:500;color:var(--text2);margin-bottom:10px;">Top posts</div>
+        ${posts.map(p=>`
+          <div class="ig-post-row">
+            <div class="ig-post-thumb">
+              ${p.media_url ? `<img src="${p.media_url}" alt="post">` : '<i class="ti ti-photo" style="color:var(--text2);font-size:18px;"></i>'}
+            </div>
+            <div style="flex:1;">
+              <div class="ig-post-caption">${p.caption ? p.caption.substring(0,80)+'...' : 'No caption'}</div>
+              <div class="ig-post-stats">❤️ ${p.like_count} · 💬 ${p.comments_count} · ${new Date(p.timestamp).toLocaleDateString('en-GB',{day:'numeric',month:'short'})}</div>
+            </div>
+          </div>`).join('')}
+      </div>
+      <div style="text-align:right;margin-top:8px;"><button onclick="resetToken()" style="font-size:11px;color:var(--text2);background:none;border:none;cursor:pointer;text-decoration:underline;">Reset token</button></div>
+    `;
+    document.getElementById('igLastUpdate').textContent = 'Live data · Updated ' + new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+  } catch(e) {
+    document.getElementById('igContent').innerHTML = `<div class="error-msg"><i class="ti ti-alert-circle"></i> ${e.message}</div><button onclick="resetToken()" style="font-size:12px;color:#185FA5;background:none;border:none;cursor:pointer;text-decoration:underline;">Re-enter token</button>`;
+  }
+}
+
+// ── MENTIONS ─────────────────────────────────────────────
+const MENTIONS_KEY = 'keb_mentions';
+const MENTIONS_DATE_KEY = 'keb_mentions_date';
+
+function loadMentions() {
+  try {
+    const saved = localStorage.getItem(MENTIONS_KEY);
+    const date = localStorage.getItem(MENTIONS_DATE_KEY);
+    if (saved && date) {
+      document.getElementById('mentionsLastSearch').textContent = 'Last searched: ' + date;
+      renderMentions(JSON.parse(saved));
+    }
+  } catch(e) {}
+}
+
+function searchMentions() {
+  const now = new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}) + ' ' + new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+  document.getElementById('mentionsLastSearch').textContent = 'Searching...';
+  // This triggers Claude via the parent chat
+  if (window.parent && window.parent.sendPrompt) {
+    window.parent.sendPrompt('Search for King Engine Bearings brand mentions right now. People talking on forums, Reddit, blogs, YouTube only — no stores or catalogs. Return results sorted: URGENT first, then POSITIVE, then QUESTIONS, then NEUTRAL. For each: one short sentence summary and a direct URL. Format starting with MENTIONS_DATA: then a JSON array with fields: category, source, snippet, url');
+  } else {
+    document.getElementById('mentionsLastSearch').textContent = 'To search mentions, use this dashboard inside Claude.ai chat';
+  }
+}
+
+function renderMentions(mentions) {
+  if (!mentions || !mentions.length) {
+    document.getElementById('mentionsResults').innerHTML = '<div class="card" style="text-align:center;color:var(--text2);font-size:13px;padding:20px;">No mentions found.</div>';
+    return;
+  }
+  const urgent = mentions.filter(m=>m.category==='URGENT');
+  const positive = mentions.filter(m=>m.category==='POSITIVE');
+  const question = mentions.filter(m=>m.category==='QUESTION');
+  const neutral = mentions.filter(m=>m.category==='NEUTRAL');
+
+  let html = '';
+  if (urgent.length) html += mentionSection('Needs attention', 'urgent', urgent);
+  if (positive.length) html += mentionSection('Positive', 'positive', positive);
+  if (question.length) html += mentionSection('Questions', 'question', question);
+  if (neutral.length) html += mentionSection('General', 'neutral', neutral);
+  document.getElementById('mentionsResults').innerHTML = html;
+}
+
+function mentionSection(title, cls, items) {
+  return `<div class="mention-wrap">
+    <div class="mention-section-label label-${cls}">${title} (${items.length})</div>
+    <div class="card">${items.map(m=>`
+      <div class="mention-row">
+        <div class="dot dot-${cls}"></div>
+        <div>
+          <div class="mention-source">${esc(m.source)}</div>
+          <div class="mention-text">${esc(m.snippet)}</div>
+          ${m.url ? `<a class="mention-link" href="${esc(m.url)}" target="_blank"><i class="ti ti-external-link" style="font-size:11px;"></i> View</a>` : ''}
+        </div>
+      </div>`).join('')}</div>
+  </div>`;
+}
+
+function esc(s) {
+  if (!s) return '';
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// Listen for mentions data from Claude
+window.addEventListener('message', e => {
+  if (e.data && typeof e.data === 'string' && e.data.includes('MENTIONS_DATA:')) {
+    try {
+      const json = e.data.substring(e.data.indexOf('MENTIONS_DATA:')+14).trim();
+      const mentions = JSON.parse(json);
+      const now = new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}) + ' ' + new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+      localStorage.setItem(MENTIONS_KEY, JSON.stringify(mentions));
+      localStorage.setItem(MENTIONS_DATE_KEY, now);
+      document.getElementById('mentionsLastSearch').textContent = 'Last searched: ' + now;
+      renderMentions(mentions);
+    } catch(err) {}
+  }
+});
+</script>
+</body>
+</html>
