@@ -20,11 +20,11 @@ exports.handler = async function(event) {
     try {
       const [account, media] = await Promise.all([
         httpsGet(`${BASE}/${IG_ID}?fields=username,followers_count,media_count&access_token=${TOKEN}`),
-        httpsGet(`${BASE}/${IG_ID}/media?fields=caption,media_type,like_count,comments_count,media_url,timestamp&limit=6&access_token=${TOKEN}`)
+        httpsGet(`${BASE}/${IG_ID}/media?fields=caption,media_type,like_count,comments_count,media_url,timestamp&limit=20&access_token=${TOKEN}`)
       ]);
       return {
         statusCode: 200,
-        headers: { 'Access-Control-Allow-Origin': '*' },
+        headers: { 'Access-Control-Allow-Origin': '*', 'Cache-Control': 'no-cache' },
         body: JSON.stringify({ account: JSON.parse(account), media: JSON.parse(media) })
       };
     } catch(e) {
@@ -36,12 +36,12 @@ exports.handler = async function(event) {
     const query = event.queryStringParameters.q;
     if (!query) return { statusCode: 400, body: JSON.stringify({ error: 'No query' }) };
     const apiKey = process.env.SERPAPI_KEY;
-    const url = `https://serpapi.com/search.json?engine=google&q=${encodeURIComponent(query)}&api_key=${apiKey}&num=10&tbs=qdr:m3`;
+    const url = `https://serpapi.com/search.json?engine=google&q=${encodeURIComponent(query)}&api_key=${apiKey}&num=10&tbs=qdr:m1`;
     try {
       const data = await httpsGet(url);
       return {
         statusCode: 200,
-        headers: { 'Access-Control-Allow-Origin': '*' },
+        headers: { 'Access-Control-Allow-Origin': '*', 'Cache-Control': 'no-cache' },
         body: data
       };
     } catch(e) {
