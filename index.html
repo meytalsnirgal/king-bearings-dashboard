@@ -168,6 +168,8 @@ async function loadInstagram() {
     const totalLikes = posts.reduce((s,p)=>s+p.like_count,0);
     const totalComments = posts.reduce((s,p)=>s+p.comments_count,0);
     const engRate = ((totalLikes+totalComments)/account.followers_count*100).toFixed(2);
+    const oneWeekAgo = new Date(Date.now() - 7*24*60*60*1000);
+    const postsThisWeek = posts.filter(p => new Date(p.timestamp) >= oneWeekAgo).length;
     document.getElementById('igContent').innerHTML = `
       ${account.followers_count < 80900 ? '<div class="alert-bar"><i class="ti ti-trending-down"></i> Follower count declining. Consider reducing posting frequency and focusing on higher-quality content.</div>' : ''}
       <div class="ig-stat-grid">
@@ -175,6 +177,8 @@ async function loadInstagram() {
         <div class="ig-stat"><div class="ig-stat-val">${engRate}%</div><div class="ig-stat-lbl">Eng. rate</div></div>
         <div class="ig-stat"><div class="ig-stat-val">${totalLikes}</div><div class="ig-stat-lbl">Likes (last 6)</div></div>
         <div class="ig-stat"><div class="ig-stat-val">${totalComments}</div><div class="ig-stat-lbl">Comments (last 6)</div></div>
+        <div class="ig-stat"><div class="ig-stat-val">${postsThisWeek}</div><div class="ig-stat-lbl">Posts this week</div></div>
+        <div class="ig-stat"><div class="ig-stat-val">${account.media_count}</div><div class="ig-stat-lbl">Total posts</div></div>
       </div>
       <div class="card" style="margin-top:12px;">
         <div style="font-size:12px;font-weight:500;color:var(--text2);margin-bottom:10px;">Top posts</div>
@@ -193,17 +197,18 @@ async function loadInstagram() {
   }
 }
 
-const EXCLUDE = ['amazon','ebay','aliexpress','walmart','kingenginebuilders.com','king-bearings.com'];
+const EXCLUDE_DOMAINS = ['amazon','ebay','aliexpress','walmart','kingenginebuilders.com','king-bearings.com','shopping','shop.','store.','parts.','catalog','buy.','price','alibaba','made-in-china','globalsources','thomasnet','grainger','zoro'];
 const SEARCHES = [
-  '"King Engine Bearings" -site:amazon.com -site:ebay.com -buy -shop',
-  '"King bearings" engine forum reddit -site:amazon.com -site:ebay.com'
+  '"King Engine Bearings" forum OR reddit OR blog OR review -site:amazon.com -site:ebay.com -site:alibaba.com',
+  '"King bearings" engine problem OR issue OR review OR recommend OR warning -site:amazon.com -site:ebay.com',
+  '"King Engine Bearings" OR "kingbearings" site:reddit.com OR site:youtube.com OR site:ls1tech.com OR site:yellowbullet.com OR site:bobistheoilguy.com'
 ];
 
 function classify(title, snippet) {
   const t = (title+' '+snippet).toLowerCase();
-  if (['warning','fail','broke','problem','issue','defect','bad','avoid','terrible','wrong','damaged','seized'].some(w=>t.includes(w))) return 'URGENT';
-  if (['vs','versus','compare','which','should i','anyone','advice','better','alternative','difference'].some(w=>t.includes(w))) return 'QUESTION';
-  if (['great','excellent','recommend','best','love','perfect','quality','good','amazing','reliable','solid'].some(w=>t.includes(w))) return 'POSITIVE';
+  if (['warning','fail','failed','broke','problem','issue','defect','bad','avoid','terrible','wrong','damaged','seized','delamination','out of spec','flaking','complaint','return','refund','unsafe','danger'].some(w=>t.includes(w))) return 'URGENT';
+  if (['vs','versus','compare','which','should i','anyone','advice','better','alternative','difference','recommendation','help'].some(w=>t.includes(w))) return 'QUESTION';
+  if (['great','excellent','recommend','best','love','perfect','quality','good','amazing','reliable','solid','happy','satisfied','works great','no issues','impressed'].some(w=>t.includes(w))) return 'POSITIVE';
   return 'NEUTRAL';
 }
 
@@ -211,17 +216,25 @@ function getSource(url) {
   try { return new URL(url).hostname.replace('www.',''); } catch(e) { return url; }
 }
 
+function isStore(url, title, snippet) {
+  const text = (url+' '+title+' '+snippet).toLowerCase();
+  const storeSignals = ['add to cart','buy now','in stock','out of stock','free shipping','price:','$','£','€','per unit','per set','wholesale','supplier','manufacturer listing','product page','part number','sku:'];
+  if (EXCLUDE_DOMAINS.some(d=>url.toLowerCase().includes(d))) return true;
+  if (storeSignals.filter(s=>text.includes(s)).length >= 2) return true;
+  return false;
+}
+
 async function searchMentions() {
   const btn = document.getElementById('searchBtn');
   btn.disabled = true;
   btn.innerHTML = '<i class="ti ti-loader" style="animation:spin 1s linear infinite;display:inline-block;"></i> Searching...';
   document.getElementById('mentionsLastSearch').textContent = 'Searching...';
-  document.getElementById('mentionsResults').innerHTML = '<div class="loading">Fetching mentions...</div>';
+  document.getElementById('mentionsResults').innerHTML = '<div class="loading">Fetching latest mentions...</div>';
 
   try {
     const allResults = [];
     for (const q of SEARCHES) {
-      const res = await fetch(`/.netlify/functions/search?type=search&q=${encodeURIComponent(q)}`);
+      const res = await fetch(`/.netlify/functions/search?type=search&q=${encodeURIComponent(q)}&_=${Date.now()}`);
       const data = await res.json();
       if (data.organic_results) allResults.push(...data.organic_results);
     }
@@ -229,9 +242,9 @@ async function searchMentions() {
     const seen = new Set();
     const mentions = allResults
       .filter(r => {
-        const url = (r.link||'').toLowerCase();
+        if (!r.link) return false;
         if (seen.has(r.link)) return false;
-        if (EXCLUDE.some(e=>url.includes(e))) return false;
+        if (isStore(r.link, r.title||'', r.snippet||'')) return false;
         seen.add(r.link);
         return true;
       })
