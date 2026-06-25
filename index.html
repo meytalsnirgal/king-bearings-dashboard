@@ -199,9 +199,10 @@ async function loadInstagram() {
 
 const EXCLUDE_DOMAINS = ['amazon','ebay','aliexpress','walmart','kingenginebuilders.com','king-bearings.com','shopping','shop.','store.','parts.','catalog','buy.','price','alibaba','made-in-china','globalsources','thomasnet','grainger','zoro'];
 const SEARCHES = [
-  '"King Engine Bearings" forum OR reddit OR blog OR review -site:amazon.com -site:ebay.com -site:alibaba.com',
-  '"King bearings" engine problem OR issue OR review OR recommend OR warning -site:amazon.com -site:ebay.com',
-  '"King Engine Bearings" OR "kingbearings" site:reddit.com OR site:youtube.com OR site:ls1tech.com OR site:yellowbullet.com OR site:bobistheoilguy.com'
+  '"King Engine Bearings" site:reddit.com',
+  '"King Engine Bearings" site:youtube.com',
+  '"King bearings" site:ls1tech.com OR site:yellowbullet.com OR site:bobistheoilguy.com OR site:enginebuildermag.com OR site:evolutionm.net',
+];
 ];
 
 function classify(title, snippet) {
