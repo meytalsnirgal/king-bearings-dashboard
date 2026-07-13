@@ -119,6 +119,21 @@
     </div>
   </div>
 
+  <div class="section" id="adsSection" style="display:none;">
+    <div class="section-title"><i class="ti ti-ad-2"></i> Google Ads</div>
+    <div class="metric-grid">
+      <div class="metric"><div class="metric-label">Cost (MTD)</div><div class="metric-val" id="mAdsCost">-</div><div class="metric-sub" id="mAdsCostSub"></div></div>
+      <div class="metric"><div class="metric-label">Clicks (MTD)</div><div class="metric-val" id="mAdsClicks">-</div><div class="metric-sub" id="mAdsClicksSub"></div></div>
+    </div>
+    <div class="metric-grid">
+      <div class="metric" style="grid-column:1 / -1;"><div class="metric-label">Conversions (MTD)</div><div class="metric-val" id="mAdsConversions">-</div><div class="metric-sub" id="mAdsConversionsSub"></div></div>
+    </div>
+    <div class="card" style="margin-top:0;">
+      <div style="font-size:12px;font-weight:500;color:var(--text2);margin-bottom:10px;">Top campaigns by spend (last 30 days)</div>
+      <div id="adsCampaignsList"></div>
+    </div>
+  </div>
+
   <div class="section">
     <div class="section-title"><i class="ti ti-messages"></i> Negative Mentions</div>
     <div class="last-searched" id="mentionsLastSearch">Not scanned yet</div>
@@ -144,6 +159,7 @@ window.addEventListener('DOMContentLoaded', () => {
   loadNegativeMentions();
   loadInstagram();
   loadAnalytics();
+  loadGoogleAds();
 });
 
 let trafficChart;
@@ -178,6 +194,41 @@ function buildTrafficChart(trend) {
       }
     }
   });
+}
+
+function renderCampaignsList(items) {
+  const el = document.getElementById('adsCampaignsList');
+  if (!items || !items.length) { el.innerHTML = '<div style="font-size:12px;color:var(--text2);">No data yet.</div>'; return; }
+  const max = Math.max(...items.map(i => i.cost));
+  el.innerHTML = items.map((i, idx) => `
+    <div class="brand-row">
+      <div class="brand-name">${esc(i.name)}</div>
+      <div class="brand-bar-wrap"><div class="brand-bar" style="width:${Math.max(4, Math.round(i.cost / max * 100))}%;background:${LIST_COLORS[idx % LIST_COLORS.length]};"></div></div>
+      <div class="brand-val">$${i.cost.toFixed(0)}</div>
+    </div>`).join('');
+}
+
+function setMetricSub(id, pct, suffix) {
+  const el = document.getElementById(id);
+  const up = pct >= 0;
+  el.className = 'metric-sub ' + (up ? 'up' : 'down');
+  el.textContent = (up ? '+' : '') + pct.toFixed(1) + (suffix || '% vs last mo.');
+}
+
+async function loadGoogleAds() {
+  try {
+    const res = await fetch('/.netlify/functions/googleads');
+    const data = await res.json();
+    if (!data.connected) return;
+    document.getElementById('adsSection').style.display = 'block';
+    document.getElementById('mAdsCost').textContent = '$' + data.costThisMonth.toFixed(0);
+    setMetricSub('mAdsCostSub', data.costGrowthPct);
+    document.getElementById('mAdsClicks').textContent = data.clicksThisMonth.toLocaleString();
+    setMetricSub('mAdsClicksSub', data.clicksGrowthPct);
+    document.getElementById('mAdsConversions').textContent = data.conversionsThisMonth.toLocaleString();
+    setMetricSub('mAdsConversionsSub', data.conversionsGrowthPct);
+    renderCampaignsList(data.topCampaigns);
+  } catch (e) { /* stay hidden if Google Ads isn't connected yet */ }
 }
 
 async function loadAnalytics() {
