@@ -108,9 +108,11 @@
 
   <div class="section" id="trafficSection" style="display:none;">
     <div class="section-title"><i class="ti ti-chart-line"></i> Website Traffic: Google Analytics</div>
-    <div class="metric-grid" style="grid-template-columns:1fr;">
+    <div class="metric-grid">
       <div class="metric"><div class="metric-label">Sessions (MTD)</div><div class="metric-val" id="mSessions">-</div><div class="metric-sub" id="mSessionsSub"></div></div>
+      <div class="metric" id="cartMetric" style="display:none;"><div class="metric-label">Cart Abandonment</div><div class="metric-val" id="mCartAbandon">-</div><div class="metric-sub">of carts started, last 3 mo.</div></div>
     </div>
+    <div class="connect-banner" id="cartUnavailableNote" style="display:none;"><i class="ti ti-plug"></i> Cart abandonment needs add_to_cart/purchase event tracking enabled in GA4</div>
     <div class="card">
       <div style="font-size:12px;font-weight:500;color:var(--text2);margin-bottom:10px;">Visitors by month, this year vs last year</div>
       <div class="chart-wrap"><canvas id="trafficChart"></canvas></div>
@@ -206,6 +208,14 @@ async function loadAnalytics() {
     buildTrafficChart(data.monthlyTrend);
     renderBarList('topPagesList', data.topPages, 'page', 'views');
     renderBarList('channelsList', data.channels, 'channel', 'sessions');
+    if (data.cartFunnel && data.cartFunnel.available) {
+      document.getElementById('cartMetric').style.display = 'block';
+      document.getElementById('cartUnavailableNote').style.display = 'none';
+      document.getElementById('mCartAbandon').textContent = data.cartFunnel.cartAbandonmentPct.toFixed(1) + '%';
+    } else {
+      document.getElementById('cartMetric').style.display = 'none';
+      document.getElementById('cartUnavailableNote').style.display = 'flex';
+    }
   } catch (e) { /* stay hidden if GA isn't connected yet */ }
 }
 

@@ -151,6 +151,35 @@ async function topChannels(token, propertyId) {
   }));
 }
 
+async function cartFunnel(token, propertyId) {
+  const now = new Date();
+  const from = ymd(new Date(now.getFullYear(), now.getMonth() - 2, 1));
+  const to = ymd(now);
+  const res = await postJson(`https://analyticsdata.googleapis.com/v1beta/properties/${propertyId}:runReport`, token, {
+    dateRanges: [{ startDate: from, endDate: to }],
+    dimensions: [{ name: 'eventName' }],
+    metrics: [{ name: 'eventCount' }],
+    dimensionFilter: {
+      filter: { fieldName: 'eventName', inListFilter: { values: ['add_to_cart', 'begin_checkout', 'purchase'] } }
+    },
+    limit: 10
+  });
+  const counts = {};
+  for (const r of (res.rows || [])) counts[r.dimensionValues[0].value] = Number(r.metricValues[0].value);
+  const addToCart = counts.add_to_cart || 0;
+  const beginCheckout = counts.begin_checkout || 0;
+  const purchases = counts.purchase || 0;
+  if (!addToCart) return { available: false };
+  return {
+    available: true,
+    addToCart,
+    beginCheckout,
+    purchases,
+    cartAbandonmentPct: ((addToCart - purchases) / addToCart) * 100,
+    checkoutAbandonmentPct: beginCheckout ? ((beginCheckout - purchases) / beginCheckout) * 100 : null
+  };
+}
+
 function pctChange(cur, prev) { return prev ? ((cur - prev) / prev) * 100 : (cur ? 100 : 0); }
 
 exports.handler = async function () {
@@ -162,12 +191,13 @@ exports.handler = async function () {
     const propertyId = process.env.GA_PROPERTY_ID;
     const thisMonth = monthWindow(0);
     const lastMonth = monthWindow(1);
-    const [sessionsThis, sessionsLast, monthlyTrend, pages, channels] = await Promise.all([
+    const [sessionsThis, sessionsLast, monthlyTrend, pages, channels, cart] = await Promise.all([
       sessionsFor(token, propertyId, thisMonth.from, thisMonth.to),
       sessionsFor(token, propertyId, lastMonth.from, lastMonth.to),
       monthlyYoY(token, propertyId),
       topPages(token, propertyId),
-      topChannels(token, propertyId)
+      topChannels(token, propertyId),
+      cartFunnel(token, propertyId)
     ]);
     return {
       statusCode: 200,
@@ -177,6 +207,7 @@ exports.handler = async function () {
         sessionsThisMonth: sessionsThis,
         sessionsLastMonth: sessionsLast,
         sessionsGrowthPct: pctChange(sessionsThis, sessionsLast),
+        cartFunnel: cart,
         monthlyTrend,
         topPages: pages,
         channels
