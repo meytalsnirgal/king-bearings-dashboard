@@ -88,6 +88,69 @@ async function sessionsFor(token, propertyId, from, to) {
   return row ? Number(row.metricValues[0].value) : 0;
 }
 
+const MONTH_NAMES = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+async function monthlyYoY(token, propertyId) {
+  const now = new Date();
+  const from = `${now.getFullYear() - 1}-01-01`;
+  const to = ymd(now);
+  const res = await postJson(`https://analyticsdata.googleapis.com/v1beta/properties/${propertyId}:runReport`, token, {
+    dateRanges: [{ startDate: from, endDate: to }],
+    dimensions: [{ name: 'yearMonth' }],
+    metrics: [{ name: 'activeUsers' }],
+    orderBys: [{ dimension: { dimensionName: 'yearMonth' } }],
+    limit: 100
+  });
+  const thisYear = new Array(12).fill(null);
+  const lastYear = new Array(12).fill(null);
+  const curYearStr = String(now.getFullYear());
+  const prevYearStr = String(now.getFullYear() - 1);
+  for (const r of (res.rows || [])) {
+    const ym = r.dimensionValues[0].value;
+    const y = ym.slice(0, 4);
+    const m = parseInt(ym.slice(4, 6), 10) - 1;
+    const val = Number(r.metricValues[0].value);
+    if (y === curYearStr) thisYear[m] = val;
+    else if (y === prevYearStr) lastYear[m] = val;
+  }
+  const hasLastYear = lastYear.some(v => v !== null);
+  return { labels: MONTH_NAMES, thisYear, lastYear: hasLastYear ? lastYear : null, hasLastYear };
+}
+
+async function topPages(token, propertyId) {
+  const now = new Date();
+  const from = ymd(new Date(now.getFullYear(), now.getMonth() - 2, 1));
+  const to = ymd(now);
+  const res = await postJson(`https://analyticsdata.googleapis.com/v1beta/properties/${propertyId}:runReport`, token, {
+    dateRanges: [{ startDate: from, endDate: to }],
+    dimensions: [{ name: 'pagePath' }],
+    metrics: [{ name: 'screenPageViews' }],
+    orderBys: [{ metric: { metricName: 'screenPageViews' }, desc: true }],
+    limit: 4
+  });
+  return (res.rows || []).map(r => ({
+    page: r.dimensionValues[0].value === '/' ? '/ (Homepage)' : r.dimensionValues[0].value,
+    views: Number(r.metricValues[0].value)
+  }));
+}
+
+async function topChannels(token, propertyId) {
+  const now = new Date();
+  const from = ymd(new Date(now.getFullYear(), now.getMonth() - 2, 1));
+  const to = ymd(now);
+  const res = await postJson(`https://analyticsdata.googleapis.com/v1beta/properties/${propertyId}:runReport`, token, {
+    dateRanges: [{ startDate: from, endDate: to }],
+    dimensions: [{ name: 'sessionDefaultChannelGroup' }],
+    metrics: [{ name: 'sessions' }],
+    orderBys: [{ metric: { metricName: 'sessions' }, desc: true }],
+    limit: 5
+  });
+  return (res.rows || []).map(r => ({
+    channel: r.dimensionValues[0].value,
+    sessions: Number(r.metricValues[0].value)
+  }));
+}
+
 function pctChange(cur, prev) { return prev ? ((cur - prev) / prev) * 100 : (cur ? 100 : 0); }
 
 exports.handler = async function () {
@@ -96,11 +159,15 @@ exports.handler = async function () {
   }
   try {
     const token = await getAccessToken();
+    const propertyId = process.env.GA_PROPERTY_ID;
     const thisMonth = monthWindow(0);
     const lastMonth = monthWindow(1);
-    const [sessionsThis, sessionsLast] = await Promise.all([
-      sessionsFor(token, process.env.GA_PROPERTY_ID, thisMonth.from, thisMonth.to),
-      sessionsFor(token, process.env.GA_PROPERTY_ID, lastMonth.from, lastMonth.to)
+    const [sessionsThis, sessionsLast, monthlyTrend, pages, channels] = await Promise.all([
+      sessionsFor(token, propertyId, thisMonth.from, thisMonth.to),
+      sessionsFor(token, propertyId, lastMonth.from, lastMonth.to),
+      monthlyYoY(token, propertyId),
+      topPages(token, propertyId),
+      topChannels(token, propertyId)
     ]);
     return {
       statusCode: 200,
@@ -109,7 +176,10 @@ exports.handler = async function () {
         connected: true,
         sessionsThisMonth: sessionsThis,
         sessionsLastMonth: sessionsLast,
-        sessionsGrowthPct: pctChange(sessionsThis, sessionsLast)
+        sessionsGrowthPct: pctChange(sessionsThis, sessionsLast),
+        monthlyTrend,
+        topPages: pages,
+        channels
       })
     };
   } catch (e) {

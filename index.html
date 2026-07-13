@@ -90,9 +90,6 @@
       <div class="metric"><div class="metric-label">Avg. Order Value</div><div class="metric-val">$62.8</div><div class="metric-sub up">+3% vs last mo.</div></div>
       <div class="metric"><div class="metric-label">Conversion Rate</div><div class="metric-val">3.4%</div><div class="metric-sub down" id="convSub">-0.2pp vs last mo.</div></div>
     </div>
-    <div class="metric-grid" id="sessionsRow" style="display:none;grid-template-columns:1fr;">
-      <div class="metric"><div class="metric-label">Sessions (MTD)</div><div class="metric-val" id="mSessions">-</div><div class="metric-sub" id="mSessionsSub"></div></div>
-    </div>
     <div class="tab-row">
       <button class="tab active" onclick="switchPeriod('3m',this)">3 months</button>
       <button class="tab" onclick="switchPeriod('6m',this)">6 months</button>
@@ -107,6 +104,26 @@
       <div class="brand-row"><div class="brand-name">Other</div><div class="brand-bar-wrap"><div class="brand-bar" style="width:12%;background:#888780;"></div></div><div class="brand-val">$5.1K</div><div class="brand-pct">6%</div></div>
     </div>
     <div class="connect-banner"><i class="ti ti-plug"></i> Connect Magento to show live sales data</div>
+  </div>
+
+  <div class="section" id="trafficSection" style="display:none;">
+    <div class="section-title"><i class="ti ti-chart-line"></i> Website Traffic: Google Analytics</div>
+    <div class="metric-grid" style="grid-template-columns:1fr;">
+      <div class="metric"><div class="metric-label">Sessions (MTD)</div><div class="metric-val" id="mSessions">-</div><div class="metric-sub" id="mSessionsSub"></div></div>
+    </div>
+    <div class="card">
+      <div style="font-size:12px;font-weight:500;color:var(--text2);margin-bottom:10px;">Visitors by month, this year vs last year</div>
+      <div class="chart-wrap"><canvas id="trafficChart"></canvas></div>
+      <div id="trafficChartNote" style="display:none;font-size:11px;color:var(--text2);margin-top:8px;">No data available for last year on this GA4 property yet, showing this year only.</div>
+    </div>
+    <div class="card" style="margin-top:0;">
+      <div style="font-size:12px;font-weight:500;color:var(--text2);margin-bottom:10px;">Top pages (last 3 months)</div>
+      <div id="topPagesList"></div>
+    </div>
+    <div class="card" style="margin-top:0;">
+      <div style="font-size:12px;font-weight:500;color:var(--text2);margin-bottom:10px;">Where visitors came from (last 3 months)</div>
+      <div id="channelsList"></div>
+    </div>
   </div>
 
   <div class="section">
@@ -141,17 +158,54 @@ window.addEventListener('DOMContentLoaded', () => {
   loadAnalytics();
 });
 
+let trafficChart;
+const LIST_COLORS = ['#185FA5','#1D9E75','#BA7517','#D85A30','#888780','#7B4397'];
+
+function renderBarList(containerId, items, labelKey, valueKey) {
+  const el = document.getElementById(containerId);
+  if (!items || !items.length) { el.innerHTML = '<div style="font-size:12px;color:var(--text2);">No data yet.</div>'; return; }
+  const max = Math.max(...items.map(i => i[valueKey]));
+  el.innerHTML = items.map((i, idx) => `
+    <div class="brand-row">
+      <div class="brand-name">${esc(String(i[labelKey]))}</div>
+      <div class="brand-bar-wrap"><div class="brand-bar" style="width:${Math.max(4, Math.round(i[valueKey] / max * 100))}%;background:${LIST_COLORS[idx % LIST_COLORS.length]};"></div></div>
+      <div class="brand-val">${i[valueKey].toLocaleString()}</div>
+    </div>`).join('');
+}
+
+function buildTrafficChart(trend) {
+  if (trafficChart) trafficChart.destroy();
+  document.getElementById('trafficChartNote').style.display = trend.hasLastYear ? 'none' : 'block';
+  const datasets = [{ label: 'This year', data: trend.thisYear, backgroundColor: '#185FA5', borderRadius: 4, borderSkipped: false }];
+  if (trend.hasLastYear) datasets.push({ label: 'Last year', data: trend.lastYear, backgroundColor: '#B5D4F4', borderRadius: 4, borderSkipped: false });
+  trafficChart = new Chart(document.getElementById('trafficChart'), {
+    type: 'bar',
+    data: { labels: trend.labels, datasets },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: true, position: 'top', labels: { boxWidth: 10, font: { size: 11 } } } },
+      scales: {
+        x: { grid: { display: false }, ticks: { font: { size: 11 }, color: '#888' } },
+        y: { grid: { color: 'rgba(0,0,0,0.06)' }, ticks: { font: { size: 11 }, color: '#888' } }
+      }
+    }
+  });
+}
+
 async function loadAnalytics() {
   try {
     const res = await fetch('/.netlify/functions/analytics');
     const data = await res.json();
     if (!data.connected) return;
-    document.getElementById('sessionsRow').style.display = 'grid';
+    document.getElementById('trafficSection').style.display = 'block';
     document.getElementById('mSessions').textContent = data.sessionsThisMonth.toLocaleString();
     const up = data.sessionsGrowthPct >= 0;
     const sub = document.getElementById('mSessionsSub');
     sub.className = 'metric-sub ' + (up ? 'up' : 'down');
     sub.textContent = (up ? '+' : '') + data.sessionsGrowthPct.toFixed(1) + '% vs last mo.';
+    buildTrafficChart(data.monthlyTrend);
+    renderBarList('topPagesList', data.topPages, 'page', 'views');
+    renderBarList('channelsList', data.channels, 'channel', 'sessions');
   } catch (e) { /* stay hidden if GA isn't connected yet */ }
 }
 
