@@ -32,22 +32,5 @@ exports.handler = async function(event) {
     }
   }
 
-  if (type === 'search') {
-    const query = event.queryStringParameters.q;
-    if (!query) return { statusCode: 400, body: JSON.stringify({ error: 'No query' }) };
-    const apiKey = process.env.SERPAPI_KEY;
-    const url = `https://serpapi.com/search.json?engine=google&q=${encodeURIComponent(query)}&api_key=${apiKey}&num=10&tbs=qdr:m1`;
-    try {
-      const data = await httpsGet(url);
-      return {
-        statusCode: 200,
-        headers: { 'Access-Control-Allow-Origin': '*', 'Cache-Control': 'no-cache' },
-        body: data
-      };
-    } catch(e) {
-      return { statusCode: 500, body: JSON.stringify({ error: e.message }) };
-    }
-  }
-
   return { statusCode: 400, body: JSON.stringify({ error: 'Unknown type' }) };
 };

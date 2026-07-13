@@ -44,14 +44,10 @@
   .loading { text-align: center; padding: 20px; color: var(--text2); font-size: 13px; }
   .error-msg { background: var(--red-bg); color: var(--red); border-radius: var(--radius-sm); padding: 10px 14px; font-size: 12px; margin-bottom: 10px; }
   .alert-bar { background: var(--red-bg); border-left: 3px solid var(--red); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 10px 14px; font-size: 12px; color: #791F1F; margin-bottom: 12px; line-height: 1.5; }
-  .search-btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 12px; background: var(--blue); color: var(--blue-light); border: none; border-radius: var(--radius); font-size: 14px; font-weight: 500; cursor: pointer; margin-bottom: 14px; }
-  .search-btn:disabled { opacity: 0.6; cursor: not-allowed; }
-  .mention-section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
-  .label-urgent { color: #791F1F; } .label-positive { color: var(--green); } .label-question { color: #0C447C; } .label-neutral { color: var(--orange); }
   .mention-row { display: flex; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--border); }
   .mention-row:last-child { border-bottom: none; }
   .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
-  .dot-urgent { background: #E24B4A; } .dot-positive { background: #639922; } .dot-question { background: #185FA5; } .dot-neutral { background: #BA7517; }
+  .dot-urgent { background: #E24B4A; }
   .mention-source { font-size: 11px; color: var(--text2); margin-bottom: 2px; }
   .mention-text { font-size: 13px; color: var(--text); line-height: 1.45; }
   .mention-link { font-size: 11px; color: #185FA5; text-decoration: none; display: inline-flex; align-items: center; gap: 3px; margin-top: 3px; }
@@ -67,11 +63,6 @@
   .chart-wrap { position: relative; height: 180px; }
   .connect-banner { background: var(--bg); border: 1px dashed var(--border); border-radius: var(--radius-sm); padding: 10px 14px; font-size: 12px; color: var(--text2); display: flex; align-items: center; gap: 8px; margin-top: 8px; }
   .update-note { font-size: 11px; color: var(--text2); text-align: center; margin-top: 10px; }
-  .mentions-stats { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; margin-bottom: 14px; }
-  .mentions-stat { background: var(--bg); border-radius: var(--radius-sm); padding: 10px 12px; }
-  .mentions-stat-val { font-size: 20px; font-weight: 500; }
-  .mentions-stat-lbl { font-size: 11px; color: var(--text2); margin-top: 2px; }
-  @keyframes spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
 </style>
 </head>
 <body>
@@ -129,17 +120,12 @@
   </div>
 
   <div class="section">
-    <div class="section-title"><i class="ti ti-messages"></i> Brand Mentions</div>
-    <div class="last-searched" id="mentionsLastSearch">Never searched — tap below to fetch latest</div>
-    <button class="search-btn" id="searchBtn" onclick="searchMentions()"><i class="ti ti-refresh"></i> Search mentions now</button>
-    <div id="mentionsStats" style="display:none;" class="mentions-stats">
-      <div class="mentions-stat"><div class="mentions-stat-val" id="totalCount">0</div><div class="mentions-stat-lbl">Mentions found</div></div>
-      <div class="mentions-stat"><div class="mentions-stat-val down" id="urgentCount">0</div><div class="mentions-stat-lbl">Need attention</div></div>
-    </div>
+    <div class="section-title"><i class="ti ti-messages"></i> Negative Mentions</div>
+    <div class="last-searched" id="mentionsLastSearch">Not scanned yet</div>
     <div id="mentionsResults">
       <div class="card" style="text-align:center;color:var(--text2);font-size:13px;padding:24px;">
         <i class="ti ti-antenna-bars-1" style="font-size:28px;display:block;margin-bottom:8px;opacity:0.4;"></i>
-        Tap above to scan Reddit, forums and blogs for people talking about King Engine Bearings
+        Waiting for the first daily scan.
       </div>
     </div>
   </div>
@@ -155,7 +141,7 @@
 window.addEventListener('DOMContentLoaded', () => {
   document.getElementById('headerDate').textContent = new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
   buildSalesChart('3m');
-  loadSavedMentions();
+  loadNegativeMentions();
   loadInstagram();
   loadAnalytics();
 });
@@ -279,102 +265,33 @@ async function loadInstagram() {
   }
 }
 
-const EXCLUDE_DOMAINS = ['amazon','ebay','aliexpress','walmart','kingenginebuilders.com','king-bearings.com','shopping','shop.','store.','parts.','catalog','buy.','price','alibaba','made-in-china','globalsources','thomasnet','grainger','zoro'];
-const SEARCHES = [
-  '"King Engine Bearings" site:reddit.com',
-  '"King Engine Bearings" site:youtube.com',
-  '"King bearings" site:ls1tech.com OR site:yellowbullet.com OR site:bobistheoilguy.com OR site:enginebuildermag.com OR site:evolutionm.net'
-];
-
-function classify(title, snippet) {
-  const t = (title+' '+snippet).toLowerCase();
-  if (['warning','fail','failed','broke','problem','issue','defect','bad','avoid','terrible','wrong','damaged','seized','delamination','out of spec','flaking','complaint','return','refund','unsafe','danger'].some(w=>t.includes(w))) return 'URGENT';
-  if (['vs','versus','compare','which','should i','anyone','advice','better','alternative','difference','recommendation','help'].some(w=>t.includes(w))) return 'QUESTION';
-  if (['great','excellent','recommend','best','love','perfect','quality','good','amazing','reliable','solid','happy','satisfied','works great','no issues','impressed'].some(w=>t.includes(w))) return 'POSITIVE';
-  return 'NEUTRAL';
-}
-
-function getSource(url) {
-  try { return new URL(url).hostname.replace('www.',''); } catch(e) { return url; }
-}
-
-function isStore(url, title, snippet) {
-  const text = (url+' '+title+' '+snippet).toLowerCase();
-  const storeSignals = ['add to cart','buy now','in stock','out of stock','free shipping','price:','$','£','€','per unit','per set','wholesale','supplier','manufacturer listing','product page','part number','sku:'];
-  if (EXCLUDE_DOMAINS.some(d=>url.toLowerCase().includes(d))) return true;
-  if (storeSignals.filter(s=>text.includes(s)).length >= 2) return true;
-  return false;
-}
-
-async function searchMentions() {
-  const btn = document.getElementById('searchBtn');
-  btn.disabled = true;
-  btn.innerHTML = '<i class="ti ti-loader" style="animation:spin 1s linear infinite;display:inline-block;"></i> Searching...';
-  document.getElementById('mentionsLastSearch').textContent = 'Searching...';
-  document.getElementById('mentionsResults').innerHTML = '<div class="loading">Fetching latest mentions...</div>';
-
+async function loadNegativeMentions() {
   try {
-    const allResults = [];
-    for (const q of SEARCHES) {
-      const res = await fetch(`/.netlify/functions/search?type=search&q=${encodeURIComponent(q)}&_=${Date.now()}`);
-      const data = await res.json();
-      if (data.organic_results) allResults.push(...data.organic_results);
+    const res = await fetch(`/data/negative-mentions.json?_=${Date.now()}`);
+    const data = await res.json();
+    if (!data.lastScanned) {
+      document.getElementById('mentionsLastSearch').textContent = 'Not scanned yet';
+      return;
     }
-
-    const seen = new Set();
-    const mentions = allResults
-      .filter(r => {
-        if (!r.link) return false;
-        if (seen.has(r.link)) return false;
-        if (isStore(r.link, r.title||'', r.snippet||'')) return false;
-        seen.add(r.link);
-        return true;
-      })
-      .map(r => ({
-        category: classify(r.title||'', r.snippet||''),
-        source: getSource(r.link),
-        snippet: (r.snippet||r.title||'').substring(0,150),
-        url: r.link
-      }));
-
-    const now = new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}) + ' ' + new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
-    localStorage.setItem('keb_mentions_data', JSON.stringify(mentions));
-    localStorage.setItem('keb_mentions_date', now);
-    document.getElementById('mentionsLastSearch').textContent = 'Last searched: ' + now;
-    renderMentions(mentions);
-  } catch(e) {
-    document.getElementById('mentionsResults').innerHTML = `<div class="error-msg">Search failed: ${e.message}</div>`;
-    document.getElementById('mentionsLastSearch').textContent = 'Search failed';
+    const scanDate = new Date(data.lastScanned);
+    document.getElementById('mentionsLastSearch').textContent = 'Last scanned: ' + scanDate.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}) + ' ' + scanDate.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+    const mentions = data.mentions || [];
+    if (!mentions.length) {
+      document.getElementById('mentionsResults').innerHTML = '<div class="card" style="text-align:center;color:var(--text2);font-size:13px;padding:20px;">No negative mentions found in today\'s scan.</div>';
+      return;
+    }
+    document.getElementById('mentionsResults').innerHTML = `<div class="card">${mentions.map(m => `
+      <div class="mention-row">
+        <div class="dot dot-urgent"></div>
+        <div>
+          <div class="mention-source">${esc(m.source)}${m.date ? ' · ' + esc(m.date) : ''}</div>
+          <div class="mention-text">${esc(m.snippet)}</div>
+          ${m.url ? `<a class="mention-link" href="${esc(m.url)}" target="_blank"><i class="ti ti-external-link" style="font-size:11px;"></i> View</a>` : ''}
+        </div>
+      </div>`).join('')}</div>`;
+  } catch (e) {
+    document.getElementById('mentionsLastSearch').textContent = 'Not scanned yet';
   }
-
-  btn.disabled = false;
-  btn.innerHTML = '<i class="ti ti-refresh"></i> Search mentions now';
-}
-
-function loadSavedMentions() {
-  try {
-    const saved = localStorage.getItem('keb_mentions_data');
-    const date = localStorage.getItem('keb_mentions_date');
-    if (saved && date) { document.getElementById('mentionsLastSearch').textContent = 'Last searched: ' + date; renderMentions(JSON.parse(saved)); }
-  } catch(e) {}
-}
-
-function renderMentions(mentions) {
-  if (!mentions||!mentions.length) { document.getElementById('mentionsResults').innerHTML = '<div class="card" style="text-align:center;color:var(--text2);font-size:13px;padding:20px;">No mentions found.</div>'; return; }
-  const urgent=mentions.filter(m=>m.category==='URGENT'), positive=mentions.filter(m=>m.category==='POSITIVE'), question=mentions.filter(m=>m.category==='QUESTION'), neutral=mentions.filter(m=>m.category==='NEUTRAL');
-  document.getElementById('totalCount').textContent = mentions.length;
-  document.getElementById('urgentCount').textContent = urgent.length;
-  document.getElementById('mentionsStats').style.display = 'grid';
-  let html='';
-  if (urgent.length) html+=ms('⚠ Needs attention','urgent',urgent);
-  if (positive.length) html+=ms('✓ Positive','positive',positive);
-  if (question.length) html+=ms('? Questions','question',question);
-  if (neutral.length) html+=ms('General','neutral',neutral);
-  document.getElementById('mentionsResults').innerHTML = html;
-}
-
-function ms(title,cls,items) {
-  return `<div class="mention-wrap"><div class="mention-section-label label-${cls}">${title} (${items.length})</div><div class="card">${items.map(m=>`<div class="mention-row"><div class="dot dot-${cls}"></div><div><div class="mention-source">${esc(m.source)}</div><div class="mention-text">${esc(m.snippet)}</div>${m.url?`<a class="mention-link" href="${esc(m.url)}" target="_blank"><i class="ti ti-external-link" style="font-size:11px;"></i> View</a>`:''}</div></div>`).join('')}</div></div>`;
 }
 
 function esc(s) { if(!s)return''; return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
