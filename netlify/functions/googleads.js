@@ -4,7 +4,7 @@ function cors() {
   return { 'Access-Control-Allow-Origin': '*', 'Cache-Control': 'no-cache', 'Content-Type': 'application/json' };
 }
 
-const API_VERSION = process.env.GOOGLE_ADS_API_VERSION || 'v17';
+const API_VERSION = process.env.GOOGLE_ADS_API_VERSION || 'v24';
 const TARGET_CUSTOMER_ID = '2801560311';
 const LOGIN_CUSTOMER_ID = '1510947200';
 
