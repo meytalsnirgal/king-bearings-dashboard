@@ -243,14 +243,14 @@ async function loadInstagram() {
       <div class="ig-stat-grid">
         <div class="ig-stat"><div class="ig-stat-val">${(account.followers_count/1000).toFixed(1)}K</div><div class="ig-stat-lbl">Followers</div></div>
         <div class="ig-stat"><div class="ig-stat-val">${engRate}%</div><div class="ig-stat-lbl">Eng. rate</div></div>
-        <div class="ig-stat"><div class="ig-stat-val">${totalLikes}</div><div class="ig-stat-lbl">Likes (last 6)</div></div>
-        <div class="ig-stat"><div class="ig-stat-val">${totalComments}</div><div class="ig-stat-lbl">Comments (last 6)</div></div>
+        <div class="ig-stat"><div class="ig-stat-val">${totalLikes}</div><div class="ig-stat-lbl">Likes (last ${posts.length})</div></div>
+        <div class="ig-stat"><div class="ig-stat-val">${totalComments}</div><div class="ig-stat-lbl">Comments (last ${posts.length})</div></div>
         <div class="ig-stat"><div class="ig-stat-val">${postsThisWeek}</div><div class="ig-stat-lbl">Posts this week</div></div>
         <div class="ig-stat"><div class="ig-stat-val">${account.media_count}</div><div class="ig-stat-lbl">Total posts</div></div>
       </div>
       <div class="card" style="margin-top:12px;">
         <div style="font-size:12px;font-weight:500;color:var(--text2);margin-bottom:10px;">Top posts</div>
-        ${posts.map(p=>`
+        ${[...posts].sort((a,b)=>(b.like_count+b.comments_count)-(a.like_count+a.comments_count)).slice(0,5).map(p=>`
           <div class="ig-post-row">
             <div class="ig-post-thumb">${p.media_url?`<img src="${p.media_url}" alt="post">`:'<i class="ti ti-photo" style="color:var(--text2);font-size:18px;"></i>'}</div>
             <div style="flex:1;">
