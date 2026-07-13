@@ -1,4 +1,35 @@
 {
-  "lastScanned": null,
-  "mentions": []
+  "lastScanned": "2026-07-13T09:44:56Z",
+  "mentions": [
+    {
+      "date": "Unknown",
+      "source": "m5board.com",
+      "snippet": "BMW M5 Forum thread \"King Main Bearings Defective\": multiple users found King thrust bearings over 1mm too narrow to fit BMW S85/S65 blocks.",
+      "url": "https://www.m5board.com/threads/king-main-bearings-defective.621301/"
+    },
+    {
+      "date": "Unknown",
+      "source": "nastyz28.com",
+      "snippet": "Buyer received a King SI main bearing that was malformed in production, crushed and twisted about 1/8\" out of size.",
+      "url": "https://nastyz28.com/threads/got-a-set-of-king-si-bearings-with-a-defective-bearing-awesome.212498/"
+    },
+    {
+      "date": "Unknown",
+      "source": "oilburners.net",
+      "snippet": "Diesel Truck Forum thread titled \"WARNING about King Main Thrust Bearings\", a buyer-warning thread about a recurring problem pattern.",
+      "url": "https://www.oilburners.net/threads/warning-about-king-main-thrust-bearings.94987/"
+    },
+    {
+      "date": "Unknown",
+      "source": "460ford.com",
+      "snippet": "460 Ford Forum thread \"King Bearing Failures?\" discussing reported bearing failures in Ford 460 engine builds.",
+      "url": "https://www.460ford.com/forum/37-engine-tech/107388-king-bearing-failures.html"
+    },
+    {
+      "date": "Unknown",
+      "source": "racingjunk.com",
+      "snippet": "RacingJunk Forums thread on a quality control problem with King bearings and a lack of professional support in resolving it.",
+      "url": "https://www.racingjunk.com/forums/showthread.php?t=1289997"
+    }
+  ]
 }
