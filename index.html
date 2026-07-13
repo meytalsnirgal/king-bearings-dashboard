@@ -88,7 +88,10 @@
       <div class="metric"><div class="metric-label">Revenue (MTD)</div><div class="metric-val">$84.2K</div><div class="metric-sub up">+12% vs last mo.</div></div>
       <div class="metric"><div class="metric-label">Orders (MTD)</div><div class="metric-val">1,340</div><div class="metric-sub up">+8% vs last mo.</div></div>
       <div class="metric"><div class="metric-label">Avg. Order Value</div><div class="metric-val">$62.8</div><div class="metric-sub up">+3% vs last mo.</div></div>
-      <div class="metric"><div class="metric-label">Conversion Rate</div><div class="metric-val">3.4%</div><div class="metric-sub down">-0.2pp vs last mo.</div></div>
+      <div class="metric"><div class="metric-label">Conversion Rate</div><div class="metric-val">3.4%</div><div class="metric-sub down" id="convSub">-0.2pp vs last mo.</div></div>
+    </div>
+    <div class="metric-grid" id="sessionsRow" style="display:none;grid-template-columns:1fr;">
+      <div class="metric"><div class="metric-label">Sessions (MTD)</div><div class="metric-val" id="mSessions">-</div><div class="metric-sub" id="mSessionsSub"></div></div>
     </div>
     <div class="tab-row">
       <button class="tab active" onclick="switchPeriod('3m',this)">3 months</button>
@@ -135,7 +138,22 @@ window.addEventListener('DOMContentLoaded', () => {
   buildSalesChart('3m');
   loadSavedMentions();
   loadInstagram();
+  loadAnalytics();
 });
+
+async function loadAnalytics() {
+  try {
+    const res = await fetch('/.netlify/functions/analytics');
+    const data = await res.json();
+    if (!data.connected) return;
+    document.getElementById('sessionsRow').style.display = 'grid';
+    document.getElementById('mSessions').textContent = data.sessionsThisMonth.toLocaleString();
+    const up = data.sessionsGrowthPct >= 0;
+    const sub = document.getElementById('mSessionsSub');
+    sub.className = 'metric-sub ' + (up ? 'up' : 'down');
+    sub.textContent = (up ? '+' : '') + data.sessionsGrowthPct.toFixed(1) + '% vs last mo.';
+  } catch (e) { /* stay hidden if GA isn't connected yet */ }
+}
 
 const salesData = {
   '3m':{ labels:['Apr','May','Jun'], data:[68400,74100,84200] },
