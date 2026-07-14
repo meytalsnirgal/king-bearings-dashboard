@@ -76,6 +76,27 @@ async function accountMetrics(token, dateRangeLiteral) {
   };
 }
 
+function ymd(d) { return d.toISOString().slice(0, 10); }
+const MONTH_NAMES = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+async function monthlyTrend(token) {
+  const now = new Date();
+  const from = `${now.getFullYear()}-01-01`;
+  const to = ymd(now);
+  const query = `SELECT segments.month, metrics.cost_micros, metrics.clicks, metrics.conversions FROM customer WHERE segments.date BETWEEN '${from}' AND '${to}' ORDER BY segments.month`;
+  const res = await gaqlSearch(token, query);
+  const cost = new Array(12).fill(null);
+  const clicks = new Array(12).fill(null);
+  const conversions = new Array(12).fill(null);
+  for (const r of (res.results || [])) {
+    const m = parseInt(r.segments.month.slice(5, 7), 10) - 1;
+    cost[m] = Number(r.metrics.costMicros || 0) / 1e6;
+    clicks[m] = Number(r.metrics.clicks || 0);
+    conversions[m] = Number(r.metrics.conversions || 0);
+  }
+  return { labels: MONTH_NAMES, cost, clicks, conversions };
+}
+
 async function topCampaigns(token) {
   const query = `SELECT campaign.name, metrics.cost_micros, metrics.clicks, metrics.conversions FROM campaign WHERE segments.date DURING LAST_30_DAYS ORDER BY metrics.cost_micros DESC LIMIT 5`;
   const res = await gaqlSearch(token, query);
@@ -95,10 +116,11 @@ exports.handler = async function () {
   }
   try {
     const token = await getAccessToken();
-    const [thisMonth, lastMonth, campaigns] = await Promise.all([
+    const [thisMonth, lastMonth, campaigns, trend] = await Promise.all([
       accountMetrics(token, 'THIS_MONTH'),
       accountMetrics(token, 'LAST_MONTH'),
-      topCampaigns(token)
+      topCampaigns(token),
+      monthlyTrend(token)
     ]);
     return {
       statusCode: 200,
@@ -111,7 +133,8 @@ exports.handler = async function () {
         clicksGrowthPct: pctChange(thisMonth.clicks, lastMonth.clicks),
         conversionsThisMonth: thisMonth.conversions,
         conversionsGrowthPct: pctChange(thisMonth.conversions, lastMonth.conversions),
-        topCampaigns: campaigns
+        topCampaigns: campaigns,
+        monthlyTrend: trend
       })
     };
   } catch (e) {
