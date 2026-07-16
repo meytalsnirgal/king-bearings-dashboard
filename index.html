@@ -167,8 +167,6 @@
       <div class="chart-wrap"><canvas id="adsCostChart"></canvas></div>
       <div style="font-size:12px;font-weight:500;color:var(--text2);margin:16px 0 8px;">Google Ads Traffic (clicks left, impressions right)</div>
       <div class="chart-wrap"><canvas id="adsTrafficChart"></canvas></div>
-      <div style="font-size:12px;font-weight:500;color:var(--text2);margin:16px 0 8px;">Google Ads Orders and Revenue (orders left, revenue right)</div>
-      <div class="chart-wrap"><canvas id="adsOrdersRevChart"></canvas></div>
       <div style="font-size:12px;font-weight:500;color:var(--text2);margin:16px 0 8px;">AdWords CPC</div>
       <div class="chart-wrap"><canvas id="adsCpcChart"></canvas></div>
     </div>
@@ -366,10 +364,6 @@ async function loadAdsKpis() {
       { label: 'Clicks', data: d.clicks, type: 'line', borderColor: '#185FA5', backgroundColor: '#185FA5', tension: 0.3, yAxisID: 'y' },
       { label: 'Impressions', data: d.impressions, type: 'line', borderColor: '#BA7517', backgroundColor: '#BA7517', tension: 0.3, yAxisID: 'y1' }
     ], false, false);
-    kpiChart('adsOrdersRevChart', d.monthLabels, [
-      { label: 'Orders', data: d.purchaseOrders, backgroundColor: '#185FA5', borderRadius: 4, borderSkipped: false, yAxisID: 'y' },
-      { label: 'Order Amount', data: d.purchaseValue, type: 'line', borderColor: '#1D9E75', backgroundColor: '#1D9E75', tension: 0.3, yAxisID: 'y1' }
-    ], false, true);
     kpiChart('adsCpcChart', d.monthLabels, [{ label: 'CPC', data: cpc.map(v => v == null ? null : Math.round(v * 100) / 100), type: 'line', borderColor: '#7B4397', backgroundColor: '#7B4397', tension: 0.3 }], true);
     setSourceLine('adsSourceLine', 'Google Ads API', d.generatedAt);
   } catch (e) {
