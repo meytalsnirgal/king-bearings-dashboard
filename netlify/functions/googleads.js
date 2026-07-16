@@ -169,6 +169,14 @@ exports.handler = async function (event) {
   try {
     const token = await getAccessToken();
     const qs = (event && event.queryStringParameters) || {};
+    if (qs.view === 'diag') {
+      const now = new Date();
+      const [actions, byName] = await Promise.all([
+        gaqlSearch(token, `SELECT conversion_action.name, conversion_action.category, conversion_action.status, conversion_action.type, conversion_action.primary_for_goal FROM conversion_action WHERE conversion_action.status = 'ENABLED'`),
+        gaqlSearch(token, `SELECT segments.conversion_action_name, segments.conversion_action_category, metrics.all_conversions, metrics.all_conversions_value FROM customer WHERE segments.date BETWEEN '${now.getFullYear()}-01-01' AND '${ymd(now)}'`)
+      ]);
+      return { statusCode: 200, headers: cors(), body: JSON.stringify({ connected: true, actions: actions.results || [], byName: byName.results || [] }) };
+    }
     if (qs.view === 'monthly') {
       const year = Math.min(Math.max(parseInt(qs.year, 10) || new Date().getFullYear(), 2015), new Date().getFullYear());
       return { statusCode: 200, headers: cors(), body: JSON.stringify(await monthlyKpis(token, year)) };
