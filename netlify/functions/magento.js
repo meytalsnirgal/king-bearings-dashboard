@@ -6,16 +6,23 @@ function cors() {
 
 const BASE = process.env.MAGENTO_BASE_URL || 'https://kingenginebuilders.com';
 
-function salesSummaryUrl(from, to, fields) {
+function salesSummaryUrl(from, to, fields, manufacturer) {
   const parts = [
     ['searchCriteria[filterGroups][1][filters][0][field]', 'created_at'],
     ['searchCriteria[filterGroups][1][filters][0][conditionType]', 'gteq'],
     ['searchCriteria[filterGroups][1][filters][0][value]', from],
     ['searchCriteria[filterGroups][2][filters][0][field]', 'created_at'],
     ['searchCriteria[filterGroups][2][filters][0][conditionType]', 'lteq'],
-    ['searchCriteria[filterGroups][2][filters][0][value]', to],
-    ['fields', fields]
+    ['searchCriteria[filterGroups][2][filters][0][value]', to]
   ];
+  if (manufacturer) {
+    parts.push(
+      ['searchCriteria[filterGroups][3][filters][0][field]', 'manufacturer'],
+      ['searchCriteria[filterGroups][3][filters][0][conditionType]', 'eq'],
+      ['searchCriteria[filterGroups][3][filters][0][value]', manufacturer]
+    );
+  }
+  parts.push(['fields', fields]);
   return `${BASE}/rest/V1/dashboard/sales-summary?` + parts.map(([k, v]) => k + '=' + encodeURIComponent(v)).join('&');
 }
 
@@ -68,11 +75,57 @@ function topProducts(items, limit) {
 
 function pctChange(cur, prev) { return prev ? ((cur - prev) / prev) * 100 : (cur ? 100 : 0); }
 
-exports.handler = async function () {
+// Exact manufacturer labels as they exist in Magento. The server's own "revenue"
+// field is inflated when a manufacturer filter is applied, so brand revenue is
+// summed from the (already brand-filtered) order_items row_totals instead.
+const BRANDS = [
+  { name: 'King Bearings', manufacturer: 'King Engine Bearings' },
+  { name: 'UEM Pistons', manufacturer: 'UEM Pistons & Rings' },
+  { name: 'CP Carrillo', manufacturer: 'CP-Carrillo' },
+  { name: 'Turbosmart', manufacturer: 'Turbosmart' }
+];
+
+// One brand per invocation: the four YTD queries together exceed Netlify's
+// 10s function timeout on a cold Magento cache, so the frontend fetches each
+// brand in parallel instead.
+async function brandView(brandName) {
+  const brand = BRANDS.find(b => b.name === brandName);
+  if (!brand) throw new Error('Unknown brand: ' + brandName);
+  const now = new Date();
+  const curMonth = now.getMonth();
+  const from = `${now.getFullYear()}-01-01 00:00:00`;
+  const to = `${now.getFullYear()}-${pad(curMonth + 1)}-${pad(now.getDate())} 23:59:59`;
+  const FIELDS = 'orders[items[date,status,order_items[row_total]]]';
+  const data = await apiGet(salesSummaryUrl(from, to, FIELDS, brand.manufacturer));
+  const monthly = new Array(curMonth + 1).fill(0);
+  for (const o of ((data.orders && data.orders.items) || [])) {
+    if (o.status === 'canceled' || o.status === 'closed') continue;
+    const m = parseInt(String(o.date).slice(5, 7), 10) - 1;
+    if (m < 0 || m > curMonth) continue;
+    for (const p of (o.order_items || [])) monthly[m] += p.row_total || 0;
+  }
+  const rounded = monthly.map(v => Math.round(v * 100) / 100);
+  return {
+    connected: true,
+    labels: MONTH_NAMES.slice(0, curMonth + 1),
+    name: brand.name,
+    monthly: rounded,
+    total: Math.round(rounded.reduce((s, v) => s + v, 0) * 100) / 100
+  };
+}
+
+exports.handler = async function (event) {
   if (!process.env.MAGENTO_TOKEN) {
     return { statusCode: 200, headers: cors(), body: JSON.stringify({ connected: false }) };
   }
   try {
+    const qs = (event && event.queryStringParameters) || {};
+    if (qs.view === 'brand') {
+      return { statusCode: 200, headers: cors(), body: JSON.stringify(await brandView(qs.brand)) };
+    }
+    if (qs.view === 'brandlist') {
+      return { statusCode: 200, headers: cors(), body: JSON.stringify({ connected: true, brands: BRANDS.map(b => b.name) }) };
+    }
     const ORDER_FIELDS = 'revenue,orders[items[status,grand_total,order_items[product_name,row_total]]]';
     const thisMonth = monthWindow(0);
     const lastMonth = monthWindow(1);
