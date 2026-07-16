@@ -74,27 +74,24 @@
   </div>
 
   <div class="section">
-    <div class="section-title"><i class="ti ti-shopping-cart"></i> eCommerce Sales</div>
+    <div class="section-title"><i class="ti ti-shopping-cart"></i> eCommerce Sales: Magento</div>
     <div class="metric-grid">
-      <div class="metric"><div class="metric-label">Revenue (MTD)</div><div class="metric-val">$84.2K</div><div class="metric-sub up">+12% vs last mo.</div></div>
-      <div class="metric"><div class="metric-label">Orders (MTD)</div><div class="metric-val">1,340</div><div class="metric-sub up">+8% vs last mo.</div></div>
-      <div class="metric"><div class="metric-label">Avg. Order Value</div><div class="metric-val">$62.8</div><div class="metric-sub up">+3% vs last mo.</div></div>
-      <div class="metric"><div class="metric-label">Conversion Rate</div><div class="metric-val">3.4%</div><div class="metric-sub down" id="convSub">-0.2pp vs last mo.</div></div>
+      <div class="metric"><div class="metric-label">Revenue (MTD)</div><div class="metric-val" id="mRevenue">-</div><div class="metric-sub" id="mRevenueSub"></div></div>
+      <div class="metric"><div class="metric-label">Orders (MTD)</div><div class="metric-val" id="mOrders">-</div><div class="metric-sub" id="mOrdersSub"></div></div>
+      <div class="metric"><div class="metric-label">Avg. Order Value</div><div class="metric-val" id="mAov">-</div><div class="metric-sub" id="mAovSub"></div></div>
+      <div class="metric"><div class="metric-label">Conversion Rate</div><div class="metric-val" id="mConvRate">-</div><div class="metric-sub" id="mConvRateSub">orders / sessions (MTD)</div></div>
     </div>
     <div class="tab-row">
-      <button class="tab active" onclick="switchPeriod('3m',this)">3 months</button>
+      <button class="tab" onclick="switchPeriod('3m',this)">3 months</button>
       <button class="tab" onclick="switchPeriod('6m',this)">6 months</button>
-      <button class="tab" onclick="switchPeriod('1y',this)">12 months</button>
+      <button class="tab active" onclick="switchPeriod('1y',this)">12 months</button>
     </div>
     <div class="card"><div class="chart-wrap"><canvas id="salesChart"></canvas></div></div>
     <div class="card" style="margin-top:0;">
-      <div class="brand-row"><div class="brand-name">Engine Bearings</div><div class="brand-bar-wrap"><div class="brand-bar" style="width:80%;background:#185FA5;"></div></div><div class="brand-val">$40.4K</div><div class="brand-pct">48%</div></div>
-      <div class="brand-row"><div class="brand-name">Pistons</div><div class="brand-bar-wrap"><div class="brand-bar" style="width:44%;background:#1D9E75;"></div></div><div class="brand-val">$17.7K</div><div class="brand-pct">21%</div></div>
-      <div class="brand-row"><div class="brand-name">Con Rods</div><div class="brand-bar-wrap"><div class="brand-bar" style="width:31%;background:#BA7517;"></div></div><div class="brand-val">$12.6K</div><div class="brand-pct">15%</div></div>
-      <div class="brand-row"><div class="brand-name">King Kits</div><div class="brand-bar-wrap"><div class="brand-bar" style="width:21%;background:#D85A30;"></div></div><div class="brand-val">$8.4K</div><div class="brand-pct">10%</div></div>
-      <div class="brand-row"><div class="brand-name">Other</div><div class="brand-bar-wrap"><div class="brand-bar" style="width:12%;background:#888780;"></div></div><div class="brand-val">$5.1K</div><div class="brand-pct">6%</div></div>
+      <div style="font-size:12px;font-weight:500;color:var(--text2);margin-bottom:10px;">Top products by revenue (this month)</div>
+      <div id="topProductsList"><div style="font-size:12px;color:var(--text2);">Loading...</div></div>
     </div>
-    <div class="connect-banner"><i class="ti ti-plug"></i> Connect Magento to show live sales data</div>
+    <div class="connect-banner" id="magentoBanner"><i class="ti ti-plug"></i> Connecting to Magento...</div>
   </div>
 
   <div class="section" id="trafficSection" style="display:none;">
@@ -159,7 +156,7 @@
 <script>
 window.addEventListener('DOMContentLoaded', () => {
   document.getElementById('headerDate').textContent = new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
-  buildSalesChart('3m');
+  loadMagento();
   loadNegativeMentions();
   loadInstagram();
   loadAnalytics();
@@ -260,6 +257,8 @@ async function loadAnalytics() {
     if (!data.connected) return;
     document.getElementById('trafficSection').style.display = 'block';
     document.getElementById('mSessions').textContent = data.sessionsThisMonth.toLocaleString();
+    gaSessionsMTD = data.sessionsThisMonth;
+    updateConvRate();
     const up = data.sessionsGrowthPct >= 0;
     const sub = document.getElementById('mSessionsSub');
     sub.className = 'metric-sub ' + (up ? 'up' : 'down');
@@ -278,25 +277,68 @@ async function loadAnalytics() {
   } catch (e) { /* stay hidden if GA isn't connected yet */ }
 }
 
-const salesData = {
-  '3m':{ labels:['Apr','May','Jun'], data:[68400,74100,84200] },
-  '6m':{ labels:['Jan','Feb','Mar','Apr','May','Jun'], data:[51200,55800,61400,68400,74100,84200] },
-  '1y':{ labels:['Jul','Aug','Sep','Oct','Nov','Dec','Jan','Feb','Mar','Apr','May','Jun'], data:[41000,43500,47200,52100,58600,62300,51200,55800,61400,68400,74100,84200] }
-};
+let salesTrend = null;
 let salesChart;
+let salesPeriod = '1y';
 function buildSalesChart(p) {
-  const d = salesData[p];
+  salesPeriod = p;
+  if (!salesTrend) return;
+  const n = p === '3m' ? 3 : p === '6m' ? 6 : 12;
+  const labels = salesTrend.labels.slice(-n);
+  const data = salesTrend.revenue.slice(-n);
   if (salesChart) salesChart.destroy();
   salesChart = new Chart(document.getElementById('salesChart'), {
     type:'bar',
-    data:{ labels:d.labels, datasets:[{ data:d.data, backgroundColor:'#185FA5', borderRadius:4, borderSkipped:false }] },
-    options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{display:false}, tooltip:{ callbacks:{ label:c=>'$'+Math.round(c.raw/1000)+'K' } } }, scales:{ x:{grid:{display:false},ticks:{font:{size:11},color:'#888'}}, y:{grid:{color:'rgba(0,0,0,0.06)'},ticks:{font:{size:11},color:'#888',callback:v=>'$'+Math.round(v/1000)+'K'}} } }
+    data:{ labels, datasets:[{ data, backgroundColor:'#185FA5', borderRadius:4, borderSkipped:false }] },
+    options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{display:false}, tooltip:{ callbacks:{ label:c=>'$'+Math.round(c.raw).toLocaleString() } } }, scales:{ x:{grid:{display:false},ticks:{font:{size:11},color:'#888'}}, y:{grid:{color:'rgba(0,0,0,0.06)'},ticks:{font:{size:11},color:'#888',callback:v=>'$'+Math.round(v/1000)+'K'}} } }
   });
 }
 function switchPeriod(p,el) {
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   el.classList.add('active');
   buildSalesChart(p);
+}
+
+let gaSessionsMTD = null, magentoOrdersMTD = null;
+function updateConvRate() {
+  if (gaSessionsMTD === null || magentoOrdersMTD === null || !gaSessionsMTD) return;
+  document.getElementById('mConvRate').textContent = (magentoOrdersMTD / gaSessionsMTD * 100).toFixed(2) + '%';
+}
+
+function renderTopProducts(items) {
+  const el = document.getElementById('topProductsList');
+  if (!items || !items.length) { el.innerHTML = '<div style="font-size:12px;color:var(--text2);">No orders yet this month.</div>'; return; }
+  const max = Math.max(...items.map(i => i.total));
+  el.innerHTML = items.map((i, idx) => `
+    <div class="brand-row">
+      <div class="brand-name" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${esc(i.name)}">${esc(i.name)}</div>
+      <div class="brand-bar-wrap"><div class="brand-bar" style="width:${Math.max(4, Math.round(i.total / max * 100))}%;background:${LIST_COLORS[idx % LIST_COLORS.length]};"></div></div>
+      <div class="brand-val">$${Math.round(i.total).toLocaleString()}</div>
+    </div>`).join('');
+}
+
+async function loadMagento() {
+  const banner = document.getElementById('magentoBanner');
+  try {
+    const res = await fetch('/.netlify/functions/magento');
+    const data = await res.json();
+    if (!data.connected) throw new Error(data.error || 'not connected');
+    banner.style.display = 'none';
+    document.getElementById('mRevenue').textContent = '$' + (data.revenueThisMonth / 1000).toFixed(1) + 'K';
+    setMetricSub('mRevenueSub', data.revenueGrowthPct);
+    document.getElementById('mOrders').textContent = data.ordersThisMonth.toLocaleString();
+    setMetricSub('mOrdersSub', data.ordersGrowthPct);
+    document.getElementById('mAov').textContent = '$' + data.aovThisMonth.toFixed(0);
+    setMetricSub('mAovSub', data.aovGrowthPct);
+    salesTrend = data.monthlyTrend;
+    buildSalesChart(salesPeriod);
+    renderTopProducts(data.topProducts);
+    magentoOrdersMTD = data.ordersThisMonth;
+    updateConvRate();
+  } catch (e) {
+    banner.innerHTML = '<i class="ti ti-plug-off"></i> Magento connection unavailable: ' + esc(e.message);
+    document.getElementById('topProductsList').innerHTML = '<div style="font-size:12px;color:var(--text2);">No data yet.</div>';
+  }
 }
 
 async function loadInstagram() {
