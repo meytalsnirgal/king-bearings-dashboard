@@ -122,8 +122,12 @@ async function monthlyKpis(token, year) {
 
   const [base, purchases, configured] = await Promise.all([
     gaqlSearch(token, `SELECT segments.month, metrics.cost_micros, metrics.clicks, metrics.impressions FROM customer WHERE segments.date BETWEEN '${from}' AND '${to}' ORDER BY segments.month`),
-    gaqlSearch(token, `SELECT segments.month, segments.conversion_action_category, metrics.all_conversions, metrics.all_conversions_value FROM customer WHERE segments.date BETWEEN '${from}' AND '${to}' AND segments.conversion_action_category = 'PURCHASE' ORDER BY segments.month`),
-    gaqlSearch(token, `SELECT conversion_action.id FROM conversion_action WHERE conversion_action.category = 'PURCHASE' AND conversion_action.status = 'ENABLED' LIMIT 1`)
+    // metrics.conversions counts only primary conversion actions, which
+    // excludes this account's legacy page-load "Purchase" counters that
+    // record ~$1 junk values; the real order tracker (Bounce_Purchase,
+    // primary_for_goal = true) reports actual purchase revenue.
+    gaqlSearch(token, `SELECT segments.month, segments.conversion_action_category, metrics.conversions, metrics.conversions_value FROM customer WHERE segments.date BETWEEN '${from}' AND '${to}' AND segments.conversion_action_category = 'PURCHASE' ORDER BY segments.month`),
+    gaqlSearch(token, `SELECT conversion_action.id FROM conversion_action WHERE conversion_action.category = 'PURCHASE' AND conversion_action.status = 'ENABLED' AND conversion_action.primary_for_goal = true LIMIT 1`)
   ]);
 
   const purchaseConfigured = !!(configured.results && configured.results.length);
@@ -147,8 +151,8 @@ async function monthlyKpis(token, year) {
     for (const r of (purchases.results || [])) {
       const m = parseInt(r.segments.month.slice(5, 7), 10) - 1;
       if (m >= nMonths) continue;
-      purchaseOrders[m] = (purchaseOrders[m] || 0) + Number(r.metrics.allConversions || 0);
-      purchaseValue[m] = (purchaseValue[m] || 0) + Number(r.metrics.allConversionsValue || 0);
+      purchaseOrders[m] = (purchaseOrders[m] || 0) + Number(r.metrics.conversions || 0);
+      purchaseValue[m] = (purchaseValue[m] || 0) + Number(r.metrics.conversionsValue || 0);
     }
   }
   return {
