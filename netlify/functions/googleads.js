@@ -110,12 +110,69 @@ async function topCampaigns(token) {
 
 function pctChange(cur, prev) { return prev ? ((cur - prev) / prev) * 100 : (cur ? 100 : 0); }
 
-exports.handler = async function () {
+// Monthly KPI view: cost/clicks/impressions from the account, plus orders and
+// order value restricted to PURCHASE-category conversions only (per spec:
+// no add-to-cart, checkout, calls, forms, or other non-purchase conversions).
+async function monthlyKpis(token, year) {
+  const now = new Date();
+  const isCurrentYear = year === now.getFullYear();
+  const from = `${year}-01-01`;
+  const to = isCurrentYear ? ymd(now) : `${year}-12-31`;
+  const nMonths = isCurrentYear ? now.getMonth() + 1 : 12;
+
+  const [base, purchases, configured] = await Promise.all([
+    gaqlSearch(token, `SELECT segments.month, metrics.cost_micros, metrics.clicks, metrics.impressions FROM customer WHERE segments.date BETWEEN '${from}' AND '${to}' ORDER BY segments.month`),
+    gaqlSearch(token, `SELECT segments.month, metrics.all_conversions, metrics.all_conversions_value FROM customer WHERE segments.date BETWEEN '${from}' AND '${to}' AND segments.conversion_action_category = 'PURCHASE' ORDER BY segments.month`),
+    gaqlSearch(token, `SELECT conversion_action.id FROM conversion_action WHERE conversion_action.category = 'PURCHASE' AND conversion_action.status = 'ENABLED' LIMIT 1`)
+  ]);
+
+  const purchaseConfigured = !!(configured.results && configured.results.length);
+  const cost = new Array(nMonths).fill(null);
+  const clicks = new Array(nMonths).fill(null);
+  const impressions = new Array(nMonths).fill(null);
+  // The account reports zero activity by omitting the month row, so months
+  // inside a period the account reported on are confirmed zeros, not gaps.
+  const hasBaseData = !!(base.results && base.results.length);
+  if (hasBaseData) { cost.fill(0); clicks.fill(0); impressions.fill(0); }
+  for (const r of (base.results || [])) {
+    const m = parseInt(r.segments.month.slice(5, 7), 10) - 1;
+    if (m >= nMonths) continue;
+    cost[m] = Number(r.metrics.costMicros || 0) / 1e6;
+    clicks[m] = Number(r.metrics.clicks || 0);
+    impressions[m] = Number(r.metrics.impressions || 0);
+  }
+  const purchaseOrders = new Array(nMonths).fill(purchaseConfigured && hasBaseData ? 0 : null);
+  const purchaseValue = new Array(nMonths).fill(purchaseConfigured && hasBaseData ? 0 : null);
+  if (purchaseConfigured) {
+    for (const r of (purchases.results || [])) {
+      const m = parseInt(r.segments.month.slice(5, 7), 10) - 1;
+      if (m >= nMonths) continue;
+      purchaseOrders[m] = Number(r.metrics.allConversions || 0);
+      purchaseValue[m] = Number(r.metrics.allConversionsValue || 0);
+    }
+  }
+  return {
+    connected: true,
+    year,
+    monthLabels: MONTH_NAMES.slice(0, nMonths),
+    currentMonthIsMtd: isCurrentYear,
+    cost, clicks, impressions, purchaseOrders, purchaseValue,
+    purchaseConfigured,
+    generatedAt: new Date().toISOString()
+  };
+}
+
+exports.handler = async function (event) {
   if (!process.env.GOOGLE_ADS_CLIENT_ID || !process.env.GOOGLE_ADS_CLIENT_SECRET || !process.env.GOOGLE_ADS_REFRESH_TOKEN || !process.env.GOOGLE_ADS_DEVELOPER_TOKEN) {
     return { statusCode: 200, headers: cors(), body: JSON.stringify({ connected: false }) };
   }
   try {
     const token = await getAccessToken();
+    const qs = (event && event.queryStringParameters) || {};
+    if (qs.view === 'monthly') {
+      const year = Math.min(Math.max(parseInt(qs.year, 10) || new Date().getFullYear(), 2015), new Date().getFullYear());
+      return { statusCode: 200, headers: cors(), body: JSON.stringify(await monthlyKpis(token, year)) };
+    }
     const [thisMonth, lastMonth, campaigns, trend] = await Promise.all([
       accountMetrics(token, 'THIS_MONTH'),
       accountMetrics(token, 'LAST_MONTH'),

@@ -182,13 +182,58 @@ async function cartFunnel(token, propertyId) {
 
 function pctChange(cur, prev) { return prev ? ((cur - prev) / prev) * 100 : (cur ? 100 : 0); }
 
-exports.handler = async function () {
+// Monthly New Users straight from GA4's newUsers metric. The YTD figure is a
+// separate single-range query (per spec: GA4 dedupes users across months, so
+// summing the monthly values would overcount).
+async function monthlyKpis(token, propertyId, year) {
+  const now = new Date();
+  const isCurrentYear = year === now.getFullYear();
+  const from = `${year}-01-01`;
+  const to = isCurrentYear ? ymd(now) : `${year}-12-31`;
+  const nMonths = isCurrentYear ? now.getMonth() + 1 : 12;
+  const [monthlyRes, ytdRes] = await Promise.all([
+    postJson(`https://analyticsdata.googleapis.com/v1beta/properties/${propertyId}:runReport`, token, {
+      dateRanges: [{ startDate: from, endDate: to }],
+      dimensions: [{ name: 'yearMonth' }],
+      metrics: [{ name: 'newUsers' }],
+      orderBys: [{ dimension: { dimensionName: 'yearMonth' } }],
+      limit: 20
+    }),
+    postJson(`https://analyticsdata.googleapis.com/v1beta/properties/${propertyId}:runReport`, token, {
+      dateRanges: [{ startDate: from, endDate: to }],
+      metrics: [{ name: 'newUsers' }]
+    })
+  ]);
+  // GA4 omits months it has no data for; those stay null (unavailable), not 0.
+  const newUsers = new Array(nMonths).fill(null);
+  for (const r of (monthlyRes.rows || [])) {
+    const m = parseInt(r.dimensionValues[0].value.slice(4, 6), 10) - 1;
+    if (m < nMonths) newUsers[m] = Number(r.metricValues[0].value);
+  }
+  const ytdRow = ytdRes.rows && ytdRes.rows[0];
+  return {
+    connected: true,
+    year,
+    monthLabels: MONTH_NAMES.slice(0, nMonths),
+    currentMonthIsMtd: isCurrentYear,
+    newUsers,
+    newUsersYtd: ytdRow ? Number(ytdRow.metricValues[0].value) : null,
+    generatedAt: new Date().toISOString()
+  };
+}
+
+exports.handler = async function (event) {
   if (!process.env.GA_CLIENT_EMAIL || !process.env.GA_PRIVATE_KEY || !process.env.GA_PROPERTY_ID) {
     return { statusCode: 200, headers: cors(), body: JSON.stringify({ connected: false }) };
   }
   try {
     const token = await getAccessToken();
     const propertyId = process.env.GA_PROPERTY_ID;
+    const qs = (event && event.queryStringParameters) || {};
+    if (qs.view === 'monthly') {
+      const year = Math.min(Math.max(parseInt(qs.year, 10) || new Date().getFullYear(), 2015), new Date().getFullYear());
+      return { statusCode: 200, headers: cors(), body: JSON.stringify(await monthlyKpis(token, propertyId, year)) };
+    }
     const thisMonth = monthWindow(0);
     const lastMonth = monthWindow(1);
     const [sessionsThis, sessionsLast, monthlyTrend, pages, channels, cart] = await Promise.all([

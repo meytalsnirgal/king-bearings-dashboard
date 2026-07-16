@@ -119,6 +119,46 @@ async function brandsView() {
   return { connected: true, labels: MONTH_NAMES.slice(0, curMonth + 1), brands };
 }
 
+// Monthly eCommerce KPIs. AOV = sum of completed orders' grand totals divided
+// by the completed-order count for the month (completed = not canceled/closed).
+// Returning Buyers is reported as unavailable: the sales-summary API exposes
+// no customer identity (customer_email/customer_id are silently dropped), so
+// actual repeat-purchaser counts cannot be computed from it.
+async function monthlyKpis(year) {
+  const now = new Date();
+  const isCurrentYear = year === now.getFullYear();
+  const nMonths = isCurrentYear ? now.getMonth() + 1 : 12;
+  const windows = [];
+  for (let m = 0; m < nMonths; m++) {
+    const endOfMonth = new Date(year, m + 1, 0);
+    windows.push({
+      from: `${year}-${pad(m + 1)}-01 00:00:00`,
+      to: `${year}-${pad(m + 1)}-${pad(endOfMonth.getDate())} 23:59:59`
+    });
+  }
+  const FIELDS = 'orders[items[status,grand_total]]';
+  const perMonth = await Promise.all(windows.map(w => apiGet(salesSummaryUrl(w.from, w.to, FIELDS))));
+  const orders = new Array(nMonths).fill(null);
+  const amount = new Array(nMonths).fill(null);
+  const aov = new Array(nMonths).fill(null);
+  perMonth.forEach((data, m) => {
+    const items = ((data.orders && data.orders.items) || []).filter(o => o.status !== 'canceled' && o.status !== 'closed');
+    orders[m] = items.length;
+    amount[m] = Math.round(items.reduce((s, o) => s + (o.grand_total || 0), 0) * 100) / 100;
+    aov[m] = items.length ? Math.round(amount[m] / items.length * 100) / 100 : null;
+  });
+  return {
+    connected: true,
+    year,
+    monthLabels: MONTH_NAMES.slice(0, nMonths),
+    currentMonthIsMtd: isCurrentYear,
+    orders, amount, aov,
+    returningBuyers: null,
+    returningBuyersAvailable: false,
+    generatedAt: new Date().toISOString()
+  };
+}
+
 exports.handler = async function (event) {
   if (!process.env.MAGENTO_TOKEN) {
     return { statusCode: 200, headers: cors(), body: JSON.stringify({ connected: false }) };
@@ -127,6 +167,10 @@ exports.handler = async function (event) {
     const qs = (event && event.queryStringParameters) || {};
     if (qs.view === 'brands') {
       return { statusCode: 200, headers: cors(), body: JSON.stringify(await brandsView()) };
+    }
+    if (qs.view === 'monthly') {
+      const year = Math.min(Math.max(parseInt(qs.year, 10) || new Date().getFullYear(), 2015), new Date().getFullYear());
+      return { statusCode: 200, headers: cors(), body: JSON.stringify(await monthlyKpis(year)) };
     }
     const ORDER_FIELDS = 'revenue,orders[items[status,grand_total,order_items[product_name,row_total]]]';
     const thisMonth = monthWindow(0);
