@@ -122,7 +122,7 @@ async function monthlyKpis(token, year) {
 
   const [base, purchases, configured] = await Promise.all([
     gaqlSearch(token, `SELECT segments.month, metrics.cost_micros, metrics.clicks, metrics.impressions FROM customer WHERE segments.date BETWEEN '${from}' AND '${to}' ORDER BY segments.month`),
-    gaqlSearch(token, `SELECT segments.month, metrics.all_conversions, metrics.all_conversions_value FROM customer WHERE segments.date BETWEEN '${from}' AND '${to}' AND segments.conversion_action_category = 'PURCHASE' ORDER BY segments.month`),
+    gaqlSearch(token, `SELECT segments.month, segments.conversion_action_category, metrics.all_conversions, metrics.all_conversions_value FROM customer WHERE segments.date BETWEEN '${from}' AND '${to}' AND segments.conversion_action_category = 'PURCHASE' ORDER BY segments.month`),
     gaqlSearch(token, `SELECT conversion_action.id FROM conversion_action WHERE conversion_action.category = 'PURCHASE' AND conversion_action.status = 'ENABLED' LIMIT 1`)
   ]);
 
@@ -147,8 +147,8 @@ async function monthlyKpis(token, year) {
     for (const r of (purchases.results || [])) {
       const m = parseInt(r.segments.month.slice(5, 7), 10) - 1;
       if (m >= nMonths) continue;
-      purchaseOrders[m] = Number(r.metrics.allConversions || 0);
-      purchaseValue[m] = Number(r.metrics.allConversionsValue || 0);
+      purchaseOrders[m] = (purchaseOrders[m] || 0) + Number(r.metrics.allConversions || 0);
+      purchaseValue[m] = (purchaseValue[m] || 0) + Number(r.metrics.allConversionsValue || 0);
     }
   }
   return {

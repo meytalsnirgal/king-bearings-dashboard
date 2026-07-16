@@ -63,6 +63,17 @@
   .chart-wrap { position: relative; height: 180px; }
   .connect-banner { background: var(--bg); border: 1px dashed var(--border); border-radius: var(--radius-sm); padding: 10px 14px; font-size: 12px; color: var(--text2); display: flex; align-items: center; gap: 8px; margin-top: 8px; }
   .update-note { font-size: 11px; color: var(--text2); text-align: center; margin-top: 10px; }
+  .source-line { font-size: 11px; color: var(--text2); margin: -6px 0 10px; }
+  .kpi-table-wrap { overflow-x: auto; }
+  .kpi-table { border-collapse: collapse; font-size: 12px; white-space: nowrap; width: 100%; }
+  .kpi-table th, .kpi-table td { padding: 6px 8px; text-align: right; border-bottom: 1px solid var(--border); }
+  .kpi-table th:first-child, .kpi-table td:first-child { text-align: left; position: sticky; left: 0; background: var(--card); font-weight: 500; }
+  .kpi-table thead th { font-size: 11px; color: var(--text2); font-weight: 600; }
+  .kpi-table tbody tr:last-child td { border-bottom: none; }
+  .kpi-table .ytd-col { border-left: 1px solid var(--border); font-weight: 600; }
+  .kpi-delta { display: block; font-size: 10px; margin-top: 1px; color: var(--text2); }
+  .kpi-delta.up { color: var(--green); } .kpi-delta.down { color: var(--red); }
+  .year-select { font-size: 12px; padding: 4px 8px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--card); color: var(--text); }
 </style>
 </head>
 <body>
@@ -70,7 +81,10 @@
 <div class="container">
   <div class="header">
     <div class="header-left"><h1>Marketing Dashboard</h1><p>King Engine Bearings</p></div>
-    <div class="header-date" id="headerDate"></div>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <select id="yearSel" class="year-select" onchange="changeKpiYear(this.value)"></select>
+      <div class="header-date" id="headerDate"></div>
+    </div>
   </div>
 
   <div class="section">
@@ -96,6 +110,14 @@
       <div class="chart-wrap"><canvas id="brandsChart"></canvas></div>
       <div id="brandTotalsList" style="margin-top:10px;"><div style="font-size:12px;color:var(--text2);">Loading...</div></div>
     </div>
+    <div class="card" style="margin-top:0;">
+      <div style="font-size:12px;font-weight:500;margin-bottom:2px;">Monthly KPIs <span id="magKpiYear" style="color:var(--text2);font-weight:400;"></span></div>
+      <div class="source-line" id="magSourceLine">Source: Magento · loading…</div>
+      <div class="kpi-table-wrap" id="magKpiTable"><div class="loading">Loading…</div></div>
+      <div id="retBuyersNote"></div>
+      <div style="font-size:12px;font-weight:500;color:var(--text2);margin:16px 0 8px;">Average Order Value trend</div>
+      <div class="chart-wrap"><canvas id="aovChart"></canvas></div>
+    </div>
     <div class="connect-banner" id="magentoBanner"><i class="ti ti-plug"></i> Connecting to Magento...</div>
   </div>
 
@@ -119,6 +141,13 @@
       <div style="font-size:12px;font-weight:500;color:var(--text2);margin-bottom:10px;">Where visitors came from (last 3 months)</div>
       <div id="channelsList"></div>
     </div>
+    <div class="card" style="margin-top:0;">
+      <div style="font-size:12px;font-weight:500;margin-bottom:2px;">Monthly KPIs <span id="gaKpiYear" style="color:var(--text2);font-weight:400;"></span></div>
+      <div class="source-line" id="gaSourceLine">Source: Google Analytics 4 · loading…</div>
+      <div class="kpi-table-wrap" id="gaKpiTable"><div class="loading">Loading…</div></div>
+      <div style="font-size:12px;font-weight:500;color:var(--text2);margin:16px 0 8px;">New Users trend</div>
+      <div class="chart-wrap"><canvas id="newUsersChart"></canvas></div>
+    </div>
   </div>
 
   <div class="section" id="adsSection" style="display:none;">
@@ -131,8 +160,18 @@
       <div class="metric" style="grid-column:1 / -1;"><div class="metric-label">Conversions (MTD)</div><div class="metric-val" id="mAdsConversions">-</div><div class="metric-sub" id="mAdsConversionsSub"></div></div>
     </div>
     <div class="card">
-      <div style="font-size:12px;font-weight:500;color:var(--text2);margin-bottom:10px;">Monthly spend, this year</div>
-      <div class="chart-wrap"><canvas id="adsChart"></canvas></div>
+      <div style="font-size:12px;font-weight:500;margin-bottom:2px;">Monthly KPIs <span id="adsKpiYear" style="color:var(--text2);font-weight:400;"></span></div>
+      <div class="source-line" id="adsSourceLine">Source: Google Ads API · loading…</div>
+      <div id="adsPurchaseWarning"></div>
+      <div class="kpi-table-wrap" id="adsKpiTable"><div class="loading">Loading…</div></div>
+      <div style="font-size:12px;font-weight:500;color:var(--text2);margin:16px 0 8px;">Google Ads Cost</div>
+      <div class="chart-wrap"><canvas id="adsCostChart"></canvas></div>
+      <div style="font-size:12px;font-weight:500;color:var(--text2);margin:16px 0 8px;">Google Ads Traffic (clicks left, impressions right)</div>
+      <div class="chart-wrap"><canvas id="adsTrafficChart"></canvas></div>
+      <div style="font-size:12px;font-weight:500;color:var(--text2);margin:16px 0 8px;">Google Ads Orders and Revenue (orders left, revenue right)</div>
+      <div class="chart-wrap"><canvas id="adsOrdersRevChart"></canvas></div>
+      <div style="font-size:12px;font-weight:500;color:var(--text2);margin:16px 0 8px;">AdWords CPC</div>
+      <div class="chart-wrap"><canvas id="adsCpcChart"></canvas></div>
     </div>
     <div class="card" style="margin-top:0;">
       <div style="font-size:12px;font-weight:500;color:var(--text2);margin-bottom:10px;">Top campaigns by spend (last 30 days)</div>
@@ -161,12 +200,14 @@
 <script>
 window.addEventListener('DOMContentLoaded', () => {
   document.getElementById('headerDate').textContent = new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
+  initYearSelector();
   loadMagento();
   loadBrands();
   loadNegativeMentions();
   loadInstagram();
   loadAnalytics();
   loadGoogleAds();
+  loadAllKpis();
 });
 
 let trafficChart;
@@ -215,21 +256,154 @@ function renderCampaignsList(items) {
     </div>`).join('');
 }
 
-let adsChart;
-function buildAdsChart(trend) {
-  if (adsChart) adsChart.destroy();
-  adsChart = new Chart(document.getElementById('adsChart'), {
-    type: 'bar',
-    data: { labels: trend.labels, datasets: [{ data: trend.cost, backgroundColor: '#185FA5', borderRadius: 4, borderSkipped: false }] },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => '$' + Math.round(c.raw).toLocaleString() } } },
-      scales: {
-        x: { grid: { display: false }, ticks: { font: { size: 11 }, color: '#888' } },
-        y: { grid: { color: 'rgba(0,0,0,0.06)' }, ticks: { font: { size: 11 }, color: '#888', callback: v => '$' + Math.round(v).toLocaleString() } }
+// ---------- Monthly KPI tables (measurements as rows, months as columns) ----------
+const CUR_YEAR = new Date().getFullYear();
+let kpiYear = CUR_YEAR;
+const kpiCharts = {};
+
+function fmtUsd2(v) { return '$' + v.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+function fmtInt(v) { return Math.round(v).toLocaleString(); }
+function sumOrNull(vals) { const nn = vals.filter(v => v != null); return nn.length ? nn.reduce((s, v) => s + v, 0) : null; }
+function fmtTime(iso) { return new Date(iso).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }); }
+
+function setSourceLine(id, source, generatedAt) {
+  document.getElementById(id).innerHTML = 'Source: ' + source + ' · Last refresh ' + fmtTime(generatedAt);
+}
+function setSourceError(id, source, msg) {
+  document.getElementById(id).innerHTML = 'Source: ' + source + ' · <span style="color:var(--red);"><i class="ti ti-alert-triangle"></i> data source failed: ' + esc(msg) + '</span>';
+}
+
+// rows: [{label, values, fmt, ytd, good}] — good: 'up' (increase is good),
+// 'down' (increase is bad), 'neutral' (cost-like: never auto-colored).
+function renderKpiTable(elId, labels, isMtd, rows) {
+  const headCells = labels.map((l, i) =>
+    `<th>${l}${isMtd && i === labels.length - 1 ? ' <span style="font-weight:400;">MTD</span>' : ''}</th>`).join('');
+  const body = rows.map(row => {
+    const cells = row.values.map((v, i) => {
+      if (v == null) return '<td title="Data unavailable">—</td>';
+      let delta = '';
+      const prev = i > 0 ? row.values[i - 1] : null;
+      if (prev != null && prev !== 0) {
+        const pct = (v - prev) / prev * 100;
+        const arrow = pct >= 0 ? '▲' : '▼';
+        const cls = row.good === 'neutral' ? '' : (pct >= 0) === (row.good === 'up') ? 'up' : 'down';
+        delta = `<span class="kpi-delta ${cls}">${arrow} ${Math.abs(pct).toFixed(1)}%</span>`;
       }
+      return `<td>${row.fmt(v)}${delta}</td>`;
+    }).join('');
+    const ytd = row.ytd == null ? '—' : row.fmt(row.ytd);
+    return `<tr><td>${esc(row.label)}</td>${cells}<td class="ytd-col">${ytd}</td></tr>`;
+  }).join('');
+  document.getElementById(elId).innerHTML =
+    `<table class="kpi-table"><thead><tr><th>Measurement</th>${headCells}<th class="ytd-col">YTD</th></tr></thead><tbody>${body}</tbody></table>`;
+}
+
+function kpiChart(id, labels, datasets, moneyLeft, moneyRight) {
+  if (kpiCharts[id]) kpiCharts[id].destroy();
+  const money = v => '$' + Math.round(v).toLocaleString();
+  const scales = {
+    x: { grid: { display: false }, ticks: { font: { size: 11 }, color: '#888' } },
+    y: { grid: { color: 'rgba(0,0,0,0.06)' }, ticks: { font: { size: 11 }, color: '#888', callback: v => moneyLeft ? money(v) : Math.round(v).toLocaleString() } }
+  };
+  if (datasets.some(d => d.yAxisID === 'y1')) {
+    scales.y1 = { position: 'right', grid: { drawOnChartArea: false }, ticks: { font: { size: 11 }, color: '#888', callback: v => moneyRight ? money(v) : Math.round(v).toLocaleString() } };
+  }
+  kpiCharts[id] = new Chart(document.getElementById(id), {
+    type: 'bar',
+    data: { labels, datasets },
+    options: {
+      responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { display: datasets.length > 1, position: 'top', labels: { boxWidth: 10, font: { size: 11 } } },
+        tooltip: { callbacks: { label: c => {
+          const isMoney = c.dataset.yAxisID === 'y1' ? moneyRight : moneyLeft;
+          return c.dataset.label + ': ' + (c.raw == null ? 'unavailable' : isMoney ? '$' + c.raw.toLocaleString('en-US', { maximumFractionDigits: 2 }) : c.raw.toLocaleString());
+        } } }
+      },
+      scales
     }
   });
+}
+
+async function loadAdsKpis() {
+  document.getElementById('adsKpiYear').textContent = kpiYear;
+  try {
+    const res = await fetch('/.netlify/functions/googleads?view=monthly&year=' + kpiYear);
+    const d = await res.json();
+    if (!d.connected) throw new Error(d.error || 'not connected');
+    const cpc = d.cost.map((c, i) => c != null && d.clicks[i] ? c / d.clicks[i] : null);
+    const totCost = sumOrNull(d.cost), totClicks = sumOrNull(d.clicks);
+    renderKpiTable('adsKpiTable', d.monthLabels, d.currentMonthIsMtd, [
+      { label: 'AdWords Cost', values: d.cost, fmt: fmtUsd2, ytd: totCost, good: 'neutral' },
+      { label: 'Google Ads Orders', values: d.purchaseOrders, fmt: fmtInt, ytd: sumOrNull(d.purchaseOrders), good: 'up' },
+      { label: 'Google Ads Order Amount', values: d.purchaseValue, fmt: fmtUsd2, ytd: sumOrNull(d.purchaseValue), good: 'up' },
+      { label: 'AdWords CPC', values: cpc, fmt: fmtUsd2, ytd: totCost != null && totClicks ? totCost / totClicks : null, good: 'neutral' },
+      { label: 'AdWords Clicks', values: d.clicks, fmt: fmtInt, ytd: totClicks, good: 'up' },
+      { label: 'AdWords Impressions', values: d.impressions, fmt: fmtInt, ytd: sumOrNull(d.impressions), good: 'up' }
+    ]);
+    document.getElementById('adsPurchaseWarning').innerHTML = d.purchaseConfigured ? '' :
+      '<div class="alert-bar" style="margin-top:8px;"><i class="ti ti-alert-triangle"></i> Google Ads purchase attribution is not configured or unavailable.</div>';
+    kpiChart('adsCostChart', d.monthLabels, [{ label: 'Cost', data: d.cost, backgroundColor: '#185FA5', borderRadius: 4, borderSkipped: false }], true);
+    kpiChart('adsTrafficChart', d.monthLabels, [
+      { label: 'Clicks', data: d.clicks, type: 'line', borderColor: '#185FA5', backgroundColor: '#185FA5', tension: 0.3, yAxisID: 'y' },
+      { label: 'Impressions', data: d.impressions, type: 'line', borderColor: '#BA7517', backgroundColor: '#BA7517', tension: 0.3, yAxisID: 'y1' }
+    ], false, false);
+    kpiChart('adsOrdersRevChart', d.monthLabels, [
+      { label: 'Orders', data: d.purchaseOrders, backgroundColor: '#185FA5', borderRadius: 4, borderSkipped: false, yAxisID: 'y' },
+      { label: 'Order Amount', data: d.purchaseValue, type: 'line', borderColor: '#1D9E75', backgroundColor: '#1D9E75', tension: 0.3, yAxisID: 'y1' }
+    ], false, true);
+    kpiChart('adsCpcChart', d.monthLabels, [{ label: 'CPC', data: cpc.map(v => v == null ? null : Math.round(v * 100) / 100), type: 'line', borderColor: '#7B4397', backgroundColor: '#7B4397', tension: 0.3 }], true);
+    setSourceLine('adsSourceLine', 'Google Ads API', d.generatedAt);
+  } catch (e) {
+    setSourceError('adsSourceLine', 'Google Ads API', e.message);
+    document.getElementById('adsKpiTable').innerHTML = '<div style="font-size:12px;color:var(--text2);">Data unavailable.</div>';
+  }
+}
+
+async function loadMagKpis() {
+  document.getElementById('magKpiYear').textContent = kpiYear;
+  try {
+    const res = await fetch('/.netlify/functions/magento?view=monthly&year=' + kpiYear);
+    const d = await res.json();
+    if (!d.connected) throw new Error(d.error || 'not connected');
+    const totAmount = sumOrNull(d.amount), totOrders = sumOrNull(d.orders);
+    renderKpiTable('magKpiTable', d.monthLabels, d.currentMonthIsMtd, [
+      { label: 'Average Order Value', values: d.aov, fmt: fmtUsd2, ytd: totAmount != null && totOrders ? totAmount / totOrders : null, good: 'up' },
+      { label: 'Returning Buyers', values: new Array(d.monthLabels.length).fill(null), fmt: fmtInt, ytd: null, good: 'up' }
+    ]);
+    document.getElementById('retBuyersNote').innerHTML =
+      '<div style="font-size:11px;color:var(--text2);margin-top:6px;">Returning Buyers is unavailable: the Magento dashboard API does not expose customer identity. Ask the eCommerce team to add a customer field (e.g. customer_id) to the sales-summary endpoint.</div>';
+    kpiChart('aovChart', d.monthLabels, [{ label: 'AOV', data: d.aov, type: 'line', borderColor: '#185FA5', backgroundColor: '#185FA5', tension: 0.3 }], true);
+    setSourceLine('magSourceLine', 'Magento (kingenginebuilders.com)', d.generatedAt);
+  } catch (e) {
+    setSourceError('magSourceLine', 'Magento (kingenginebuilders.com)', e.message);
+    document.getElementById('magKpiTable').innerHTML = '<div style="font-size:12px;color:var(--text2);">Data unavailable.</div>';
+  }
+}
+
+async function loadGaKpis() {
+  document.getElementById('gaKpiYear').textContent = kpiYear;
+  try {
+    const res = await fetch('/.netlify/functions/analytics?view=monthly&year=' + kpiYear);
+    const d = await res.json();
+    if (!d.connected) throw new Error(d.error || 'not connected');
+    renderKpiTable('gaKpiTable', d.monthLabels, d.currentMonthIsMtd, [
+      { label: 'New Users', values: d.newUsers, fmt: fmtInt, ytd: d.newUsersYtd, good: 'up' }
+    ]);
+    kpiChart('newUsersChart', d.monthLabels, [{ label: 'New Users', data: d.newUsers, backgroundColor: '#185FA5', borderRadius: 4, borderSkipped: false }], false);
+    setSourceLine('gaSourceLine', 'Google Analytics 4', d.generatedAt);
+  } catch (e) {
+    setSourceError('gaSourceLine', 'Google Analytics 4', e.message);
+    document.getElementById('gaKpiTable').innerHTML = '<div style="font-size:12px;color:var(--text2);">Data unavailable.</div>';
+  }
+}
+
+function loadAllKpis() { loadAdsKpis(); loadMagKpis(); loadGaKpis(); }
+function changeKpiYear(y) { kpiYear = parseInt(y, 10); loadAllKpis(); }
+function initYearSelector() {
+  const sel = document.getElementById('yearSel');
+  for (let y = CUR_YEAR; y >= CUR_YEAR - 2; y--) sel.insertAdjacentHTML('beforeend', `<option value="${y}">${y}</option>`);
+  sel.value = String(CUR_YEAR);
 }
 
 function setMetricSub(id, pct, suffix) {
@@ -252,7 +426,6 @@ async function loadGoogleAds() {
     document.getElementById('mAdsConversions').textContent = data.conversionsThisMonth.toLocaleString();
     setMetricSub('mAdsConversionsSub', data.conversionsGrowthPct);
     renderCampaignsList(data.topCampaigns);
-    buildAdsChart(data.monthlyTrend);
   } catch (e) { /* stay hidden if Google Ads isn't connected yet */ }
 }
 
