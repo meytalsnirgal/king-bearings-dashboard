@@ -6,23 +6,16 @@ function cors() {
 
 const BASE = process.env.MAGENTO_BASE_URL || 'https://kingenginebuilders.com';
 
-function salesSummaryUrl(from, to, fields, manufacturer) {
+function salesSummaryUrl(from, to, fields) {
   const parts = [
     ['searchCriteria[filterGroups][1][filters][0][field]', 'created_at'],
     ['searchCriteria[filterGroups][1][filters][0][conditionType]', 'gteq'],
     ['searchCriteria[filterGroups][1][filters][0][value]', from],
     ['searchCriteria[filterGroups][2][filters][0][field]', 'created_at'],
     ['searchCriteria[filterGroups][2][filters][0][conditionType]', 'lteq'],
-    ['searchCriteria[filterGroups][2][filters][0][value]', to]
+    ['searchCriteria[filterGroups][2][filters][0][value]', to],
+    ['fields', fields]
   ];
-  if (manufacturer) {
-    parts.push(
-      ['searchCriteria[filterGroups][3][filters][0][field]', 'manufacturer'],
-      ['searchCriteria[filterGroups][3][filters][0][conditionType]', 'eq'],
-      ['searchCriteria[filterGroups][3][filters][0][value]', manufacturer]
-    );
-  }
-  parts.push(['fields', fields]);
   return `${BASE}/rest/V1/dashboard/sales-summary?` + parts.map(([k, v]) => k + '=' + encodeURIComponent(v)).join('&');
 }
 
@@ -75,43 +68,55 @@ function topProducts(items, limit) {
 
 function pctChange(cur, prev) { return prev ? ((cur - prev) / prev) * 100 : (cur ? 100 : 0); }
 
-// Exact manufacturer labels as they exist in Magento. The server's own "revenue"
-// field is inflated when a manufacturer filter is applied, so brand revenue is
-// summed from the (already brand-filtered) order_items row_totals instead.
-const BRANDS = [
-  { name: 'King Bearings', manufacturer: 'King Engine Bearings' },
-  { name: 'UEM Pistons', manufacturer: 'UEM Pistons & Rings' },
-  { name: 'CP Carrillo', manufacturer: 'CP-Carrillo' },
-  { name: 'Turbosmart', manufacturer: 'Turbosmart' }
+// Brand revenue is classified per ORDER ITEM by product line, from one
+// unfiltered query. The API's manufacturer filter is unusable for this:
+// its "revenue" field is inflated by a broken join (a single day's King
+// "revenue" exceeds the whole store's revenue that day), its order_items
+// are whole orders rather than brand-filtered items, and products missing
+// the manufacturer attribute escape it entirely. Item-level name rules were
+// validated against the data: the UEM rule reconciles to the cent with the
+// server's own UEM figure once KB Forged pistons are included.
+// First matching rule wins. UEM covers its product lines (ICON, Silv-O-Lite,
+// KB, Dualoy); Turbosmart products often omit the brand from the name, so its
+// rule matches the product types it sells here (boost controllers, BOVs,
+// wastegate parts). King is a positive match on its very regular naming;
+// anything left (drill bits, apparel, unknown part numbers) is Merch & Other.
+const BRAND_RULES = [
+  { name: 'UEM Pistons & Rings', re: /\b(icon|silv-?o-?lite|kb|dualoy|milwaukee 8|s9901hc)\b/i },
+  { name: 'CP Carrillo', re: /carrillo/i },
+  { name: 'Turbosmart', re: /(turbosmart|boost tee|boost controller|\bbov\b|raceport|genv|wg\d{2}|v-band|vac hose|oil drain)/i },
+  { name: 'Merch & Other', re: /(t-?shirt|\bhat\b|\bcap\b|hoodie|sticker|banner|beanie|keychain|lanyard|long sleeve)/i },
+  { name: 'King Bearings', re: /(bearing|thrust washer|polymer|bushing|\bmb\s?\d|\bcr\s?\d|\btw\s?\d|king)/i },
+  { name: 'Merch & Other', re: null }
 ];
+const BRAND_ORDER = ['King Bearings', 'UEM Pistons & Rings', 'CP Carrillo', 'Turbosmart', 'Merch & Other'];
 
-// One brand per invocation: the four YTD queries together exceed Netlify's
-// 10s function timeout on a cold Magento cache, so the frontend fetches each
-// brand in parallel instead.
-async function brandView(brandName) {
-  const brand = BRANDS.find(b => b.name === brandName);
-  if (!brand) throw new Error('Unknown brand: ' + brandName);
+async function brandsView() {
   const now = new Date();
   const curMonth = now.getMonth();
-  const from = `${now.getFullYear()}-01-01 00:00:00`;
-  const to = `${now.getFullYear()}-${pad(curMonth + 1)}-${pad(now.getDate())} 23:59:59`;
-  const FIELDS = 'orders[items[date,status,order_items[row_total]]]';
-  const data = await apiGet(salesSummaryUrl(from, to, FIELDS, brand.manufacturer));
-  const monthly = new Array(curMonth + 1).fill(0);
-  for (const o of ((data.orders && data.orders.items) || [])) {
-    if (o.status === 'canceled' || o.status === 'closed') continue;
-    const m = parseInt(String(o.date).slice(5, 7), 10) - 1;
-    if (m < 0 || m > curMonth) continue;
-    for (const p of (o.order_items || [])) monthly[m] += p.row_total || 0;
-  }
-  const rounded = monthly.map(v => Math.round(v * 100) / 100);
-  return {
-    connected: true,
-    labels: MONTH_NAMES.slice(0, curMonth + 1),
-    name: brand.name,
-    monthly: rounded,
-    total: Math.round(rounded.reduce((s, v) => s + v, 0) * 100) / 100
-  };
+  // One request per calendar month, in parallel: a single YTD query takes
+  // ~10s uncached (right at the Netlify function timeout), while parallel
+  // month queries finish in the time of the slowest single month.
+  const FIELDS = 'orders[items[status,order_items[product_name,row_total]]]';
+  const windows = [];
+  for (let m = curMonth; m >= 0; m--) windows.push(monthWindow(m));
+  const perMonth = await Promise.all(windows.map(w => apiGet(salesSummaryUrl(w.from, w.to, FIELDS))));
+  const monthlyByBrand = {};
+  for (const r of BRAND_RULES) monthlyByBrand[r.name] = new Array(curMonth + 1).fill(0);
+  perMonth.forEach((data, m) => {
+    for (const o of ((data.orders && data.orders.items) || [])) {
+      if (o.status === 'canceled' || o.status === 'closed') continue;
+      for (const p of (o.order_items || [])) {
+        const rule = BRAND_RULES.find(r => !r.re || r.re.test(p.product_name || ''));
+        monthlyByBrand[rule.name][m] += p.row_total || 0;
+      }
+    }
+  });
+  const brands = BRAND_ORDER.map(name => {
+    const monthly = monthlyByBrand[name].map(v => Math.round(v * 100) / 100);
+    return { name, monthly, total: Math.round(monthly.reduce((s, v) => s + v, 0) * 100) / 100 };
+  });
+  return { connected: true, labels: MONTH_NAMES.slice(0, curMonth + 1), brands };
 }
 
 exports.handler = async function (event) {
@@ -120,11 +125,8 @@ exports.handler = async function (event) {
   }
   try {
     const qs = (event && event.queryStringParameters) || {};
-    if (qs.view === 'brand') {
-      return { statusCode: 200, headers: cors(), body: JSON.stringify(await brandView(qs.brand)) };
-    }
-    if (qs.view === 'brandlist') {
-      return { statusCode: 200, headers: cors(), body: JSON.stringify({ connected: true, brands: BRANDS.map(b => b.name) }) };
+    if (qs.view === 'brands') {
+      return { statusCode: 200, headers: cors(), body: JSON.stringify(await brandsView()) };
     }
     const ORDER_FIELDS = 'revenue,orders[items[status,grand_total,order_items[product_name,row_total]]]';
     const thisMonth = monthWindow(0);

@@ -323,17 +323,15 @@ function renderTopProducts(items) {
     </div>`).join('');
 }
 
-const BRAND_NAMES = ['King Bearings','UEM Pistons','CP Carrillo','Turbosmart'];
 let brandsChart;
 async function loadBrands() {
   const listEl = document.getElementById('brandTotalsList');
   try {
-    const results = await Promise.all(BRAND_NAMES.map(n =>
-      fetch('/.netlify/functions/magento?view=brand&brand=' + encodeURIComponent(n)).then(r => r.json())
-    ));
-    const bad = results.find(r => !r.connected);
-    if (bad) throw new Error(bad.error || 'not connected');
-    const labels = results[0].labels;
+    const res = await fetch('/.netlify/functions/magento?view=brands');
+    const data = await res.json();
+    if (!data.connected) throw new Error(data.error || 'not connected');
+    const results = data.brands;
+    const labels = data.labels;
     if (brandsChart) brandsChart.destroy();
     brandsChart = new Chart(document.getElementById('brandsChart'), {
       type: 'bar',
@@ -359,7 +357,7 @@ async function loadBrands() {
         <div class="brand-bar-wrap"><div class="brand-bar" style="width:${Math.max(2, Math.round(b.total / max * 100))}%;background:${LIST_COLORS[idx % LIST_COLORS.length]};"></div></div>
         <div class="brand-val">$${Math.round(b.total).toLocaleString()}</div>
       </div>`).join('') +
-      '<div style="font-size:11px;color:var(--text2);margin-top:8px;">Product revenue (item totals, before shipping/tax), Jan 1 to today.</div>';
+      '<div style="font-size:11px;color:var(--text2);margin-top:8px;">Product revenue by manufacturer (item totals, before discounts/shipping/tax), Jan 1 to today. UEM includes its ICON, KB, Silv-O-Lite, and Dualoy pistons and rings.</div>';
   } catch (e) {
     listEl.innerHTML = '<div style="font-size:12px;color:var(--text2);">Brand data unavailable: ' + esc(e.message) + '</div>';
   }
