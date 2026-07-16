@@ -120,17 +120,22 @@ async function monthlyKpis(token, year) {
   const to = isCurrentYear ? ymd(now) : `${year}-12-31`;
   const nMonths = isCurrentYear ? now.getMonth() + 1 : 12;
 
-  const [base, purchases, configured] = await Promise.all([
-    gaqlSearch(token, `SELECT segments.month, metrics.cost_micros, metrics.clicks, metrics.impressions FROM customer WHERE segments.date BETWEEN '${from}' AND '${to}' ORDER BY segments.month`),
-    // metrics.conversions counts only primary conversion actions, which
-    // excludes this account's legacy page-load "Purchase" counters that
-    // record ~$1 junk values; the real order tracker (Bounce_Purchase,
-    // primary_for_goal = true) reports actual purchase revenue.
-    gaqlSearch(token, `SELECT segments.month, segments.conversion_action_category, metrics.conversions, metrics.conversions_value FROM customer WHERE segments.date BETWEEN '${from}' AND '${to}' AND segments.conversion_action_category = 'PURCHASE' ORDER BY segments.month`),
-    gaqlSearch(token, `SELECT conversion_action.id FROM conversion_action WHERE conversion_action.category = 'PURCHASE' AND conversion_action.status = 'ENABLED' AND conversion_action.primary_for_goal = true LIMIT 1`)
-  ]);
+  // Resolve the real order trackers first: enabled PURCHASE actions that are
+  // primary for goals. This account also has legacy page-load "Purchase"
+  // counters recording ~$1 junk values, which were primary until June, so
+  // neither metrics.conversions nor a category filter alone gives clean
+  // history — the actions must be pinned by name.
+  const actionsRes = await gaqlSearch(token, `SELECT conversion_action.name FROM conversion_action WHERE conversion_action.category = 'PURCHASE' AND conversion_action.status = 'ENABLED' AND conversion_action.primary_for_goal = true`);
+  const actionNames = (actionsRes.results || []).map(r => r.conversionAction.name);
+  const purchaseConfigured = actionNames.length > 0;
+  const nameList = actionNames.map(n => `'${n.replace(/'/g, "\\'")}'`).join(', ');
 
-  const purchaseConfigured = !!(configured.results && configured.results.length);
+  const [base, purchases] = await Promise.all([
+    gaqlSearch(token, `SELECT segments.month, metrics.cost_micros, metrics.clicks, metrics.impressions FROM customer WHERE segments.date BETWEEN '${from}' AND '${to}' ORDER BY segments.month`),
+    purchaseConfigured
+      ? gaqlSearch(token, `SELECT segments.month, segments.conversion_action_name, metrics.all_conversions, metrics.all_conversions_value FROM customer WHERE segments.date BETWEEN '${from}' AND '${to}' AND segments.conversion_action_name IN (${nameList}) ORDER BY segments.month`)
+      : Promise.resolve({ results: [] })
+  ]);
   const cost = new Array(nMonths).fill(null);
   const clicks = new Array(nMonths).fill(null);
   const impressions = new Array(nMonths).fill(null);
@@ -151,8 +156,8 @@ async function monthlyKpis(token, year) {
     for (const r of (purchases.results || [])) {
       const m = parseInt(r.segments.month.slice(5, 7), 10) - 1;
       if (m >= nMonths) continue;
-      purchaseOrders[m] = (purchaseOrders[m] || 0) + Number(r.metrics.conversions || 0);
-      purchaseValue[m] = (purchaseValue[m] || 0) + Number(r.metrics.conversionsValue || 0);
+      purchaseOrders[m] = (purchaseOrders[m] || 0) + Number(r.metrics.allConversions || 0);
+      purchaseValue[m] = (purchaseValue[m] || 0) + Number(r.metrics.allConversionsValue || 0);
     }
   }
   return {
