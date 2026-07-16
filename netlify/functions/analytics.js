@@ -222,6 +222,32 @@ async function monthlyKpis(token, propertyId, year) {
   };
 }
 
+// Monthly sessions that arrived from Instagram (any source containing
+// "instagram", paid or organic), to show whether the channel moves traffic.
+async function igTraffic(token, propertyId, year) {
+  const now = new Date();
+  const isCurrentYear = year === now.getFullYear();
+  const from = `${year}-01-01`;
+  const to = isCurrentYear ? ymd(now) : `${year}-12-31`;
+  const nMonths = isCurrentYear ? now.getMonth() + 1 : 12;
+  const res = await postJson(`https://analyticsdata.googleapis.com/v1beta/properties/${propertyId}:runReport`, token, {
+    dateRanges: [{ startDate: from, endDate: to }],
+    dimensions: [{ name: 'yearMonth' }],
+    metrics: [{ name: 'sessions' }],
+    dimensionFilter: { filter: { fieldName: 'sessionSource', stringFilter: { matchType: 'CONTAINS', value: 'instagram', caseSensitive: false } } },
+    orderBys: [{ dimension: { dimensionName: 'yearMonth' } }],
+    limit: 20
+  });
+  // Months GA reports on but with no matching sessions are true zeros here,
+  // since the base property has data (the filter just matched nothing).
+  const sessions = new Array(nMonths).fill(0);
+  for (const r of (res.rows || [])) {
+    const m = parseInt(r.dimensionValues[0].value.slice(4, 6), 10) - 1;
+    if (m < nMonths) sessions[m] = Number(r.metricValues[0].value);
+  }
+  return { connected: true, year, monthLabels: MONTH_NAMES.slice(0, nMonths), currentMonthIsMtd: isCurrentYear, sessions, generatedAt: new Date().toISOString() };
+}
+
 exports.handler = async function (event) {
   if (!process.env.GA_CLIENT_EMAIL || !process.env.GA_PRIVATE_KEY || !process.env.GA_PROPERTY_ID) {
     return { statusCode: 200, headers: cors(), body: JSON.stringify({ connected: false }) };
@@ -230,6 +256,10 @@ exports.handler = async function (event) {
     const token = await getAccessToken();
     const propertyId = process.env.GA_PROPERTY_ID;
     const qs = (event && event.queryStringParameters) || {};
+    if (qs.view === 'igtraffic') {
+      const year = Math.min(Math.max(parseInt(qs.year, 10) || new Date().getFullYear(), 2015), new Date().getFullYear());
+      return { statusCode: 200, headers: cors(), body: JSON.stringify(await igTraffic(token, propertyId, year)) };
+    }
     if (qs.view === 'monthly') {
       const year = Math.min(Math.max(parseInt(qs.year, 10) || new Date().getFullYear(), 2015), new Date().getFullYear());
       return { statusCode: 200, headers: cors(), body: JSON.stringify(await monthlyKpis(token, propertyId, year)) };

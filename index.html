@@ -192,6 +192,23 @@
   <div class="section">
     <div class="section-title"><i class="ti ti-brand-instagram"></i> Instagram — @kingbearings</div>
     <div id="igContent"><div class="loading">Loading Instagram data...</div></div>
+    <div class="card" id="igInsightsCard" style="display:none;"></div>
+    <div class="card" style="margin-top:0;">
+      <div style="font-size:12px;font-weight:500;color:var(--text2);margin-bottom:10px;">Engagement by month (avg likes + comments per post)</div>
+      <div class="chart-wrap"><canvas id="igEngChart"></canvas></div>
+      <div id="igEngNote" style="font-size:11px;color:var(--text2);margin-top:8px;"></div>
+    </div>
+    <div class="card" style="margin-top:0;">
+      <div style="font-size:12px;font-weight:500;color:var(--text2);margin-bottom:6px;">Site sessions from Instagram</div>
+      <div class="source-line" id="igTrafficSource">Source: Google Analytics 4 · loading…</div>
+      <div class="chart-wrap"><canvas id="igSessionsChart"></canvas></div>
+    </div>
+    <div class="card" style="margin-top:0;">
+      <div style="font-size:12px;font-weight:500;color:var(--text2);margin-bottom:10px;">Follower growth</div>
+      <div class="chart-wrap" id="igFollowersWrap"><canvas id="igFollowersChart"></canvas></div>
+      <div id="igFollowersNote" style="font-size:11px;color:var(--text2);margin-top:8px;"></div>
+    </div>
+    <div class="card" style="margin-top:0;" id="igCategoryCard"></div>
     <div class="update-note" id="igLastUpdate"></div>
   </div>
 </div>
@@ -204,6 +221,8 @@ window.addEventListener('DOMContentLoaded', () => {
   loadBrands();
   loadNegativeMentions();
   loadInstagram();
+  loadIgInsights();
+  loadIgFollowers();
   loadAnalytics();
   loadGoogleAds();
   loadAllKpis();
@@ -394,7 +413,7 @@ async function loadGaKpis() {
   }
 }
 
-function loadAllKpis() { loadAdsKpis(); loadMagKpis(); loadGaKpis(); }
+function loadAllKpis() { loadAdsKpis(); loadMagKpis(); loadGaKpis(); loadIgTraffic(); }
 function changeKpiYear(y) { kpiYear = parseInt(y, 10); loadAllKpis(); }
 function initYearSelector() {
   const sel = document.getElementById('yearSel');
@@ -556,6 +575,54 @@ async function loadMagento() {
   }
 }
 
+// Caption-based content buckets. Checked in order; first match wins.
+const IG_CATEGORIES = [
+  { name: 'Events', re: /(h-?day|\bpri\b|sema|expo|booth|show\b|event)/i },
+  { name: 'Racing & Ambassadors', re: /(ambassador|racing|race\b|winner|final|champion|livery|qualif|podium|drag|nhra|pro ?mod|record)/i },
+  { name: 'Technical', re: /(bearing|engine|failure|install|clearance|\boil\b|coat|polymer|crank|piston|\brod\b|tech)/i },
+  { name: 'Other', re: null }
+];
+
+function igMonthKey(ts) { const d = new Date(ts); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0'); }
+
+function buildIgEngChart(posts) {
+  const byMonth = {};
+  for (const p of posts) {
+    const k = igMonthKey(p.timestamp);
+    (byMonth[k] = byMonth[k] || []).push(p.like_count + p.comments_count);
+  }
+  const keys = Object.keys(byMonth).sort().filter(k => byMonth[k].length >= 2);
+  if (keys.length < 2) {
+    document.getElementById('igEngNote').textContent = 'Not enough post history to chart a monthly trend yet.';
+    return;
+  }
+  const labels = keys.map(k => new Date(k + '-01').toLocaleDateString('en-GB', { month: 'short', year: '2-digit' }));
+  const avg = keys.map(k => Math.round(byMonth[k].reduce((s, v) => s + v, 0) / byMonth[k].length));
+  document.getElementById('igEngNote').textContent = 'Average of ' + posts.length + ' most recent posts; months with a single post are hidden.';
+  kpiChart('igEngChart', labels, [{ label: 'Avg engagement/post', data: avg, backgroundColor: '#185FA5', borderRadius: 4, borderSkipped: false }], false);
+}
+
+function renderIgCategories(posts, followers) {
+  const groups = {};
+  for (const p of posts) {
+    const cat = IG_CATEGORIES.find(c => !c.re || c.re.test(p.caption || '')).name;
+    (groups[cat] = groups[cat] || []).push(p.like_count + p.comments_count);
+  }
+  const rows = IG_CATEGORIES.map(c => c.name).filter(n => groups[n]).map(n => ({
+    name: n, posts: groups[n].length,
+    avg: Math.round(groups[n].reduce((s, v) => s + v, 0) / groups[n].length)
+  })).sort((a, b) => b.avg - a.avg);
+  const max = Math.max(...rows.map(r => r.avg));
+  document.getElementById('igCategoryCard').innerHTML =
+    '<div style="font-size:12px;font-weight:500;color:var(--text2);margin-bottom:10px;">What content wins (avg engagement per post, last ' + posts.length + ' posts)</div>' +
+    rows.map((r, idx) => `
+      <div class="brand-row">
+        <div class="brand-name">${esc(r.name)} <span style="color:var(--text2);">· ${r.posts} posts</span></div>
+        <div class="brand-bar-wrap"><div class="brand-bar" style="width:${Math.max(4, Math.round(r.avg / max * 100))}%;background:${LIST_COLORS[idx % LIST_COLORS.length]};"></div></div>
+        <div class="brand-val">${r.avg.toLocaleString()}</div>
+      </div>`).join('');
+}
+
 async function loadInstagram() {
   try {
     const res = await fetch('/.netlify/functions/search?type=instagram');
@@ -563,24 +630,21 @@ async function loadInstagram() {
     if (data.error) throw new Error(data.error);
     const account = data.account;
     const posts = data.media.data || [];
-    const totalLikes = posts.reduce((s,p)=>s+p.like_count,0);
-    const totalComments = posts.reduce((s,p)=>s+p.comments_count,0);
-    const engRate = ((totalLikes+totalComments)/account.followers_count*100).toFixed(2);
+    const recent = posts.slice(0, 20);
+    const perPostEng = posts.length ? posts.reduce((s,p)=>s+p.like_count+p.comments_count,0) / posts.length : 0;
+    const engRate = (perPostEng / account.followers_count * 100).toFixed(2);
     const oneWeekAgo = new Date(Date.now() - 7*24*60*60*1000);
     const postsThisWeek = posts.filter(p => new Date(p.timestamp) >= oneWeekAgo).length;
     document.getElementById('igContent').innerHTML = `
-      ${account.followers_count < 80900 ? '<div class="alert-bar"><i class="ti ti-trending-down"></i> Follower count declining. Consider reducing posting frequency and focusing on higher-quality content.</div>' : ''}
       <div class="ig-stat-grid">
         <div class="ig-stat"><div class="ig-stat-val">${(account.followers_count/1000).toFixed(1)}K</div><div class="ig-stat-lbl">Followers</div></div>
-        <div class="ig-stat"><div class="ig-stat-val">${engRate}%</div><div class="ig-stat-lbl">Eng. rate</div></div>
-        <div class="ig-stat"><div class="ig-stat-val">${totalLikes}</div><div class="ig-stat-lbl">Likes (last ${posts.length})</div></div>
-        <div class="ig-stat"><div class="ig-stat-val">${totalComments}</div><div class="ig-stat-lbl">Comments (last ${posts.length})</div></div>
+        <div class="ig-stat"><div class="ig-stat-val">${engRate}%</div><div class="ig-stat-lbl">Avg eng. rate per post</div></div>
+        <div class="ig-stat"><div class="ig-stat-val">${Math.round(perPostEng).toLocaleString()}</div><div class="ig-stat-lbl">Avg likes+comments/post</div></div>
         <div class="ig-stat"><div class="ig-stat-val">${postsThisWeek}</div><div class="ig-stat-lbl">Posts this week</div></div>
-        <div class="ig-stat"><div class="ig-stat-val">${account.media_count}</div><div class="ig-stat-lbl">Total posts</div></div>
       </div>
       <div class="card" style="margin-top:12px;">
-        <div style="font-size:12px;font-weight:500;color:var(--text2);margin-bottom:10px;">Top posts</div>
-        ${[...posts].sort((a,b)=>(b.like_count+b.comments_count)-(a.like_count+a.comments_count)).slice(0,5).map(p=>`
+        <div style="font-size:12px;font-weight:500;color:var(--text2);margin-bottom:10px;">Top posts (last ${recent.length})</div>
+        ${[...recent].sort((a,b)=>(b.like_count+b.comments_count)-(a.like_count+a.comments_count)).slice(0,5).map(p=>`
           <div class="ig-post-row">
             <div class="ig-post-thumb">${p.media_url?`<img src="${p.media_url}" alt="post">`:'<i class="ti ti-photo" style="color:var(--text2);font-size:18px;"></i>'}</div>
             <div style="flex:1;">
@@ -589,9 +653,61 @@ async function loadInstagram() {
             </div>
           </div>`).join('')}
       </div>`;
+    buildIgEngChart(posts);
+    renderIgCategories(posts, account.followers_count);
     document.getElementById('igLastUpdate').textContent = 'Live data · Updated ' + new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
   } catch(e) {
     document.getElementById('igContent').innerHTML = `<div class="error-msg">Instagram error: ${e.message}</div>`;
+  }
+}
+
+async function loadIgInsights() {
+  try {
+    const res = await fetch('/.netlify/functions/search?type=ig-insights');
+    const d = await res.json();
+    if (!d.available) return; // token lacks insights permission; card stays hidden
+    const m = d.metrics || {};
+    const tile = (v, lbl) => v == null ? '' : `<div class="ig-stat"><div class="ig-stat-val">${Number(v).toLocaleString()}</div><div class="ig-stat-lbl">${lbl}</div></div>`;
+    const html = tile(m.reach, 'Accounts reached (28d)') + tile(m.profile_views, 'Profile views (28d)') + tile(m.website_clicks, 'Website taps (28d)');
+    if (!html) return;
+    const card = document.getElementById('igInsightsCard');
+    card.style.display = 'block';
+    card.innerHTML = '<div style="font-size:12px;font-weight:500;color:var(--text2);margin-bottom:10px;">Reach & profile actions</div><div class="ig-stat-grid">' + html + '</div>';
+  } catch (e) { /* optional card */ }
+}
+
+async function loadIgTraffic() {
+  const src = document.getElementById('igTrafficSource');
+  try {
+    const res = await fetch('/.netlify/functions/analytics?view=igtraffic&year=' + kpiYear);
+    const d = await res.json();
+    if (!d.connected) throw new Error(d.error || 'not connected');
+    kpiChart('igSessionsChart', d.monthLabels.map((l, i) => l + (d.currentMonthIsMtd && i === d.monthLabels.length - 1 ? ' MTD' : '')),
+      [{ label: 'Sessions from Instagram', data: d.sessions, backgroundColor: '#7B4397', borderRadius: 4, borderSkipped: false }], false);
+    setSourceLine('igTrafficSource', 'Google Analytics 4', d.generatedAt);
+  } catch (e) {
+    setSourceError('igTrafficSource', 'Google Analytics 4', e.message);
+  }
+}
+
+async function loadIgFollowers() {
+  const note = document.getElementById('igFollowersNote');
+  try {
+    const res = await fetch(`/data/instagram-followers.json?_=${Date.now()}`);
+    const d = await res.json();
+    const pts = (d.history || []).filter(p => p.date && p.followers != null);
+    if (pts.length < 2) {
+      document.getElementById('igFollowersWrap').style.display = 'none';
+      note.textContent = 'Daily collection started ' + (pts[0] ? new Date(pts[0].date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) : 'today') + '. The trend line appears once a few days of data accumulate.';
+      return;
+    }
+    document.getElementById('igFollowersWrap').style.display = 'block';
+    kpiChart('igFollowersChart', pts.map(p => new Date(p.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })),
+      [{ label: 'Followers', data: pts.map(p => p.followers), type: 'line', borderColor: '#185FA5', backgroundColor: '#185FA5', tension: 0.3, pointRadius: 2 }], false);
+    note.textContent = 'Collected daily since ' + new Date(pts[0].date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) + '.';
+  } catch (e) {
+    document.getElementById('igFollowersWrap').style.display = 'none';
+    note.textContent = 'No follower history collected yet.';
   }
 }
 
