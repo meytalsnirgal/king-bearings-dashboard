@@ -114,7 +114,6 @@
       <div style="font-size:12px;font-weight:500;margin-bottom:2px;">Monthly KPIs <span id="magKpiYear" style="color:var(--text2);font-weight:400;"></span></div>
       <div class="source-line" id="magSourceLine">Source: Magento · loading…</div>
       <div class="kpi-table-wrap" id="magKpiTable"><div class="loading">Loading…</div></div>
-      <div id="retBuyersNote"></div>
       <div style="font-size:12px;font-weight:500;color:var(--text2);margin:16px 0 8px;">Average Order Value trend</div>
       <div class="chart-wrap"><canvas id="aovChart"></canvas></div>
     </div>
@@ -368,11 +367,8 @@ async function loadMagKpis() {
     if (!d.connected) throw new Error(d.error || 'not connected');
     const totAmount = sumOrNull(d.amount), totOrders = sumOrNull(d.orders);
     renderKpiTable('magKpiTable', d.monthLabels, d.currentMonthIsMtd, [
-      { label: 'Average Order Value', values: d.aov, fmt: fmtUsd2, ytd: totAmount != null && totOrders ? totAmount / totOrders : null, good: 'up' },
-      { label: 'Returning Buyers', values: new Array(d.monthLabels.length).fill(null), fmt: fmtInt, ytd: null, good: 'up' }
+      { label: 'Average Order Value', values: d.aov, fmt: fmtUsd2, ytd: totAmount != null && totOrders ? totAmount / totOrders : null, good: 'up' }
     ]);
-    document.getElementById('retBuyersNote').innerHTML =
-      '<div style="font-size:11px;color:var(--text2);margin-top:6px;">Returning Buyers is unavailable: the Magento dashboard API does not expose customer identity. Ask the eCommerce team to add a customer field (e.g. customer_id) to the sales-summary endpoint.</div>';
     kpiChart('aovChart', d.monthLabels, [{ label: 'AOV', data: d.aov, type: 'line', borderColor: '#185FA5', backgroundColor: '#185FA5', tension: 0.3 }], true);
     setSourceLine('magSourceLine', 'Magento (kingenginebuilders.com)', d.generatedAt);
   } catch (e) {
