@@ -122,7 +122,12 @@ the count daily into `data/instagram-followers.json`.
 | `king-negative-mentions-scan` | daily ~06:30 | `data/negative-mentions.json` (overwrite) |
 | `king-instagram-followers-snapshot` | daily ~06:57 | `data/instagram-followers.json` (append) |
 | `king-marketing-email-notion-sync` | daily ~06:00 | Notion comments (not this repo) |
-| `king-monthly-marketing-report` | 1st of month 07:23 | Cross-channel analysis for the month just ended, saved OUTSIDE this repo to `the-King-system\O-output\monthly-marketing-reports\` (deliberately not here: this repo is publicly served) |
+| `king-monthly-marketing-report` | 1st of month 07:23 | Cross-channel analysis for the month just ended. Emailed to meytals@king-bearings.com and archived to `the-King-system\O-output\monthly-marketing-reports\`. Deliberately NOT written into this repo, which is publicly served. |
+
+The monthly report emails via the local Outlook desktop client using COM
+(`send-report.ps1` in the task's own folder). The Outlook MCP connector is
+search-only, so there is no API send path. Recipient is hardcoded in the script.
+This means the send only works on Meytal's machine with Outlook installed.
 
 The two repo-writing daily tasks `git pull`, edit their one file, commit, push
 (which redeploys the site). The monthly report only reads from the deployed
