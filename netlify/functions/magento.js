@@ -159,6 +159,36 @@ async function monthlyKpis(year) {
   };
 }
 
+// One specific calendar month, with product and brand detail. The default view
+// only covers the current month, which is empty on the 1st when the monthly
+// report runs for the month just ended.
+async function monthDetail(year, month) {
+  const endOfMonth = new Date(year, month, 0);
+  const from = `${year}-${pad(month)}-01 00:00:00`;
+  const to = `${year}-${pad(month)}-${pad(endOfMonth.getDate())} 23:59:59`;
+  const data = await apiGet(salesSummaryUrl(from, to, 'revenue,orders[items[status,grand_total,order_items[product_name,row_total]]]'));
+  const stats = orderStats(data);
+  const byBrand = {};
+  for (const r of BRAND_RULES) byBrand[r.name] = 0;
+  for (const o of stats.items) {
+    for (const p of (o.order_items || [])) {
+      const rule = BRAND_RULES.find(r => !r.re || r.re.test(p.product_name || ''));
+      byBrand[rule.name] += p.row_total || 0;
+    }
+  }
+  return {
+    connected: true,
+    year, month,
+    monthLabel: MONTH_NAMES[month - 1],
+    orders: stats.orders,
+    grandTotalSum: Math.round(stats.items.reduce((s, o) => s + (o.grand_total || 0), 0) * 100) / 100,
+    aov: stats.orders ? Math.round(stats.items.reduce((s, o) => s + (o.grand_total || 0), 0) / stats.orders * 100) / 100 : null,
+    brandRevenue: BRAND_ORDER.map(n => ({ name: n, total: Math.round(byBrand[n] * 100) / 100 })),
+    topProducts: topProducts(stats.items, 10),
+    generatedAt: new Date().toISOString()
+  };
+}
+
 exports.handler = async function (event) {
   if (!process.env.MAGENTO_TOKEN) {
     return { statusCode: 200, headers: cors(), body: JSON.stringify({ connected: false }) };
@@ -167,6 +197,12 @@ exports.handler = async function (event) {
     const qs = (event && event.queryStringParameters) || {};
     if (qs.view === 'brands') {
       return { statusCode: 200, headers: cors(), body: JSON.stringify(await brandsView()) };
+    }
+    if (qs.view === 'month') {
+      const now = new Date();
+      const year = Math.min(Math.max(parseInt(qs.year, 10) || now.getFullYear(), 2015), now.getFullYear());
+      const month = Math.min(Math.max(parseInt(qs.month, 10) || now.getMonth() + 1, 1), 12);
+      return { statusCode: 200, headers: cors(), body: JSON.stringify(await monthDetail(year, month)) };
     }
     if (qs.view === 'monthly') {
       const year = Math.min(Math.max(parseInt(qs.year, 10) || new Date().getFullYear(), 2015), new Date().getFullYear());
