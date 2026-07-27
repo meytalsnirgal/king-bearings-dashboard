@@ -22,7 +22,7 @@ exports.handler = async function(event) {
       // 100 posts back so the frontend can chart engagement by month.
       const [account, media] = await Promise.all([
         httpsGet(`${BASE}/${IG_ID}?fields=username,followers_count,media_count&access_token=${TOKEN}`),
-        httpsGet(`${BASE}/${IG_ID}/media?fields=caption,media_type,like_count,comments_count,media_url,timestamp&limit=100&access_token=${TOKEN}`)
+        httpsGet(`${BASE}/${IG_ID}/media?fields=caption,media_type,like_count,comments_count,media_url,permalink,timestamp&limit=100&access_token=${TOKEN}`)
       ]);
       return {
         statusCode: 200,
