@@ -34,6 +34,7 @@ test against the deployed functions instead.
 | `/.netlify/functions/magento` | Current-month revenue/orders/AOV vs last month, 12-mo revenue trend, top products |
 | `/.netlify/functions/magento?view=brands` | Sales by brand, monthly, current year (see brand rules below) |
 | `/.netlify/functions/magento?view=monthly&year=Y` | Monthly orders/amount/AOV for the KPI table |
+| `/.netlify/functions/magento?view=month&year=Y&month=M` | One specific month: orders, grand-total sum, AOV, brand split, top 10 products (used by the monthly report task) |
 | `/.netlify/functions/googleads` | MTD cost/clicks/conversions vs last month, top campaigns |
 | `/.netlify/functions/googleads?view=monthly&year=Y` | Monthly cost/clicks/impressions + purchase orders/value |
 | `/.netlify/functions/googleads?view=diag` | Conversion-action diagnostics (names, categories, primary flags, YTD volumes) |
@@ -121,9 +122,11 @@ the count daily into `data/instagram-followers.json`.
 | `king-negative-mentions-scan` | daily ~06:30 | `data/negative-mentions.json` (overwrite) |
 | `king-instagram-followers-snapshot` | daily ~06:57 | `data/instagram-followers.json` (append) |
 | `king-marketing-email-notion-sync` | daily ~06:00 | Notion comments (not this repo) |
+| `king-monthly-marketing-report` | 1st of month 07:23 | Cross-channel analysis for the month just ended, saved OUTSIDE this repo to `the-King-system\O-output\monthly-marketing-reports\` (deliberately not here: this repo is publicly served) |
 
-Both repo-writing tasks `git pull`, edit their one file, commit, push (which
-redeploys the site).
+The two repo-writing daily tasks `git pull`, edit their one file, commit, push
+(which redeploys the site). The monthly report only reads from the deployed
+endpoints and writes locally.
 
 ## Frontend conventions
 
