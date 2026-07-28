@@ -81,5 +81,73 @@ exports.handler = async function(event) {
     };
   }
 
+  if (type === 'ig-post-insights') {
+    // Per-post reach, saves and shares. This is what makes tracking a single
+    // post's success possible, rather than only account-level totals.
+    // Metric availability differs by media type (Reels report plays, images do
+    // not), so each post is queried for a permissive set and whatever comes
+    // back is kept.
+    const limit = Math.min(Math.max(parseInt((event.queryStringParameters || {}).limit, 10) || 12, 1), 30);
+    try {
+      const mediaRaw = await httpsGet(`${BASE}/${IG_ID}/media?fields=id,caption,media_type,like_count,comments_count,permalink,timestamp&limit=${limit}&access_token=${TOKEN}`);
+      const media = JSON.parse(mediaRaw);
+      if (media.error) {
+        return { statusCode: 200, headers: { 'Access-Control-Allow-Origin': '*' }, body: JSON.stringify({ available: false, error: media.error.message }) };
+      }
+      const posts = media.data || [];
+
+      async function postInsights(p) {
+        const wanted = p.media_type === 'VIDEO'
+          ? 'reach,saved,shares,total_interactions,views'
+          : 'reach,saved,shares,total_interactions';
+        const base = {
+          id: p.id, permalink: p.permalink, media_type: p.media_type,
+          timestamp: p.timestamp,
+          caption: (p.caption || '').slice(0, 180),
+          likes: p.like_count, comments: p.comments_count
+        };
+        try {
+          const parsed = JSON.parse(await httpsGet(`${BASE}/${p.id}/insights?metric=${wanted}&access_token=${TOKEN}`));
+          if (parsed.error) return { ...base, insightsError: parsed.error.message };
+          for (const m of (parsed.data || [])) {
+            const v = m.total_value ? m.total_value.value
+              : (m.values && m.values.length ? m.values[0].value : null);
+            if (v != null) base[m.name] = v;
+          }
+          // Engagement against people actually reached, the metric that matters.
+          if (base.reach) {
+            base.engagementOnReachPct = Math.round(((base.total_interactions != null
+              ? base.total_interactions
+              : (base.likes || 0) + (base.comments || 0)) / base.reach) * 10000) / 100;
+          }
+          return base;
+        } catch (e) {
+          return { ...base, insightsError: e.message };
+        }
+      }
+
+      const enriched = await Promise.all(posts.map(postInsights));
+      const withReach = enriched.filter(p => p.reach != null);
+      const median = arr => { if (!arr.length) return null; const s = [...arr].sort((a, b) => a - b); return s[Math.floor(s.length / 2)]; };
+      return {
+        statusCode: 200,
+        headers: { 'Access-Control-Allow-Origin': '*', 'Cache-Control': 'no-cache' },
+        body: JSON.stringify({
+          available: withReach.length > 0,
+          count: enriched.length,
+          benchmarks: {
+            medianReach: median(withReach.map(p => p.reach)),
+            medianSaves: median(withReach.map(p => p.saved || 0)),
+            medianShares: median(withReach.map(p => p.shares || 0)),
+            medianEngagementOnReachPct: median(withReach.map(p => p.engagementOnReachPct || 0))
+          },
+          posts: enriched
+        })
+      };
+    } catch (e) {
+      return { statusCode: 200, headers: { 'Access-Control-Allow-Origin': '*' }, body: JSON.stringify({ available: false, error: e.message }) };
+    }
+  }
+
   return { statusCode: 400, body: JSON.stringify({ error: 'Unknown type' }) };
 };
