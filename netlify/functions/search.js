@@ -35,22 +35,50 @@ exports.handler = async function(event) {
   }
 
   if (type === 'ig-insights') {
-    // Account insights for the last 28 days. Requires instagram_manage_insights
-    // on the token; reports { available: false } rather than failing the page.
-    try {
-      const raw = await httpsGet(`${BASE}/${IG_ID}/insights?metric=reach,profile_views,website_clicks&period=days_28&metric_type=total_value&access_token=${TOKEN}`);
-      const parsed = JSON.parse(raw);
-      if (parsed.error) {
-        return { statusCode: 200, headers: { 'Access-Control-Allow-Origin': '*' }, body: JSON.stringify({ available: false, error: parsed.error.message }) };
+    // Account insights for the last 28 days. Requires instagram_manage_insights.
+    // Each metric is fetched INDEPENDENTLY because Meta accepts different
+    // period/metric_type combinations per metric, and one rejected metric would
+    // otherwise fail the whole call. Whatever succeeds is returned; the rest is
+    // reported in `failed` so a broken metric is visible instead of silent.
+    const DAY = 24 * 60 * 60;
+    const until = Math.floor(Date.now() / 1000);
+    const since = until - 28 * DAY;
+    const METRICS = [
+      'reach', 'profile_views', 'website_clicks',
+      'accounts_engaged', 'total_interactions', 'saves', 'shares', 'likes', 'comments'
+    ];
+
+    async function tryMetric(name) {
+      // total_value over an explicit window is the combination Meta accepts for
+      // these account metrics; days_28 as a `period` is rejected for reach.
+      const url = `${BASE}/${IG_ID}/insights?metric=${name}&metric_type=total_value&period=day`
+        + `&since=${since}&until=${until}&access_token=${TOKEN}`;
+      try {
+        const parsed = JSON.parse(await httpsGet(url));
+        if (parsed.error) return { name, error: parsed.error.message };
+        const row = (parsed.data || [])[0];
+        if (!row) return { name, error: 'no data returned' };
+        const value = row.total_value ? row.total_value.value
+          : (row.values && row.values.length ? row.values.reduce((s, v) => s + (v.value || 0), 0) : null);
+        return { name, value };
+      } catch (e) {
+        return { name, error: e.message };
       }
-      const out = {};
-      for (const m of (parsed.data || [])) {
-        out[m.name] = m.total_value ? m.total_value.value : (m.values && m.values.length ? m.values[m.values.length - 1].value : null);
-      }
-      return { statusCode: 200, headers: { 'Access-Control-Allow-Origin': '*', 'Cache-Control': 'no-cache' }, body: JSON.stringify({ available: true, metrics: out }) };
-    } catch(e) {
-      return { statusCode: 200, headers: { 'Access-Control-Allow-Origin': '*' }, body: JSON.stringify({ available: false, error: e.message }) };
     }
+
+    const results = await Promise.all(METRICS.map(tryMetric));
+    const metrics = {};
+    const failed = {};
+    for (const r of results) {
+      if (r.error) failed[r.name] = r.error;
+      else if (r.value != null) metrics[r.name] = r.value;
+    }
+    const available = Object.keys(metrics).length > 0;
+    return {
+      statusCode: 200,
+      headers: { 'Access-Control-Allow-Origin': '*', 'Cache-Control': 'no-cache' },
+      body: JSON.stringify({ available, windowDays: 28, metrics, failed })
+    };
   }
 
   return { statusCode: 400, body: JSON.stringify({ error: 'Unknown type' }) };
