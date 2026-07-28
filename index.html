@@ -661,12 +661,29 @@ async function loadIgInsights() {
     const d = await res.json();
     if (!d.available) return; // token lacks insights permission; card stays hidden
     const m = d.metrics || {};
-    const tile = (v, lbl) => v == null ? '' : `<div class="ig-stat"><div class="ig-stat-val">${Number(v).toLocaleString()}</div><div class="ig-stat-lbl">${lbl}</div></div>`;
-    const html = tile(m.reach, 'Accounts reached (28d)') + tile(m.profile_views, 'Profile views (28d)') + tile(m.website_clicks, 'Website taps (28d)');
+    const tile = (v, lbl, sub) => v == null ? '' :
+      `<div class="ig-stat"><div class="ig-stat-val">${Number(v).toLocaleString()}</div><div class="ig-stat-lbl">${lbl}</div>${sub ? `<div class="ig-stat-lbl" style="color:var(--text2);">${sub}</div>` : ''}</div>`;
+    // Engagement measured against people actually reached, which is the metric that
+    // matters. The per-follower rate is misleading on a large legacy follower base.
+    const engOnReach = (m.accounts_engaged != null && m.reach) ? (m.accounts_engaged / m.reach * 100).toFixed(1) + '%' : null;
+    const html =
+      tile(m.reach, 'Accounts reached') +
+      (engOnReach ? `<div class="ig-stat"><div class="ig-stat-val">${engOnReach}</div><div class="ig-stat-lbl">Engaged, of those reached</div></div>` : '') +
+      tile(m.saves, 'Saves') +
+      tile(m.shares, 'Shares') +
+      tile(m.profile_views, 'Profile views') +
+      tile(m.website_clicks, 'Website taps');
     if (!html) return;
     const card = document.getElementById('igInsightsCard');
     card.style.display = 'block';
-    card.innerHTML = '<div style="font-size:12px;font-weight:500;color:var(--text2);margin-bottom:10px;">Reach & profile actions</div><div class="ig-stat-grid">' + html + '</div>';
+    const failedKeys = Object.keys(d.failed || {});
+    card.innerHTML =
+      '<div style="font-size:12px;font-weight:500;color:var(--text2);margin-bottom:10px;">Reach and actions, last ' + (d.windowDays || 28) + ' days</div>' +
+      '<div class="ig-stat-grid">' + html + '</div>' +
+      '<div style="font-size:11px;color:var(--text2);margin-top:10px;">Saves and shares are what earn distribution to people who do not follow the account, so treat them as the primary signals. Engagement is shown against accounts reached, not against follower count.' +
+      (m.website_clicks != null ? ' Note: ' + Number(m.website_clicks).toLocaleString() + ' website taps here versus what GA4 attributes to Instagram is a measurement gap, not necessarily lost traffic.' : '') +
+      (failedKeys.length ? ' Unavailable: ' + failedKeys.join(', ') + '.' : '') +
+      '</div>';
   } catch (e) { /* optional card */ }
 }
 
