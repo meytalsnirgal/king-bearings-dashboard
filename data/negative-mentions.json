@@ -1,6 +1,12 @@
 {
-  "lastScanned": "2026-07-27T07:31:00Z",
+  "lastScanned": "2026-08-02T14:20:00Z",
   "mentions": [
+    {
+      "date": "2024-01-25",
+      "source": "speed-talk.com",
+      "snippet": "Don Terrill's Speed-Talk thread \"No more King XP bearings\": a builder reports King XP rod and main bearings measuring inconsistently thick/uneven with a digital gauge, calling it a precision problem after years of clearance trouble. Several other posters push back, saying King has been reliable for them, so this reads as one frustrated builder rather than a widespread pattern.",
+      "url": "https://www.speed-talk.com/forum/viewtopic.php?t=68038"
+    },
     {
       "date": "Unknown",
       "source": "speed-talk.com",
@@ -12,12 +18,6 @@
       "source": "m5board.com",
       "snippet": "BMW M5 Forum thread \"King Main Bearings Defective\": multiple users found King thrust bearings over 1mm too narrow to fit BMW S85/S65 blocks.",
       "url": "https://www.m5board.com/threads/king-main-bearings-defective.621301/"
-    },
-    {
-      "date": "Unknown",
-      "source": "nastyz28.com",
-      "snippet": "Buyer received a King SI main bearing that was malformed in production, crushed and twisted about 1/8\" out of size.",
-      "url": "https://nastyz28.com/threads/got-a-set-of-king-si-bearings-with-a-defective-bearing-awesome.212498/"
     },
     {
       "date": "Unknown",
