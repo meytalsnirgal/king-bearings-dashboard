@@ -48,6 +48,16 @@
   .mention-row:last-child { border-bottom: none; }
   .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
   .dot-urgent { background: #E24B4A; }
+  .dot-high { background: #E24B4A; }
+  .dot-medium { background: #E0912F; }
+  .dot-low { background: #9AA0A6; }
+  .mention-new { display: inline-block; background: #ED1C24; color: #fff; font-size: 9.5px;
+                 font-weight: 700; letter-spacing: .4px; padding: 1px 5px; margin-left: 6px;
+                 vertical-align: 1px; }
+  .mention-title { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+  .scan-stale { color: #B3541E; font-weight: 600; }
+  .scan-error { font-size: 12px; color: #B3541E; background: #FDF3EC;
+                border-left: 3px solid #E0912F; padding: 9px 11px; line-height: 1.5; }
   .mention-source { font-size: 11px; color: var(--text2); margin-bottom: 2px; }
   .mention-text { font-size: 13px; color: var(--text); line-height: 1.45; }
   .mention-link { font-size: 11px; color: #185FA5; text-decoration: none; display: inline-flex; align-items: center; gap: 3px; margin-top: 3px; }
@@ -723,31 +733,53 @@ async function loadIgFollowers() {
 }
 
 async function loadNegativeMentions() {
+  const stamp = document.getElementById('mentionsLastSearch');
+  const body = document.getElementById('mentionsResults');
   try {
     const res = await fetch(`/data/negative-mentions.json?_=${Date.now()}`);
+    if (!res.ok) throw new Error('HTTP ' + res.status + ' fetching negative-mentions.json');
     const data = await res.json();
-    if (!data.lastScanned) {
-      document.getElementById('mentionsLastSearch').textContent = 'Not scanned yet';
-      return;
-    }
+    if (!data.lastScanned) throw new Error('the data file has no lastScanned timestamp');
+
+    // A scan that silently stopped running used to look identical to a fresh one:
+    // same layout, just an older date in small grey type. Say it outright instead.
     const scanDate = new Date(data.lastScanned);
-    document.getElementById('mentionsLastSearch').textContent = 'Last scanned: ' + scanDate.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}) + ' ' + scanDate.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+    const ageHours = (Date.now() - scanDate.getTime()) / 36e5;
+    const when = scanDate.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})
+               + ' ' + scanDate.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+    if (ageHours > 36) {
+      const days = Math.floor(ageHours / 24);
+      stamp.innerHTML = `<span class="scan-stale">Scan has not run for ${days} day${days === 1 ? '' : 's'}</span> &middot; last ran ${esc(when)}`;
+    } else {
+      stamp.textContent = 'Last scanned: ' + when;
+    }
+
     const mentions = data.mentions || [];
     if (!mentions.length) {
-      document.getElementById('mentionsResults').innerHTML = '<div class="card" style="text-align:center;color:var(--text2);font-size:13px;padding:20px;">No negative mentions found in today\'s scan.</div>';
+      body.innerHTML = '<div class="card" style="text-align:center;color:var(--text2);font-size:13px;padding:20px;">No negative mentions found in the latest scan.</div>';
       return;
     }
-    document.getElementById('mentionsResults').innerHTML = `<div class="card">${mentions.map(m => `
+
+    body.innerHTML = `<div class="card">${mentions.map(m => {
+      const sev = ['low','medium','high'].includes(m.severity) ? m.severity : 'medium';
+      return `
       <div class="mention-row">
-        <div class="dot dot-urgent"></div>
+        <div class="dot dot-${sev}" title="${sev} severity"></div>
         <div>
-          <div class="mention-source">${esc(m.source)}${m.date ? ' · ' + esc(m.date) : ''}</div>
+          <div class="mention-source">${esc(m.source)}${m.date && m.date !== 'Unknown' ? ' · ' + esc(m.date) : ''}${m.isNew ? '<span class="mention-new">NEW</span>' : ''}</div>
+          ${m.title ? `<div class="mention-title">${esc(m.title)}</div>` : ''}
           <div class="mention-text">${esc(m.snippet)}</div>
-          ${m.url ? `<a class="mention-link" href="${esc(m.url)}" target="_blank"><i class="ti ti-external-link" style="font-size:11px;"></i> View</a>` : ''}
+          ${m.url ? `<a class="mention-link" href="${esc(m.url)}" target="_blank" rel="noopener noreferrer"><i class="ti ti-external-link" style="font-size:11px;"></i> View</a>` : ''}
         </div>
-      </div>`).join('')}</div>`;
+      </div>`;
+    }).join('')}</div>`;
   } catch (e) {
-    document.getElementById('mentionsLastSearch').textContent = 'Not scanned yet';
+    // Never fail silently. "Not scanned yet" gave no way to tell a quiet day from a
+    // broken feed, which is exactly how this went unnoticed before.
+    stamp.textContent = 'Mentions feed unavailable';
+    body.innerHTML = `<div class="card"><div class="scan-error">
+      Could not load the brand-mentions feed.<br>${esc(e.message || String(e))}
+    </div></div>`;
   }
 }
 
