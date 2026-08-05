@@ -54,6 +54,10 @@
   .mention-new { display: inline-block; background: #ED1C24; color: #fff; font-size: 9.5px;
                  font-weight: 700; letter-spacing: .4px; padding: 1px 5px; margin-left: 6px;
                  vertical-align: 1px; }
+  .mention-reply { display: inline-block; font-size: 9.5px; font-weight: 700; letter-spacing: .4px;
+                    padding: 1px 5px; margin-left: 6px; vertical-align: 1px; }
+  .mention-reply-king { background: #E9F5EC; color: #1E7A34; }
+  .mention-reply-resolved { background: var(--border); color: var(--text2); }
   .mention-title { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
   .scan-stale { color: #B3541E; font-weight: 600; }
   .scan-error { font-size: 12px; color: #B3541E; background: #FDF3EC;
@@ -762,11 +766,20 @@ async function loadNegativeMentions() {
 
     body.innerHTML = `<div class="card">${mentions.map(m => {
       const sev = ['low','medium','high'].includes(m.severity) ? m.severity : 'medium';
+      // Only the two outcomes worth a glance get a badge. "no-reply" or "activity" on
+      // every quiet row would just be noise — the absence of a badge already says
+      // "nothing to report" without spelling it out on six lines every day.
+      let replyBadge = '';
+      if (m.replyStatus === 'king-replied') {
+        replyBadge = `<span class="mention-reply mention-reply-king" title="${esc(m.replyNote || '')}">KING REPLIED</span>`;
+      } else if (m.replyStatus === 'resolved-locked') {
+        replyBadge = `<span class="mention-reply mention-reply-resolved" title="${esc(m.replyNote || '')}">RESOLVED</span>`;
+      }
       return `
       <div class="mention-row">
         <div class="dot dot-${sev}" title="${sev} severity"></div>
         <div>
-          <div class="mention-source">${esc(m.source)}${m.date && m.date !== 'Unknown' ? ' · ' + esc(m.date) : ''}${m.isNew ? '<span class="mention-new">NEW</span>' : ''}</div>
+          <div class="mention-source">${esc(m.source)}${m.date && m.date !== 'Unknown' ? ' · ' + esc(m.date) : ''}${m.isNew ? '<span class="mention-new">NEW</span>' : ''}${replyBadge}</div>
           ${m.title ? `<div class="mention-title">${esc(m.title)}</div>` : ''}
           <div class="mention-text">${esc(m.snippet)}</div>
           ${m.url ? `<a class="mention-link" href="${esc(m.url)}" target="_blank" rel="noopener noreferrer"><i class="ti ti-external-link" style="font-size:11px;"></i> View</a>` : ''}
