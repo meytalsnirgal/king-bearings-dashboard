@@ -1,6 +1,6 @@
 {
-  "lastScanned": "2026-08-05T09:15:09Z",
-  "newCount": 2,
+  "lastScanned": "2026-08-05T09:18:42Z",
+  "newCount": 0,
   "mentions": [
     {
       "date": "Unknown",
@@ -9,16 +9,7 @@
       "snippet": "BMW E90 forum thread telling other builders to measure every King bearing before fitting it. An explicit buyer-warning aimed at the whole brand rather than one part number, on a large BMW community.",
       "url": "https://www.e90post.com/forums/showthread.php?t=1550150",
       "severity": "high",
-      "isNew": true
-    },
-    {
-      "date": "Unknown",
-      "source": "dsmtuners.com",
-      "title": "Just call it what it is - King Bearings are no longer an option",
-      "snippet": "DSM community thread arguing King is no longer a viable choice for 6-bolt engines because orders have sat on back-order since the pandemic. An availability and supply complaint rather than a defect, but it is a builder publicly writing King off.",
-      "url": "https://www.dsmtuners.com/threads/just-call-it-what-it-is-king-bearings-are-no-longer-an-option.547423/",
-      "severity": "medium",
-      "isNew": true
+      "isNew": false
     },
     {
       "date": "Unknown",
@@ -27,7 +18,10 @@
       "snippet": "Builder found King STDX thrust bearings over 1mm too narrow to fit both S85 and S65 blocks, and concluded King main bearings cannot be trusted for those engines. A measurable fitment defect on King's largest engine family by revenue.",
       "url": "https://www.m5board.com/threads/king-main-bearings-defective.621301/",
       "severity": "high",
-      "isNew": false
+      "isNew": false,
+      "replyStatus": "king-replied",
+      "replyNote": "A user identifying as King Bearings support replied acknowledging the fitment issue and offering to check part numbers.",
+      "lastChecked": "2026-08-05"
     },
     {
       "date": "Unknown",
@@ -36,6 +30,18 @@
       "snippet": "Diesel Truck Forum buyer-warning thread about King main thrust bearings. Search results indicate the free-spread spec was out of tolerance on 2024 stock and that 2024 and 2025 production runs showed the same problem, so this reads as recurring rather than a one-off batch.",
       "url": "https://www.oilburners.net/threads/warning-about-king-main-thrust-bearings.94987/",
       "severity": "high",
+      "isNew": false,
+      "replyStatus": "no-reply",
+      "replyNote": "No reply from King or anyone official since flagged. Thread has 2 more replies from other builders confirming the issue.",
+      "lastChecked": "2026-08-05"
+    },
+    {
+      "date": "Unknown",
+      "source": "dsmtuners.com",
+      "title": "Just call it what it is - King Bearings are no longer an option",
+      "snippet": "DSM community thread arguing King is no longer a viable choice for 6-bolt engines because orders have sat on back-order since the pandemic. An availability and supply complaint rather than a defect, but it is a builder publicly writing King off.",
+      "url": "https://www.dsmtuners.com/threads/just-call-it-what-it-is-king-bearings-are-no-longer-an-option.547423/",
+      "severity": "medium",
       "isNew": false
     },
     {
