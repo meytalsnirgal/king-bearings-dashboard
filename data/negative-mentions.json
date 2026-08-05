@@ -1,12 +1,30 @@
 {
-  "lastScanned": "2026-08-02T08:44:17Z",
-  "newCount": 0,
+  "lastScanned": "2026-08-05T09:15:09Z",
+  "newCount": 2,
   "mentions": [
+    {
+      "date": "Unknown",
+      "source": "e90post.com",
+      "title": "WARNING!! Check all KING brand bearings before install",
+      "snippet": "BMW E90 forum thread telling other builders to measure every King bearing before fitting it. An explicit buyer-warning aimed at the whole brand rather than one part number, on a large BMW community.",
+      "url": "https://www.e90post.com/forums/showthread.php?t=1550150",
+      "severity": "high",
+      "isNew": true
+    },
+    {
+      "date": "Unknown",
+      "source": "dsmtuners.com",
+      "title": "Just call it what it is - King Bearings are no longer an option",
+      "snippet": "DSM community thread arguing King is no longer a viable choice for 6-bolt engines because orders have sat on back-order since the pandemic. An availability and supply complaint rather than a defect, but it is a builder publicly writing King off.",
+      "url": "https://www.dsmtuners.com/threads/just-call-it-what-it-is-king-bearings-are-no-longer-an-option.547423/",
+      "severity": "medium",
+      "isNew": true
+    },
     {
       "date": "Unknown",
       "source": "m5board.com",
       "title": "King Main Bearings Defective",
-      "snippet": "Multiple users found King thrust bearings over 1mm too narrow to fit BMW S85/S65 blocks. A specific, measurable fitment defect reported by more than one builder, on King's largest engine family by revenue.",
+      "snippet": "Builder found King STDX thrust bearings over 1mm too narrow to fit both S85 and S65 blocks, and concluded King main bearings cannot be trusted for those engines. A measurable fitment defect on King's largest engine family by revenue.",
       "url": "https://www.m5board.com/threads/king-main-bearings-defective.621301/",
       "severity": "high",
       "isNew": false
@@ -15,7 +33,7 @@
       "date": "Unknown",
       "source": "oilburners.net",
       "title": "WARNING about King Main Thrust Bearings",
-      "snippet": "Diesel Truck Forum buyer-warning thread describing a recurring problem pattern with King main thrust bearings. Framed explicitly as a warning to other buyers rather than as a single complaint.",
+      "snippet": "Diesel Truck Forum buyer-warning thread about King main thrust bearings. Search results indicate the free-spread spec was out of tolerance on 2024 stock and that 2024 and 2025 production runs showed the same problem, so this reads as recurring rather than a one-off batch.",
       "url": "https://www.oilburners.net/threads/warning-about-king-main-thrust-bearings.94987/",
       "severity": "high",
       "isNew": false
@@ -24,7 +42,7 @@
       "date": "Unknown",
       "source": "speed-talk.com",
       "title": "King Bearings?",
-      "snippet": "Builders report inconsistent shell thickness, excessive crush, and dents in the steel backs of King aluminium bearings present before unpacking. Other posters in the thread defend the product.",
+      "snippet": "Builders report inconsistent shell thickness, excessive crush, and dents in the steel backs of King aluminum bearings present before unpacking. Other posters in the thread defend the product.",
       "url": "https://www.speed-talk.com/forum/viewtopic.php?t=44264",
       "severity": "medium",
       "isNew": false
@@ -32,28 +50,10 @@
     {
       "date": "Unknown",
       "source": "racingjunk.com",
-      "title": "Quality control problem with King bearings",
-      "snippet": "RacingJunk Forums thread on a quality control problem with King bearings and a lack of professional support in resolving it. Notable because the service complaint is separate from the product complaint.",
+      "title": "King Bearing - lack of professional help for quality control problem",
+      "snippet": "A customer received the wrong size assortment in a sealed King XP package and could not get help directly from King, who routed them back to the supplier. The service failure is the substance of the complaint, separate from the packing error.",
       "url": "https://www.racingjunk.com/forums/showthread.php?t=1289997",
       "severity": "medium",
-      "isNew": false
-    },
-    {
-      "date": "Unknown",
-      "source": "460ford.com",
-      "title": "King Bearing Failures?",
-      "snippet": "460 Ford Forum thread discussing reported bearing failures in Ford 460 engine builds. Posed as an open question rather than as a confirmed defect report.",
-      "url": "https://www.460ford.com/forum/37-engine-tech/107388-king-bearing-failures.html",
-      "severity": "medium",
-      "isNew": false
-    },
-    {
-      "date": "2024-01-25",
-      "source": "speed-talk.com",
-      "title": "No more King XP bearings",
-      "snippet": "A builder reports King XP rod and main bearings measuring inconsistently with a digital gauge, calling it a precision problem after years of clearance trouble. Several other posters push back, saying King has been reliable for them, so this reads as one frustrated builder rather than a widespread pattern.",
-      "url": "https://www.speed-talk.com/forum/viewtopic.php?t=68038",
-      "severity": "low",
       "isNew": false
     }
   ]

@@ -1,12 +1,50 @@
 {
   "_comment": "Append-only ledger of every negative mention ever alerted on. The daily scan diffs against this to decide what is NEW and therefore worth emailing. Never prune entries: removing one causes a duplicate alert. Match URLs normalized (lowercase, no trailing slash, no #fragment, tracking params stripped) but KEEP meaningful query strings such as ?t=44264, which identify the thread.",
   "seen": [
-    { "url": "https://www.m5board.com/threads/king-main-bearings-defective.621301/", "firstSeen": "2026-07-13", "source": "m5board.com" },
-    { "url": "https://nastyz28.com/threads/got-a-set-of-king-si-bearings-with-a-defective-bearing-awesome.212498/", "firstSeen": "2026-07-13", "source": "nastyz28.com" },
-    { "url": "https://www.oilburners.net/threads/warning-about-king-main-thrust-bearings.94987/", "firstSeen": "2026-07-13", "source": "oilburners.net" },
-    { "url": "https://www.460ford.com/forum/37-engine-tech/107388-king-bearing-failures.html", "firstSeen": "2026-07-13", "source": "460ford.com" },
-    { "url": "https://www.racingjunk.com/forums/showthread.php?t=1289997", "firstSeen": "2026-07-13", "source": "racingjunk.com" },
-    { "url": "https://www.speed-talk.com/forum/viewtopic.php?t=44264", "firstSeen": "2026-07-27", "source": "speed-talk.com" },
-    { "url": "https://www.speed-talk.com/forum/viewtopic.php?t=68038", "firstSeen": "2026-08-02", "source": "speed-talk.com" }
+    {
+      "url": "https://www.m5board.com/threads/king-main-bearings-defective.621301/",
+      "firstSeen": "2026-07-13",
+      "source": "m5board.com"
+    },
+    {
+      "url": "https://nastyz28.com/threads/got-a-set-of-king-si-bearings-with-a-defective-bearing-awesome.212498/",
+      "firstSeen": "2026-07-13",
+      "source": "nastyz28.com"
+    },
+    {
+      "url": "https://www.oilburners.net/threads/warning-about-king-main-thrust-bearings.94987/",
+      "firstSeen": "2026-07-13",
+      "source": "oilburners.net"
+    },
+    {
+      "url": "https://www.460ford.com/forum/37-engine-tech/107388-king-bearing-failures.html",
+      "firstSeen": "2026-07-13",
+      "source": "460ford.com"
+    },
+    {
+      "url": "https://www.racingjunk.com/forums/showthread.php?t=1289997",
+      "firstSeen": "2026-07-13",
+      "source": "racingjunk.com"
+    },
+    {
+      "url": "https://www.speed-talk.com/forum/viewtopic.php?t=44264",
+      "firstSeen": "2026-07-27",
+      "source": "speed-talk.com"
+    },
+    {
+      "url": "https://www.speed-talk.com/forum/viewtopic.php?t=68038",
+      "firstSeen": "2026-08-02",
+      "source": "speed-talk.com"
+    },
+    {
+      "url": "https://www.e90post.com/forums/showthread.php?t=1550150",
+      "firstSeen": "2026-08-05",
+      "source": "e90post.com"
+    },
+    {
+      "url": "https://www.dsmtuners.com/threads/just-call-it-what-it-is-king-bearings-are-no-longer-an-option.547423/",
+      "firstSeen": "2026-08-05",
+      "source": "dsmtuners.com"
+    }
   ]
 }
