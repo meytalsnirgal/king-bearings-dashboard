@@ -4,17 +4,26 @@
     {
       "url": "https://www.m5board.com/threads/king-main-bearings-defective.621301/",
       "firstSeen": "2026-07-13",
-      "source": "m5board.com"
+      "source": "m5board.com",
+      "replyStatus": "unreachable",
+      "replyNote": "WebFetch redirected to a tollbit.m5board.com mirror instead of returning page content; could not read within the Step 0 fetch budget.",
+      "lastChecked": "2026-08-10"
     },
     {
       "url": "https://nastyz28.com/threads/got-a-set-of-king-si-bearings-with-a-defective-bearing-awesome.212498/",
       "firstSeen": "2026-07-13",
-      "source": "nastyz28.com"
+      "source": "nastyz28.com",
+      "replyStatus": "unreachable",
+      "replyNote": "WebFetch redirected to a tollbit.nastyz28.com mirror instead of returning page content; could not read within the Step 0 fetch budget.",
+      "lastChecked": "2026-08-10"
     },
     {
       "url": "https://www.oilburners.net/threads/warning-about-king-main-thrust-bearings.94987/",
       "firstSeen": "2026-07-13",
-      "source": "oilburners.net"
+      "source": "oilburners.net",
+      "replyStatus": "unreachable",
+      "replyNote": "WebFetch returned HTTP 403 Forbidden.",
+      "lastChecked": "2026-08-10"
     },
     {
       "url": "https://www.460ford.com/forum/37-engine-tech/107388-king-bearing-failures.html",
@@ -45,6 +54,16 @@
       "url": "https://www.dsmtuners.com/threads/just-call-it-what-it-is-king-bearings-are-no-longer-an-option.547423/",
       "firstSeen": "2026-08-05",
       "source": "dsmtuners.com"
+    },
+    {
+      "url": "https://www.e90post.com/forums/showthread.php?p=23935223",
+      "firstSeen": "2026-08-10",
+      "source": "e90post.com"
+    },
+    {
+      "url": "https://www.yellowbullet.com/threads/kings-engine-bearings-anybody-have-problems.900498/",
+      "firstSeen": "2026-08-10",
+      "source": "yellowbullet.com"
     }
   ]
 }
