@@ -172,6 +172,37 @@
     <div class="metric-grid">
       <div class="metric" style="grid-column:1 / -1;"><div class="metric-label">Conversions (MTD)</div><div class="metric-val" id="mAdsConversions">-</div><div class="metric-sub" id="mAdsConversionsSub"></div></div>
     </div>
+
+    <div class="card" id="adsRoiCard">
+      <div style="font-size:13px;font-weight:600;margin-bottom:2px;">Ad Spend &amp; Return</div>
+      <div class="source-line" id="roiMonthLine">loading…</div>
+      <div class="metric-grid" style="grid-template-columns:repeat(3,1fr);margin-top:12px;">
+        <div class="metric">
+          <div class="metric-label">Ad Spend</div>
+          <div class="metric-val" id="roiSpend">-</div>
+          <div class="metric-sub">What you paid Google</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">Revenue From Ads</div>
+          <div class="metric-val" id="roiRevenue">-</div>
+          <div class="metric-sub">Sales Google says these ads caused</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">Return on Ad Spend</div>
+          <div class="metric-val" id="roiRatio">-</div>
+          <div class="metric-sub">for every $1 you spent</div>
+        </div>
+      </div>
+      <div id="roiTrackingNote"></div>
+      <div style="font-size:12px;font-weight:500;color:var(--text2);margin:16px 0 8px;">Spend vs. revenue, month by month</div>
+      <div class="chart-wrap"><canvas id="roiTrendChart"></canvas></div>
+      <div style="font-size:11px;color:var(--text2);margin-top:10px;line-height:1.5;">
+        <strong>Return on Ad Spend (ROAS)</strong> is revenue divided by spend. A ROAS of $1.50 means every $1 spent on ads brought back $1.50 in sales.
+        It is not profit — it does not subtract the cost of the product itself, only what you paid Google. Whether a given ROAS is actually profitable
+        depends on your margin on what was sold.
+      </div>
+    </div>
+
     <div class="card">
       <div style="font-size:12px;font-weight:500;margin-bottom:2px;">Monthly KPIs <span id="adsKpiYear" style="color:var(--text2);font-weight:400;"></span></div>
       <div class="source-line" id="adsSourceLine">Source: Google Ads API · loading…</div>
@@ -379,11 +410,65 @@ async function loadAdsKpis() {
       { label: 'Impressions', data: d.impressions, type: 'line', borderColor: '#BA7517', backgroundColor: '#BA7517', tension: 0.3, yAxisID: 'y1' }
     ], false, false);
     kpiChart('adsCpcChart', d.monthLabels, [{ label: 'CPC', data: cpc.map(v => v == null ? null : Math.round(v * 100) / 100), type: 'line', borderColor: '#7B4397', backgroundColor: '#7B4397', tension: 0.3 }], true);
+    renderAdsRoi(d);
     setSourceLine('adsSourceLine', 'Google Ads API', d.generatedAt);
   } catch (e) {
     setSourceError('adsSourceLine', 'Google Ads API', e.message);
     document.getElementById('adsKpiTable').innerHTML = '<div style="font-size:12px;color:var(--text2);">Data unavailable.</div>';
   }
+}
+
+// Real Google Ads purchase-conversion tracking only began June 2026 - before
+// that there was no working conversion action at all, so a $0 or near-$0
+// month before then means "not measured," not "no sales." Showing those
+// months as if they were real zeros would read as a performance failure that
+// never happened, so they are excluded from the return-on-spend view here.
+const ROAS_TRACKING_START = { year: 2026, monthIndex: 5 }; // June, 0-based
+
+function renderAdsRoi(d) {
+  const trackStart = (kpiYear === ROAS_TRACKING_START.year) ? ROAS_TRACKING_START.monthIndex : 0;
+  // Skip the current month if it is still mid-month (MTD): a partial month's
+  // ROAS is not comparable to a full one and would look artificially low.
+  const lastFullIdx = d.currentMonthIsMtd ? d.monthLabels.length - 2 : d.monthLabels.length - 1;
+
+  const notePastYear = kpiYear < ROAS_TRACKING_START.year ||
+    (kpiYear === ROAS_TRACKING_START.year && lastFullIdx < ROAS_TRACKING_START.monthIndex);
+
+  if (notePastYear || lastFullIdx < trackStart) {
+    document.getElementById('roiMonthLine').textContent = 'No period with working purchase tracking yet.';
+    document.getElementById('roiSpend').textContent = '-';
+    document.getElementById('roiRevenue').textContent = '-';
+    document.getElementById('roiRatio').textContent = '-';
+    document.getElementById('roiTrackingNote').innerHTML =
+      '<div class="alert-bar" style="margin-top:8px;"><i class="ti ti-alert-triangle"></i> Google Ads purchase-conversion tracking was not active for this period, so spend and revenue cannot be compared.</div>';
+    if (kpiCharts.roiTrendChart) { kpiCharts.roiTrendChart.destroy(); delete kpiCharts.roiTrendChart; }
+    return;
+  }
+
+  const spend = d.cost[lastFullIdx], revenue = d.purchaseValue[lastFullIdx];
+  document.getElementById('roiMonthLine').textContent = 'For ' + d.monthLabels[lastFullIdx] + ' ' + kpiYear + ' (last full month)';
+  document.getElementById('roiSpend').textContent = spend != null ? fmtUsd2(spend) : '-';
+  document.getElementById('roiRevenue').textContent = revenue != null ? fmtUsd2(revenue) : '-';
+  if (spend && revenue != null) {
+    const ratio = revenue / spend;
+    document.getElementById('roiRatio').textContent = '$' + ratio.toFixed(2);
+    const sub = document.querySelector('#adsRoiCard .metric:nth-child(3) .metric-sub');
+    if (sub) sub.textContent = ratio >= 1 ? 'came back for every $1 you spent' : 'came back for every $1 you spent (under $1)';
+  } else {
+    document.getElementById('roiRatio').textContent = '-';
+  }
+
+  document.getElementById('roiTrackingNote').innerHTML = (trackStart > 0)
+    ? '<div style="font-size:11px;color:var(--text2);margin-top:10px;line-height:1.5;"><i class="ti ti-info-circle"></i> Months before June 2026 are left out of the chart below. Purchase tracking was not switched on yet, so those months would show almost no revenue even though real sales were happening - showing them would make the campaigns look like they failed when nothing was actually being measured.</div>'
+    : '';
+
+  const labels = d.monthLabels.slice(trackStart, lastFullIdx + 1);
+  const spendSeries = d.cost.slice(trackStart, lastFullIdx + 1);
+  const revenueSeries = d.purchaseValue.slice(trackStart, lastFullIdx + 1);
+  kpiChart('roiTrendChart', labels, [
+    { label: 'Ad Spend', data: spendSeries, backgroundColor: '#185FA5', borderRadius: 4, borderSkipped: false },
+    { label: 'Revenue From Ads', data: revenueSeries, backgroundColor: '#27500A', borderRadius: 4, borderSkipped: false }
+  ], true, true);
 }
 
 async function loadMagKpis() {
