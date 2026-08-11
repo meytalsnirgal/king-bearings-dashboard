@@ -28,17 +28,26 @@
     {
       "url": "https://www.460ford.com/forum/37-engine-tech/107388-king-bearing-failures.html",
       "firstSeen": "2026-07-13",
-      "source": "460ford.com"
+      "source": "460ford.com",
+      "replyStatus": "unreachable",
+      "replyNote": "WebFetch redirected to a tollbit.460ford.com mirror instead of returning page content; could not read within the Step 0 fetch budget.",
+      "lastChecked": "2026-08-11"
     },
     {
       "url": "https://www.racingjunk.com/forums/showthread.php?t=1289997",
       "firstSeen": "2026-07-13",
-      "source": "racingjunk.com"
+      "source": "racingjunk.com",
+      "replyStatus": "unreachable",
+      "replyNote": "WebFetch returned HTTP 403 Forbidden.",
+      "lastChecked": "2026-08-11"
     },
     {
       "url": "https://www.speed-talk.com/forum/viewtopic.php?t=44264",
       "firstSeen": "2026-07-27",
-      "source": "speed-talk.com"
+      "source": "speed-talk.com",
+      "replyStatus": "no-reply",
+      "replyNote": "No official King Bearings response found in the thread; not locked, resolved, or deleted.",
+      "lastChecked": "2026-08-11"
     },
     {
       "url": "https://www.speed-talk.com/forum/viewtopic.php?t=68038",
