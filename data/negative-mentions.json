@@ -1,24 +1,33 @@
 {
-  "lastScanned": "2026-08-12T06:22:22Z",
-  "newCount": 0,
+  "lastScanned": "2026-08-12T11:32:34Z",
+  "newCount": 1,
   "mentions": [
     {
       "date": "Unknown",
-      "source": "m5board.com",
-      "title": "King Main Bearings Defective",
-      "snippet": "Builder reports King STDX thrust bearings over 1mm too narrow to fit BMW S85/S65 blocks, across multiple sets and multiple different blocks.",
-      "url": "https://www.m5board.com/threads/king-main-bearings-defective.621301/",
+      "source": "forbbodiesonly.com",
+      "title": "King Bearings Quality?",
+      "snippet": "Mopar forum thread reporting a 2024 King main bearing out of spec on free spread and a 2025 main also found bad, with builders raising spun-bearing risk. Contested in-thread by others who report no problems since 2024.",
+      "url": "https://www.forbbodiesonly.com/moparforum/threads/king-bearings-quality.192421/",
+      "severity": "medium",
+      "isNew": true
+    },
+    {
+      "date": "Unknown",
+      "source": "e90post.com",
+      "title": "WARNING!! Check all KING brand bearings before install",
+      "snippet": "Explicit buyer-warning thread telling owners to measure and inspect every King bearing before installation. Framed as a general quality-control alarm, not a single bad set.",
+      "url": "https://www.e90post.com/forums/showthread.php?p=23935223",
       "severity": "high",
       "isNew": false,
       "replyStatus": "unreachable",
-      "replyNote": "WebFetch redirected to a tollbit.m5board.com mirror instead of returning page content; could not read within the Step 0 fetch budget.",
-      "lastChecked": "2026-08-10"
+      "replyNote": "WebFetch failed with connection refused (ECONNREFUSED) on the e90post host; thread could not be read.",
+      "lastChecked": "2026-08-12"
     },
     {
       "date": "Unknown",
       "source": "oilburners.net",
       "title": "WARNING about King Main Thrust Bearings",
-      "snippet": "Explicit buyer-warning thread about King main thrust bearings on a diesel truck forum.",
+      "snippet": "Buyer-warning thread on a diesel truck forum about King main thrust bearings. Titled as a warning to other builders rather than a support question.",
       "url": "https://www.oilburners.net/threads/warning-about-king-main-thrust-bearings.94987/",
       "severity": "high",
       "isNew": false,
@@ -27,34 +36,22 @@
       "lastChecked": "2026-08-10"
     },
     {
-      "date": "2018-10",
-      "source": "e90post.com",
-      "title": "WARNING!! Check all KING brand bearings before install",
-      "snippet": "Explicit warning thread urging buyers to inspect King brand bearings before installation.",
-      "url": "https://www.e90post.com/forums/showthread.php?t=1550150",
-      "severity": "high",
-      "isNew": false,
-      "replyStatus": "unreachable",
-      "replyNote": "WebFetch failed with connection refused (ECONNREFUSED); could not read the thread.",
-      "lastChecked": "2026-08-12"
-    },
-    {
       "date": "Unknown",
-      "source": "dsmtuners.com",
-      "title": "Just call it what it is---King Bearings are no longer an option....",
-      "snippet": "Brand-damaging complaint framing King bearings as no longer a viable option, citing recent availability/quality issues.",
-      "url": "https://www.dsmtuners.com/threads/just-call-it-what-it-is-king-bearings-are-no-longer-an-option.547423/",
+      "source": "m5board.com",
+      "title": "King Main Bearings Defective",
+      "snippet": "King STDX thrust bearings reported over 1mm too narrow to fit across multiple BMW S85 and S65 blocks. Poster went back for a refund and said they would not use King again.",
+      "url": "https://www.m5board.com/threads/king-main-bearings-defective.621301/",
       "severity": "medium",
       "isNew": false,
       "replyStatus": "unreachable",
-      "replyNote": "WebFetch returned HTTP 403 Forbidden.",
-      "lastChecked": "2026-08-12"
+      "replyNote": "WebFetch redirected to a tollbit.m5board.com mirror instead of returning page content; could not read within the Step 0 fetch budget.",
+      "lastChecked": "2026-08-10"
     },
     {
       "date": "Unknown",
       "source": "racingjunk.com",
       "title": "King Bearing - lack of professional help for quality control problem",
-      "snippet": "Customer received an incorrect combination of bearing sizes and describes King's customer service as unresponsive to the quality control problem.",
+      "snippet": "Complaint combining a mis-packed bearing set (mixed .011 and .030 shells) with dissatisfaction over the support response. Service complaint as much as a product one.",
       "url": "https://www.racingjunk.com/forums/showthread.php?t=1289997",
       "severity": "medium",
       "isNew": false,
@@ -64,15 +61,15 @@
     },
     {
       "date": "Unknown",
-      "source": "460ford.com",
-      "title": "King Bearing Failures?",
-      "snippet": "Forum thread discussing reported King bearing failures on 460 Ford builds.",
-      "url": "https://www.460ford.com/forum/37-engine-tech/107388-king-bearing-failures.html",
+      "source": "nastyz28.com",
+      "title": "Got a set of King SI bearings with a defective bearing...awesome",
+      "snippet": "One King SI main shell malformed in production, crushed and twisted roughly 1/8\" out of size and unusable. Rod bearings also arrived with bearing shaving material and oil in the shrink wrap.",
+      "url": "https://nastyz28.com/threads/got-a-set-of-king-si-bearings-with-a-defective-bearing-awesome.212498/",
       "severity": "medium",
       "isNew": false,
       "replyStatus": "unreachable",
-      "replyNote": "WebFetch redirected to a tollbit.460ford.com mirror instead of returning page content; could not read within the Step 0 fetch budget.",
-      "lastChecked": "2026-08-11"
+      "replyNote": "WebFetch redirected to a tollbit.nastyz28.com mirror instead of returning page content; could not read within the Step 0 fetch budget.",
+      "lastChecked": "2026-08-10"
     }
   ]
 }
