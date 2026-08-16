@@ -100,7 +100,10 @@
     {
       "url": "https://honda-tech.com/forums/all-motor-naturally-aspirated-44/king-main-rod-bearings-3171210/",
       "firstSeen": "2026-08-16",
-      "source": "honda-tech.com"
+      "source": "honda-tech.com",
+      "replyStatus": "unreachable",
+      "replyNote": "WebFetch returned HTTP 403 Forbidden; could not confirm whether King or anyone else has replied in this thread.",
+      "lastChecked": "2026-08-16"
     }
   ]
 }
