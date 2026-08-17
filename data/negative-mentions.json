@@ -1,60 +1,48 @@
 {
-  "lastScanned": "2026-08-16T06:28:49Z",
+  "lastScanned": "2026-08-17T05:34:11Z",
   "newCount": 0,
   "mentions": [
     {
       "date": "Unknown",
       "source": "oilburners.net",
       "title": "WARNING about King Main Thrust Bearings",
-      "snippet": "Explicit buyer-warning thread title about King main thrust bearing problems on a diesel truck forum; page has returned 403 Forbidden on every fetch attempt.",
+      "snippet": "Explicit buyer-warning thread about King main thrust bearings on a diesel truck forum. Title is a direct warning to other buyers, which makes it the most damaging framing of any mention on file.",
       "url": "https://www.oilburners.net/threads/warning-about-king-main-thrust-bearings.94987/",
       "severity": "high",
       "isNew": false,
       "replyStatus": "unreachable",
-      "replyNote": "WebFetch returned HTTP 403 Forbidden.",
-      "lastChecked": "2026-08-10"
+      "replyNote": "Still returns HTTP 403 Forbidden; thread content could not be read.",
+      "lastChecked": "2026-08-17"
     },
     {
       "date": "Unknown",
       "source": "m5board.com",
       "title": "King Main Bearings Defective",
-      "snippet": "Thread reports King thrust bearings over 1mm too narrow to fit BMW blocks, with the issue recurring across multiple sets and different engine models.",
+      "snippet": "Multiple BMW builders report King STDX thrust bearings measuring over 1mm too narrow to fit S85 and S65 blocks. Dimensional defect reported by more than one person, titled flatly as defective.",
       "url": "https://www.m5board.com/threads/king-main-bearings-defective.621301/",
       "severity": "high",
       "isNew": false,
       "replyStatus": "unreachable",
-      "replyNote": "WebFetch redirected to a tollbit.m5board.com mirror instead of returning page content; could not read within the Step 0 fetch budget.",
-      "lastChecked": "2026-08-10"
+      "replyNote": "Still 307-redirects to the tollbit.m5board.com mirror instead of returning thread content, same as the previous check.",
+      "lastChecked": "2026-08-17"
     },
     {
       "date": "Unknown",
-      "source": "460ford.com",
-      "title": "King Bearing Failures?",
-      "snippet": "Forum thread specifically titled around King bearing failures on a Ford engine forum; page has not been fetchable to confirm details.",
-      "url": "https://www.460ford.com/forum/37-engine-tech/107388-king-bearing-failures.html",
-      "severity": "high",
+      "source": "speed-talk.com",
+      "title": "King Bearings?",
+      "snippet": "Builder reports a 2024 King main bearing out of spec on free spread, and says a 2025 main was also bad, pointing at an ongoing manufacturing process issue rather than a one-off.",
+      "url": "https://www.speed-talk.com/forum/viewtopic.php?t=44264",
+      "severity": "medium",
       "isNew": false,
-      "replyStatus": "unreachable",
-      "replyNote": "WebFetch redirected to a tollbit.460ford.com mirror instead of returning page content; could not read within the Step 0 fetch budget.",
+      "replyStatus": "no-reply",
+      "replyNote": "No official King Bearings response found in the thread; not locked, resolved, or deleted.",
       "lastChecked": "2026-08-11"
-    },
-    {
-      "date": "2026-08-05",
-      "source": "dsmtuners.com",
-      "title": "Just call it what it is - King bearings are no longer an option",
-      "snippet": "Thread title itself declares King bearings unusable for the poster's application; still unreachable (403) to confirm current status or replies.",
-      "url": "https://www.dsmtuners.com/threads/just-call-it-what-it-is-king-bearings-are-no-longer-an-option.547423/",
-      "severity": "high",
-      "isNew": false,
-      "replyStatus": "unreachable",
-      "replyNote": "WebFetch returned HTTP 403 Forbidden.",
-      "lastChecked": "2026-08-12"
     },
     {
       "date": "Unknown",
       "source": "racingjunk.com",
       "title": "King Bearing - lack of professional help for quality control problem",
-      "snippet": "Single credible complaint about a King quality control issue and dissatisfaction with support response.",
+      "snippet": "Customer received a sealed XP series main and rod set with wrong quantities (8 x .011 uppers, 7 x .011 lowers, 1 x .030 lower) and says King refused to supply the missing shell, referring them back to the supplier. Complaint is about service as much as product.",
       "url": "https://www.racingjunk.com/forums/showthread.php?t=1289997",
       "severity": "medium",
       "isNew": false,
@@ -64,15 +52,27 @@
     },
     {
       "date": "Unknown",
-      "source": "nastyz28.com",
-      "title": "Got a set of King SI bearings with a defective bearing...awesome",
-      "snippet": "Poster describes a crushed/twisted King SI bearing shell out of the box, plus shaving material and oil found in the rod bearing shrink wrap.",
-      "url": "https://nastyz28.com/threads/got-a-set-of-king-si-bearings-with-a-defective-bearing-awesome.212498/",
+      "source": "460ford.com",
+      "title": "King Bearing Failures?",
+      "snippet": "Thread on King main and rod bearings failing during initial startup and break-in of a high-compression engine. Other posters suggest contributing factors beyond the bearing itself.",
+      "url": "https://www.460ford.com/forum/37-engine-tech/107388-king-bearing-failures.html",
       "severity": "medium",
       "isNew": false,
       "replyStatus": "unreachable",
-      "replyNote": "WebFetch redirected to a tollbit.nastyz28.com mirror instead of returning page content; could not read within the Step 0 fetch budget.",
-      "lastChecked": "2026-08-10"
+      "replyNote": "WebFetch redirected to a tollbit.460ford.com mirror instead of returning page content; could not read within the Step 0 fetch budget.",
+      "lastChecked": "2026-08-11"
+    },
+    {
+      "date": "Unknown",
+      "source": "honda-tech.com",
+      "title": "king Main&Rod Bearings?",
+      "snippet": "Discussion including a report of spun rod bearings twice in three months on a boosted setup running King bearings. Single builder, install and clearance not ruled out.",
+      "url": "https://honda-tech.com/forums/all-motor-naturally-aspirated-44/king-main-rod-bearings-3171210/",
+      "severity": "medium",
+      "isNew": false,
+      "replyStatus": "unreachable",
+      "replyNote": "WebFetch returned HTTP 403 Forbidden; could not confirm whether King or anyone else has replied in this thread.",
+      "lastChecked": "2026-08-16"
     }
   ]
 }
