@@ -30,24 +30,24 @@
       "firstSeen": "2026-07-13",
       "source": "460ford.com",
       "replyStatus": "unreachable",
-      "replyNote": "WebFetch redirected to a tollbit.460ford.com mirror instead of returning page content; could not read within the Step 0 fetch budget.",
-      "lastChecked": "2026-08-11"
+      "replyNote": "Still 307-redirects to the tollbit.460ford.com mirror instead of returning thread content, same as the previous check.",
+      "lastChecked": "2026-08-18"
     },
     {
       "url": "https://www.racingjunk.com/forums/showthread.php?t=1289997",
       "firstSeen": "2026-07-13",
       "source": "racingjunk.com",
       "replyStatus": "unreachable",
-      "replyNote": "WebFetch returned HTTP 403 Forbidden.",
-      "lastChecked": "2026-08-11"
+      "replyNote": "Still returns HTTP 403 Forbidden; thread content could not be read.",
+      "lastChecked": "2026-08-18"
     },
     {
       "url": "https://www.speed-talk.com/forum/viewtopic.php?t=44264",
       "firstSeen": "2026-07-27",
       "source": "speed-talk.com",
       "replyStatus": "no-reply",
-      "replyNote": "No official King Bearings response found in the thread; not locked, resolved, or deleted.",
-      "lastChecked": "2026-08-11"
+      "replyNote": "Thread is readable and still open; no official King representative has responded and it is not locked or marked resolved.",
+      "lastChecked": "2026-08-18"
     },
     {
       "url": "https://www.speed-talk.com/forum/viewtopic.php?t=68038",
