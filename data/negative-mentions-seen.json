@@ -54,24 +54,24 @@
       "firstSeen": "2026-08-02",
       "source": "speed-talk.com",
       "replyStatus": "king-replied",
-      "replyNote": "A new member account identifying as King Bearings posted an official response on 2026-08-04 addressing the precision concerns; thread remains open.",
-      "lastChecked": "2026-08-12"
+      "replyNote": "A King representative posted an official response acknowledging the older thread, addressing the bearing wall thickness concerns and offering to investigate specific parts.",
+      "lastChecked": "2026-08-19"
     },
     {
       "url": "https://www.e90post.com/forums/showthread.php?t=1550150",
       "firstSeen": "2026-08-05",
       "source": "e90post.com",
       "replyStatus": "unreachable",
-      "replyNote": "WebFetch failed with connection refused (ECONNREFUSED); could not read the thread.",
-      "lastChecked": "2026-08-12"
+      "replyNote": "WebFetch again failed with connection refused (ECONNREFUSED) on the e90post host; thread could not be read.",
+      "lastChecked": "2026-08-19"
     },
     {
       "url": "https://www.dsmtuners.com/threads/just-call-it-what-it-is-king-bearings-are-no-longer-an-option.547423/",
       "firstSeen": "2026-08-05",
       "source": "dsmtuners.com",
       "replyStatus": "unreachable",
-      "replyNote": "WebFetch returned HTTP 403 Forbidden.",
-      "lastChecked": "2026-08-12"
+      "replyNote": "WebFetch again returned HTTP 403 Forbidden; thread content could not be read.",
+      "lastChecked": "2026-08-19"
     },
     {
       "url": "https://www.e90post.com/forums/showthread.php?p=23935223",
