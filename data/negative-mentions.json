@@ -1,24 +1,12 @@
 {
-  "lastScanned": "2026-08-20T05:33:43Z",
+  "lastScanned": "2026-08-21T05:34:08Z",
   "newCount": 0,
   "mentions": [
     {
       "date": "Unknown",
-      "source": "e90post.com",
-      "title": "WARNING!! Check all KING brand bearings before install",
-      "snippet": "Explicit buyer-warning thread telling builders to measure every King bearing before installation; results reference a 2024 main out of spec on free spread and a 2025 main also reported bad.",
-      "url": "https://www.e90post.com/forums/showthread.php?p=23935223",
-      "severity": "high",
-      "isNew": false,
-      "replyStatus": "unreachable",
-      "replyNote": "WebFetch again failed with connection refused (ECONNREFUSED) on the e90post host; thread could not be read.",
-      "lastChecked": "2026-08-20"
-    },
-    {
-      "date": "Unknown",
       "source": "oilburners.net",
       "title": "WARNING about King Main Thrust Bearings",
-      "snippet": "Buyer-warning thread on a diesel truck forum specifically about King main thrust bearings; framed as a caution to other builders rather than a single install question.",
+      "snippet": "Explicit buyer-warning thread reporting King main thrust bearings out of spec on the free-spread dimension, with a 2024 main and a 2025 main both measured bad, pointing at a manufacturing-process problem rather than a one-off. Reads as the most serious item on the panel.",
       "url": "https://www.oilburners.net/threads/warning-about-king-main-thrust-bearings.94987/",
       "severity": "high",
       "isNew": false,
@@ -28,9 +16,21 @@
     },
     {
       "date": "Unknown",
+      "source": "e90post.com",
+      "title": "WARNING!! Check all KING brand bearings before install",
+      "snippet": "Buyer-warning thread telling builders to measure every King bearing before installing. Title alone is an explicit warning to other buyers on a busy BMW forum.",
+      "url": "https://www.e90post.com/forums/showthread.php?t=1550150",
+      "severity": "high",
+      "isNew": false,
+      "replyStatus": "unreachable",
+      "replyNote": "WebFetch again failed with connection refused (ECONNREFUSED) on the e90post host; thread could not be read.",
+      "lastChecked": "2026-08-19"
+    },
+    {
+      "date": "Unknown",
       "source": "m5board.com",
       "title": "King Main Bearings Defective",
-      "snippet": "BMW builder reports King STDX thrust bearings over 1mm too narrow to fit multiple S85 and S65 blocks, and concludes the brand cannot be trusted if a dimension this fundamental is wrong.",
+      "snippet": "King STDX thrust bearings reported over 1mm too narrow to fit BMW S85 and S65 blocks, with the poster advising against King mains for those engines and saying that getting something this fundamental wrong means the bearings cannot be trusted.",
       "url": "https://www.m5board.com/threads/king-main-bearings-defective.621301/",
       "severity": "high",
       "isNew": false,
@@ -40,21 +40,21 @@
     },
     {
       "date": "Unknown",
-      "source": "nastyz28.com",
-      "title": "Got a set of King SI bearings with a defective bearing...awesome",
-      "snippet": "Buyer received a King SI main bearing shell malformed in production, crushed and twisted so it would not seat, plus rod bearings with machining shavings in the shrink wrap.",
-      "url": "https://nastyz28.com/threads/got-a-set-of-king-si-bearings-with-a-defective-bearing-awesome.212498/",
+      "source": "speed-talk.com",
+      "title": "King Bearings?",
+      "snippet": "Long-running engine-builder thread on King quality; includes a report of a 2024 King main out of spec on free spread and a 2025 main also measuring bad. Mixed thread with positive reports alongside the criticism.",
+      "url": "https://www.speed-talk.com/forum/viewtopic.php?t=44264",
       "severity": "medium",
       "isNew": false,
-      "replyStatus": "unreachable",
-      "replyNote": "Still 307-redirects to the tollbit.nastyz28.com mirror instead of returning thread content, same as the previous check.",
-      "lastChecked": "2026-08-17"
+      "replyStatus": "no-reply",
+      "replyNote": "Thread is readable and still open; no official King representative has responded and it is not locked or marked resolved.",
+      "lastChecked": "2026-08-18"
     },
     {
       "date": "Unknown",
       "source": "racingjunk.com",
       "title": "King Bearing - lack of professional help for quality control problem",
-      "snippet": "Complaint about a mis-packed XP series set (8 uppers and 7 lowers at .011 plus one .030 lower) and, more pointedly, about the service response when the customer tried to resolve it.",
+      "snippet": "Complaint about an unopened King package containing the wrong bearing assortment, including mismatched halves, combined with a complaint about the customer-service response to the claim.",
       "url": "https://www.racingjunk.com/forums/showthread.php?t=1289997",
       "severity": "medium",
       "isNew": false,
@@ -64,15 +64,15 @@
     },
     {
       "date": "Unknown",
-      "source": "dsmtuners.com",
-      "title": "Just call it what it is---King Bearings are no longer an option....",
-      "snippet": "Availability complaint: 6-bolt applications effectively discontinued with back-orders repeatedly pushed since COVID; the thread title itself reads as a buyer telling others to look elsewhere.",
-      "url": "https://www.dsmtuners.com/threads/just-call-it-what-it-is-king-bearings-are-no-longer-an-option.547423/",
+      "source": "forbbodiesonly.com",
+      "title": "King Bearings Quality?",
+      "snippet": "Mopar forum thread questioning King bearing quality. A King representative has posted an official clarification in the thread; it remains open.",
+      "url": "https://www.forbbodiesonly.com/moparforum/threads/king-bearings-quality.192421/",
       "severity": "medium",
       "isNew": false,
-      "replyStatus": "unreachable",
-      "replyNote": "WebFetch again returned HTTP 403 Forbidden; thread content could not be read.",
-      "lastChecked": "2026-08-19"
+      "replyStatus": "king-replied",
+      "replyNote": "A user identifying as kingbearings posted an official clarification in August 2026 opening with \"A little late to the thread, but we wanted to add some clarification for anyone who finds this in the future\"; thread remains open and unresolved.",
+      "lastChecked": "2026-08-20"
     }
   ]
 }
