@@ -1,24 +1,12 @@
 {
-  "lastScanned": "2026-08-22T05:33:32Z",
+  "lastScanned": "2026-08-22T06:27:57Z",
   "newCount": 0,
   "mentions": [
     {
       "date": "Unknown",
-      "source": "oilburners.net",
-      "title": "WARNING about King Main Thrust Bearings",
-      "snippet": "Explicit buyer-warning thread about King main thrust bearings being out of spec on 'free spread', with both a 2024 and a 2025 production main reported bad, pointing at a manufacturing process problem rather than a one-off.",
-      "url": "https://www.oilburners.net/threads/warning-about-king-main-thrust-bearings.94987/",
-      "severity": "high",
-      "isNew": false,
-      "replyStatus": "unreachable",
-      "replyNote": "Still returns HTTP 403 Forbidden; thread content could not be read.",
-      "lastChecked": "2026-08-17"
-    },
-    {
-      "date": "Unknown",
       "source": "m5board.com",
       "title": "King Main Bearings Defective",
-      "snippet": "Reports that King STDX main thrust bearings are over 1mm too narrow to fit BMW S85 and S65 blocks, with the poster concluding King bearings cannot be trusted if a basic dimension is wrong.",
+      "snippet": "Builder reports King STDX thrust bearings measured over 1mm too narrow to fit BMW S85/S65 engine blocks, and warns not to trust King main bearings for those engines given the fit error.",
       "url": "https://www.m5board.com/threads/king-main-bearings-defective.621301/",
       "severity": "high",
       "isNew": false,
@@ -28,33 +16,33 @@
     },
     {
       "date": "Unknown",
-      "source": "nastyz28.com",
-      "title": "Got a set of King SI bearings with a defective bearing...awesome",
-      "snippet": "Buyer received a King SI main bearing shell crushed and twisted in production and badly out of size, plus rod bearings contaminated with machining shavings and oil inside the shrink wrap.",
-      "url": "https://nastyz28.com/threads/got-a-set-of-king-si-bearings-with-a-defective-bearing-awesome.212498/",
-      "severity": "medium",
+      "source": "oilburners.net",
+      "title": "WARNING about King Main Thrust Bearings",
+      "snippet": "Diesel truck forum warning thread specifically about problems with King main thrust bearings.",
+      "url": "https://www.oilburners.net/threads/warning-about-king-main-thrust-bearings.94987/",
+      "severity": "high",
       "isNew": false,
       "replyStatus": "unreachable",
-      "replyNote": "Still 307-redirects to the tollbit.nastyz28.com mirror instead of returning thread content, same as the previous check.",
+      "replyNote": "Still returns HTTP 403 Forbidden; thread content could not be read.",
       "lastChecked": "2026-08-17"
     },
     {
       "date": "Unknown",
-      "source": "racingjunk.com",
-      "title": "King Bearing - lack of professional help for quality control problem",
-      "snippet": "Customer received an unopened King package with a mismatched mix of shell sizes and says King declined to supply a replacement half shell or pair, sending them back to the supplier instead. Complaint is about service as much as product.",
-      "url": "https://www.racingjunk.com/forums/showthread.php?t=1289997",
-      "severity": "medium",
+      "source": "dsmtuners.com",
+      "title": "Just call it what it is---King Bearings are no longer an option....",
+      "snippet": "Thread title states the poster considers King bearings no longer a viable choice; strong brand-rejection framing.",
+      "url": "https://www.dsmtuners.com/threads/just-call-it-what-it-is-king-bearings-are-no-longer-an-option.547423/",
+      "severity": "high",
       "isNew": false,
       "replyStatus": "unreachable",
-      "replyNote": "Still returns HTTP 403 Forbidden; thread content could not be read.",
-      "lastChecked": "2026-08-18"
+      "replyNote": "WebFetch again returned HTTP 403 Forbidden; thread content could not be read.",
+      "lastChecked": "2026-08-19"
     },
     {
       "date": "Unknown",
       "source": "460ford.com",
       "title": "King Bearing Failures?",
-      "snippet": "Thread on King main and rod bearings failing during engine break-in with metal and debris found in the oil filter.",
+      "snippet": "Forum thread specifically discussing reported King bearing failures on 460 Ford engine builds.",
       "url": "https://www.460ford.com/forum/37-engine-tech/107388-king-bearing-failures.html",
       "severity": "medium",
       "isNew": false,
@@ -64,15 +52,27 @@
     },
     {
       "date": "Unknown",
-      "source": "dsmtuners.com",
-      "title": "Just call it what it is---King Bearings are no longer an option....",
-      "snippet": "Availability complaint framed as a write-off of the brand: 6-bolt sets on back-order since COVID with repeatedly pushed dates, so builders are telling each other to stop specifying King.",
-      "url": "https://www.dsmtuners.com/threads/just-call-it-what-it-is-king-bearings-are-no-longer-an-option.547423/",
+      "source": "racingjunk.com",
+      "title": "King Bearing - lack of professional help for quality control problem",
+      "snippet": "Single buyer complaint about an incorrect/mismatched bearing assortment shipped (mixed undersizes) and dissatisfaction with the support response, directed back to the distributor.",
+      "url": "https://www.racingjunk.com/forums/showthread.php?t=1289997",
       "severity": "medium",
       "isNew": false,
       "replyStatus": "unreachable",
-      "replyNote": "WebFetch again returned HTTP 403 Forbidden; thread content could not be read.",
-      "lastChecked": "2026-08-19"
+      "replyNote": "Still returns HTTP 403 Forbidden; thread content could not be read.",
+      "lastChecked": "2026-08-18"
+    },
+    {
+      "date": "Unknown",
+      "source": "nastyz28.com",
+      "title": "Got a set of King SI bearings with a defective bearing...awesome",
+      "snippet": "Single buyer reports a King SI main bearing shell arrived malformed/crushed, plus machining shavings and oil found in the shrink wrap on rod bearings.",
+      "url": "https://nastyz28.com/threads/got-a-set-of-king-si-bearings-with-a-defective-bearing-awesome.212498/",
+      "severity": "medium",
+      "isNew": false,
+      "replyStatus": "unreachable",
+      "replyNote": "Still 307-redirects to the tollbit.nastyz28.com mirror instead of returning thread content, same as the previous check.",
+      "lastChecked": "2026-08-17"
     }
   ]
 }
