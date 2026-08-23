@@ -102,8 +102,8 @@
       "firstSeen": "2026-08-16",
       "source": "honda-tech.com",
       "replyStatus": "unreachable",
-      "replyNote": "WebFetch returned HTTP 403 Forbidden; could not confirm whether King or anyone else has replied in this thread.",
-      "lastChecked": "2026-08-16"
+      "replyNote": "WebFetch again returned HTTP 403 Forbidden; still cannot confirm whether King or anyone else has replied in this thread.",
+      "lastChecked": "2026-08-23"
     }
   ]
 }

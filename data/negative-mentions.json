@@ -1,12 +1,24 @@
 {
-  "lastScanned": "2026-08-22T06:27:57Z",
+  "lastScanned": "2026-08-23T05:33:43Z",
   "newCount": 0,
   "mentions": [
     {
       "date": "Unknown",
+      "source": "speed-talk.com",
+      "title": "King Bearings?",
+      "snippet": "Long-running thread now centred on 2024 and 2025 production main bearings being out of spec on free spread; the snippet indicates King technical support acknowledged the 2024 batch was defective and advised not using them, with the next production run not until January 2027.",
+      "url": "https://www.speed-talk.com/forum/viewtopic.php?t=44264",
+      "severity": "high",
+      "isNew": false,
+      "replyStatus": "no-reply",
+      "replyNote": "Thread is readable and still open; no official King representative has responded and it is not locked or marked resolved.",
+      "lastChecked": "2026-08-18"
+    },
+    {
+      "date": "Unknown",
       "source": "m5board.com",
       "title": "King Main Bearings Defective",
-      "snippet": "Builder reports King STDX thrust bearings measured over 1mm too narrow to fit BMW S85/S65 engine blocks, and warns not to trust King main bearings for those engines given the fit error.",
+      "snippet": "Builder reports King main bearing thrust faces over 1mm too narrow to fit BMW S85 and S65 blocks, framed as a dimensional defect rather than an install error.",
       "url": "https://www.m5board.com/threads/king-main-bearings-defective.621301/",
       "severity": "high",
       "isNew": false,
@@ -18,7 +30,7 @@
       "date": "Unknown",
       "source": "oilburners.net",
       "title": "WARNING about King Main Thrust Bearings",
-      "snippet": "Diesel truck forum warning thread specifically about problems with King main thrust bearings.",
+      "snippet": "Explicit buyer-warning thread on a diesel truck forum about King main thrust bearings; title alone is a caution to other buyers.",
       "url": "https://www.oilburners.net/threads/warning-about-king-main-thrust-bearings.94987/",
       "severity": "high",
       "isNew": false,
@@ -28,21 +40,9 @@
     },
     {
       "date": "Unknown",
-      "source": "dsmtuners.com",
-      "title": "Just call it what it is---King Bearings are no longer an option....",
-      "snippet": "Thread title states the poster considers King bearings no longer a viable choice; strong brand-rejection framing.",
-      "url": "https://www.dsmtuners.com/threads/just-call-it-what-it-is-king-bearings-are-no-longer-an-option.547423/",
-      "severity": "high",
-      "isNew": false,
-      "replyStatus": "unreachable",
-      "replyNote": "WebFetch again returned HTTP 403 Forbidden; thread content could not be read.",
-      "lastChecked": "2026-08-19"
-    },
-    {
-      "date": "Unknown",
       "source": "460ford.com",
       "title": "King Bearing Failures?",
-      "snippet": "Forum thread specifically discussing reported King bearing failures on 460 Ford engine builds.",
+      "snippet": "Builder found metal and debris in the oil filter at initial startup and break-in of a high-compression engine and reported King main and rod bearings destroyed; other posters suggest contributing factors.",
       "url": "https://www.460ford.com/forum/37-engine-tech/107388-king-bearing-failures.html",
       "severity": "medium",
       "isNew": false,
@@ -54,7 +54,7 @@
       "date": "Unknown",
       "source": "racingjunk.com",
       "title": "King Bearing - lack of professional help for quality control problem",
-      "snippet": "Single buyer complaint about an incorrect/mismatched bearing assortment shipped (mixed undersizes) and dissatisfaction with the support response, directed back to the distributor.",
+      "snippet": "Complaint is about King's service response as much as the part: wrong parts supplied on an order and, per the snippet, no satisfactory support on the quality-control issue.",
       "url": "https://www.racingjunk.com/forums/showthread.php?t=1289997",
       "severity": "medium",
       "isNew": false,
@@ -64,15 +64,15 @@
     },
     {
       "date": "Unknown",
-      "source": "nastyz28.com",
-      "title": "Got a set of King SI bearings with a defective bearing...awesome",
-      "snippet": "Single buyer reports a King SI main bearing shell arrived malformed/crushed, plus machining shavings and oil found in the shrink wrap on rod bearings.",
-      "url": "https://nastyz28.com/threads/got-a-set-of-king-si-bearings-with-a-defective-bearing-awesome.212498/",
+      "source": "yellowbullet.com",
+      "title": "Kings Engine Bearings.... anybody have problems??",
+      "snippet": "Open canvass asking whether others have had problems with King bearings; invites failure reports and reads as doubt about the brand.",
+      "url": "https://www.yellowbullet.com/threads/kings-engine-bearings-anybody-have-problems.900498/",
       "severity": "medium",
       "isNew": false,
       "replyStatus": "unreachable",
-      "replyNote": "Still 307-redirects to the tollbit.nastyz28.com mirror instead of returning thread content, same as the previous check.",
-      "lastChecked": "2026-08-17"
+      "replyNote": "Still 307-redirects to the tollbit.yellowbullet.com mirror instead of returning thread content, same as the previous check.",
+      "lastChecked": "2026-08-20"
     }
   ]
 }
