@@ -803,7 +803,7 @@ async function loadIgTraffic() {
 async function loadIgFollowers() {
   const note = document.getElementById('igFollowersNote');
   try {
-    const res = await fetch(`/data/instagram-followers.json?_=${Date.now()}`);
+    const res = await fetch(`https://raw.githubusercontent.com/meytalsnirgal/king-bearings-dashboard/main/data/instagram-followers.json?_=${Date.now()}`);
     const d = await res.json();
     const pts = (d.history || []).filter(p => p.date && p.followers != null);
     if (pts.length < 2) {
@@ -825,7 +825,7 @@ async function loadNegativeMentions() {
   const stamp = document.getElementById('mentionsLastSearch');
   const body = document.getElementById('mentionsResults');
   try {
-    const res = await fetch(`/data/negative-mentions.json?_=${Date.now()}`);
+    const res = await fetch(`https://raw.githubusercontent.com/meytalsnirgal/king-bearings-dashboard/main/data/negative-mentions.json?_=${Date.now()}`);
     if (!res.ok) throw new Error('HTTP ' + res.status + ' fetching negative-mentions.json');
     const data = await res.json();
     if (!data.lastScanned) throw new Error('the data file has no lastScanned timestamp');

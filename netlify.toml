@@ -1,0 +1,20 @@
+# Skip the production deploy when ONLY data/ changed.
+#
+# Why: the daily routines (mentions scan, Instagram followers snapshot) push two
+# commits a day that touch nothing but data/*.json. Each one was triggering a full
+# production deploy, roughly 60 a month, to republish two small JSON files. That
+# exhausted the account's credits on 2026-08-16 and froze the live site for a week
+# while the routines kept running correctly.
+#
+# The dashboard now reads those two files straight from GitHub raw, so a data
+# commit reaches the page in about five minutes with no deploy at all. This ignore
+# rule makes sure such a commit never starts one.
+#
+# `ignore` semantics: exit 0 means SKIP the build, non-zero means build it.
+# `git diff --quiet` exits 0 when there is no difference, so this skips whenever
+# nothing outside data/ has changed.
+#
+# Deliberately does NOT set publish or functions here. Those are configured in the
+# Netlify UI and restating them risks overriding a working config with a guess.
+[build]
+  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- . ':(exclude)data'"
