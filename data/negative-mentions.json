@@ -1,60 +1,60 @@
 {
-  "lastScanned": "2026-08-23T06:28:26Z",
+  "lastScanned": "2026-08-26T05:34:23Z",
   "newCount": 0,
   "mentions": [
     {
       "date": "Unknown",
-      "source": "oilburners.net",
-      "title": "WARNING about King Main Thrust Bearings",
-      "snippet": "Explicit buyer-warning thread title about King main thrust bearings on a diesel truck forum; framed as a caution to other builders rather than a resolved single incident.",
-      "url": "https://www.oilburners.net/threads/warning-about-king-main-thrust-bearings.94987/",
+      "source": "speed-talk.com",
+      "title": "King Bearings? - Don Terrill's Speed-Talk",
+      "snippet": "Builders report King main bearings out of spec on 'free spread', with a 2024 set confirmed out of spec by King's own technical line and a 2025 set showing the same issue, suggesting the problem spans production runs. Next production reportedly not until January 2027.",
+      "url": "https://www.speed-talk.com/forum/viewtopic.php?t=44264",
       "severity": "high",
       "isNew": false,
-      "replyStatus": "unreachable",
-      "replyNote": "Still returns HTTP 403 Forbidden; thread content could not be read.",
-      "lastChecked": "2026-08-17"
+      "replyStatus": "no-reply",
+      "replyNote": "Thread is readable and still open; no official King representative has responded and it is not locked or marked resolved.",
+      "lastChecked": "2026-08-18"
     },
     {
       "date": "Unknown",
       "source": "m5board.com",
-      "title": "King Main Bearings Defective",
-      "snippet": "Thread title explicitly claims King main bearings are defective on a BMW M5 forum; a real product-fault report rather than a general question.",
+      "title": "King Main Bearings Defective | BMW M5 Forum and M6 Forums",
+      "snippet": "Poster reports King STDX thrust bearings measuring over 1mm too narrow to fit BMW S85 and S65 blocks, and concludes King main bearings cannot be trusted for these engines if something this fundamental is wrong.",
       "url": "https://www.m5board.com/threads/king-main-bearings-defective.621301/",
+      "severity": "high",
+      "isNew": false,
+      "replyStatus": "unreachable",
+      "replyNote": "Still 307-redirects to the tollbit.m5board.com mirror instead of returning thread content.",
+      "lastChecked": "2026-08-26"
+    },
+    {
+      "date": "2018-10",
+      "source": "e90post.com",
+      "title": "WARNING!! Check all KING brand bearings before install",
+      "snippet": "Explicit buyer-warning thread telling readers to measure and inspect every King bearing before installation. Older thread (2018) but still surfacing on brand searches.",
+      "url": "https://www.e90post.com/forums/showthread.php?t=1550150",
       "severity": "medium",
       "isNew": false,
       "replyStatus": "unreachable",
-      "replyNote": "Still 307-redirects to the tollbit.m5board.com mirror instead of returning thread content, same as the previous check.",
-      "lastChecked": "2026-08-17"
-    },
-    {
-      "date": "Unknown",
-      "source": "speed-talk.com",
-      "title": "No more King XP bearings",
-      "snippet": "Ongoing Speed-Talk thread about dropping King XP bearings, tied to prior wall-thickness/clearance concerns; a King representative has already replied per the standing ledger.",
-      "url": "https://www.speed-talk.com/forum/viewtopic.php?t=68038",
-      "severity": "medium",
-      "isNew": false,
-      "replyStatus": "king-replied",
-      "replyNote": "A King representative posted an official response acknowledging the older thread, addressing the bearing wall thickness concerns and offering to investigate specific parts.",
+      "replyNote": "WebFetch again failed with connection refused (ECONNREFUSED) on the e90post host; thread could not be read.",
       "lastChecked": "2026-08-19"
     },
     {
       "date": "Unknown",
-      "source": "forbbodiesonly.com",
-      "title": "King Bearings Quality?",
-      "snippet": "Mopar forum thread questioning King bearing quality; a King rep already posted a clarification per the ledger but the thread remains open.",
-      "url": "https://www.forbbodiesonly.com/moparforum/threads/king-bearings-quality.192421/",
+      "source": "dsmtuners.com",
+      "title": "Just call it what it is---King Bearings are no longer an option....",
+      "snippet": "Thread arguing King bearings are effectively unavailable for 6-bolt engines, on back-order since COVID and not practically obtainable, framed as writing the brand off rather than a defect report.",
+      "url": "https://www.dsmtuners.com/threads/just-call-it-what-it-is-king-bearings-are-no-longer-an-option.547423/",
       "severity": "medium",
       "isNew": false,
-      "replyStatus": "king-replied",
-      "replyNote": "A user identifying as kingbearings posted an official clarification in August 2026 opening with \"A little late to the thread, but we wanted to add some clarification for anyone who finds this in the future\"; thread remains open and unresolved.",
-      "lastChecked": "2026-08-20"
+      "replyStatus": "unreachable",
+      "replyNote": "WebFetch again returned HTTP 403 Forbidden; thread content could not be read.",
+      "lastChecked": "2026-08-19"
     },
     {
       "date": "Unknown",
       "source": "racingjunk.com",
       "title": "King Bearing - lack of professional help for quality control problem",
-      "snippet": "Single customer reports a quality control problem with King bearings and describes an unhelpful support experience.",
+      "snippet": "Customer complaint about King's handling of a quality-control problem: wrong parts supplied and the customer was routed back through the distributor rather than helped directly. Service complaint more than a product defect.",
       "url": "https://www.racingjunk.com/forums/showthread.php?t=1289997",
       "severity": "medium",
       "isNew": false,
@@ -64,15 +64,15 @@
     },
     {
       "date": "Unknown",
-      "source": "460ford.com",
-      "title": "King Bearing Failures?",
-      "snippet": "Forum question about King bearing failures on a Ford engine forum; phrased as an open question rather than a confirmed report.",
-      "url": "https://www.460ford.com/forum/37-engine-tech/107388-king-bearing-failures.html",
-      "severity": "low",
+      "source": "oilburners.net",
+      "title": "WARNING about King Main Thrust Bearings | Diesel Truck Forum",
+      "snippet": "Buyer-warning thread on King main thrust bearings in diesel applications. Single reporter and an older thread, but the title itself is a warning that ranks on brand searches.",
+      "url": "https://www.oilburners.net/threads/warning-about-king-main-thrust-bearings.94987/",
+      "severity": "medium",
       "isNew": false,
       "replyStatus": "unreachable",
-      "replyNote": "Still 307-redirects to the tollbit.460ford.com mirror instead of returning thread content, same as the previous check.",
-      "lastChecked": "2026-08-18"
+      "replyNote": "Still returns HTTP 403 Forbidden; thread content could not be read.",
+      "lastChecked": "2026-08-26"
     }
   ]
 }

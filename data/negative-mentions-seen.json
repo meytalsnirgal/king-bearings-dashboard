@@ -6,16 +6,16 @@
       "firstSeen": "2026-07-13",
       "source": "m5board.com",
       "replyStatus": "unreachable",
-      "replyNote": "Still 307-redirects to the tollbit.m5board.com mirror instead of returning thread content, same as the previous check.",
-      "lastChecked": "2026-08-17"
+      "replyNote": "Still 307-redirects to the tollbit.m5board.com mirror instead of returning thread content.",
+      "lastChecked": "2026-08-26"
     },
     {
       "url": "https://nastyz28.com/threads/got-a-set-of-king-si-bearings-with-a-defective-bearing-awesome.212498/",
       "firstSeen": "2026-07-13",
       "source": "nastyz28.com",
-      "replyStatus": "unreachable",
-      "replyNote": "Still 307-redirects to the tollbit.nastyz28.com mirror instead of returning thread content, same as the previous check.",
-      "lastChecked": "2026-08-17"
+      "replyStatus": "no-reply",
+      "replyNote": "Thread was readable this time: no official King representative has responded and it remains open and unresolved.",
+      "lastChecked": "2026-08-26"
     },
     {
       "url": "https://www.oilburners.net/threads/warning-about-king-main-thrust-bearings.94987/",
@@ -23,7 +23,7 @@
       "source": "oilburners.net",
       "replyStatus": "unreachable",
       "replyNote": "Still returns HTTP 403 Forbidden; thread content could not be read.",
-      "lastChecked": "2026-08-17"
+      "lastChecked": "2026-08-26"
     },
     {
       "url": "https://www.460ford.com/forum/37-engine-tech/107388-king-bearing-failures.html",
