@@ -54,16 +54,16 @@
       "firstSeen": "2026-08-02",
       "source": "speed-talk.com",
       "replyStatus": "king-replied",
-      "replyNote": "A King representative posted an official response acknowledging the older thread, addressing the bearing wall thickness concerns and offering to investigate specific parts.",
-      "lastChecked": "2026-08-19"
+      "replyNote": "King Bearings posted an official response dated 2026-08-04 explaining their eccentric bearing profile design and offering to investigate the specific parts if the builder supplies details.",
+      "lastChecked": "2026-08-30"
     },
     {
       "url": "https://www.e90post.com/forums/showthread.php?t=1550150",
       "firstSeen": "2026-08-05",
       "source": "e90post.com",
       "replyStatus": "unreachable",
-      "replyNote": "WebFetch again failed with connection refused (ECONNREFUSED) on the e90post host; thread could not be read.",
-      "lastChecked": "2026-08-19"
+      "replyNote": "WebFetch returned HTTP 403 Forbidden this time (previously connection refused); thread content still cannot be read.",
+      "lastChecked": "2026-08-30"
     },
     {
       "url": "https://www.dsmtuners.com/threads/just-call-it-what-it-is-king-bearings-are-no-longer-an-option.547423/",
@@ -71,7 +71,7 @@
       "source": "dsmtuners.com",
       "replyStatus": "unreachable",
       "replyNote": "WebFetch again returned HTTP 403 Forbidden; thread content could not be read.",
-      "lastChecked": "2026-08-19"
+      "lastChecked": "2026-08-30"
     },
     {
       "url": "https://www.e90post.com/forums/showthread.php?p=23935223",
