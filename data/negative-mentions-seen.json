@@ -78,24 +78,24 @@
       "firstSeen": "2026-08-10",
       "source": "e90post.com",
       "replyStatus": "unreachable",
-      "replyNote": "WebFetch again failed with connection refused (ECONNREFUSED) on the e90post host; thread could not be read.",
-      "lastChecked": "2026-08-20"
+      "replyNote": "WebFetch returned HTTP 403 Forbidden this time (previously connection refused); thread content still cannot be read.",
+      "lastChecked": "2026-08-31"
     },
     {
       "url": "https://www.yellowbullet.com/threads/kings-engine-bearings-anybody-have-problems.900498/",
       "firstSeen": "2026-08-10",
       "source": "yellowbullet.com",
       "replyStatus": "unreachable",
-      "replyNote": "Still 307-redirects to the tollbit.yellowbullet.com mirror instead of returning thread content, same as the previous check.",
-      "lastChecked": "2026-08-20"
+      "replyNote": "Still 307-redirects to the tollbit.yellowbullet.com mirror instead of returning thread content; redirect not followed.",
+      "lastChecked": "2026-08-31"
     },
     {
       "url": "https://www.forbbodiesonly.com/moparforum/threads/king-bearings-quality.192421/",
       "firstSeen": "2026-08-12",
       "source": "forbbodiesonly.com",
       "replyStatus": "king-replied",
-      "replyNote": "A user identifying as kingbearings posted an official clarification in August 2026 opening with \"A little late to the thread, but we wanted to add some clarification for anyone who finds this in the future\"; thread remains open and unresolved.",
-      "lastChecked": "2026-08-20"
+      "replyNote": "An official King Bearings rep replied in post #17 dated 2026-08-12 inviting the poster to send the part number and photos for the technical team to review; thread remains open and unresolved.",
+      "lastChecked": "2026-08-31"
     },
     {
       "url": "https://honda-tech.com/forums/all-motor-naturally-aspirated-44/king-main-rod-bearings-3171210/",
