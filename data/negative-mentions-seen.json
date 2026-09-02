@@ -14,8 +14,8 @@
       "firstSeen": "2026-07-13",
       "source": "nastyz28.com",
       "replyStatus": "no-reply",
-      "replyNote": "Thread was readable this time: no official King representative has responded and it remains open and unresolved.",
-      "lastChecked": "2026-08-26"
+      "replyNote": "Thread read successfully; no official King representative has responded and it remains open and unresolved.",
+      "lastChecked": "2026-09-02"
     },
     {
       "url": "https://www.oilburners.net/threads/warning-about-king-main-thrust-bearings.94987/",
@@ -23,7 +23,7 @@
       "source": "oilburners.net",
       "replyStatus": "unreachable",
       "replyNote": "Still returns HTTP 403 Forbidden; thread content could not be read.",
-      "lastChecked": "2026-08-26"
+      "lastChecked": "2026-09-02"
     },
     {
       "url": "https://www.460ford.com/forum/37-engine-tech/107388-king-bearing-failures.html",
@@ -102,8 +102,13 @@
       "firstSeen": "2026-08-16",
       "source": "honda-tech.com",
       "replyStatus": "unreachable",
-      "replyNote": "WebFetch again returned HTTP 403 Forbidden; still cannot confirm whether King or anyone else has replied in this thread.",
-      "lastChecked": "2026-08-23"
+      "replyNote": "WebFetch again returned HTTP 403 Forbidden; still cannot confirm whether King or anyone else has replied.",
+      "lastChecked": "2026-09-02"
+    },
+    {
+      "url": "https://www.speed-talk.com/forum/viewtopic.php?t=50776",
+      "firstSeen": "2026-09-02",
+      "source": "speed-talk.com"
     }
   ]
 }
