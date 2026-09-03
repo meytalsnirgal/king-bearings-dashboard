@@ -6,8 +6,8 @@
       "firstSeen": "2026-07-13",
       "source": "m5board.com",
       "replyStatus": "unreachable",
-      "replyNote": "Still 307-redirects to the tollbit.m5board.com mirror instead of returning thread content.",
-      "lastChecked": "2026-08-26"
+      "replyNote": "Still 307-redirects to the tollbit.m5board.com mirror instead of returning thread content; redirect not followed.",
+      "lastChecked": "2026-09-03"
     },
     {
       "url": "https://nastyz28.com/threads/got-a-set-of-king-si-bearings-with-a-defective-bearing-awesome.212498/",
@@ -108,7 +108,10 @@
     {
       "url": "https://www.speed-talk.com/forum/viewtopic.php?t=50776",
       "firstSeen": "2026-09-02",
-      "source": "speed-talk.com"
+      "source": "speed-talk.com",
+      "replyStatus": "no-reply",
+      "replyNote": "Thread read successfully; no King or official brand representative has replied, and it remains open and unresolved.",
+      "lastChecked": "2026-09-03"
     }
   ]
 }
