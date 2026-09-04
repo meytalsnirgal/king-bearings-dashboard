@@ -31,7 +31,7 @@
       "source": "460ford.com",
       "replyStatus": "unreachable",
       "replyNote": "Still 307-redirects to the tollbit.460ford.com mirror instead of returning thread content; redirect not followed.",
-      "lastChecked": "2026-08-28"
+      "lastChecked": "2026-09-04"
     },
     {
       "url": "https://www.racingjunk.com/forums/showthread.php?t=1289997",
@@ -39,15 +39,15 @@
       "source": "racingjunk.com",
       "replyStatus": "unreachable",
       "replyNote": "Still returns HTTP 403 Forbidden; thread content could not be read.",
-      "lastChecked": "2026-08-28"
+      "lastChecked": "2026-09-04"
     },
     {
       "url": "https://www.speed-talk.com/forum/viewtopic.php?t=44264",
       "firstSeen": "2026-07-27",
       "source": "speed-talk.com",
-      "replyStatus": "unreachable",
-      "replyNote": "Fetch timed out after 60 seconds this time; thread was readable on the previous check but could not be confirmed today.",
-      "lastChecked": "2026-08-28"
+      "replyStatus": "no-reply",
+      "replyNote": "Thread read successfully; no King or official brand representative has replied and it remains open and unresolved.",
+      "lastChecked": "2026-09-04"
     },
     {
       "url": "https://www.speed-talk.com/forum/viewtopic.php?t=68038",

@@ -1,24 +1,36 @@
 {
-  "lastScanned": "2026-09-03T05:33:36Z",
+  "lastScanned": "2026-09-04T05:33:28Z",
   "newCount": 0,
   "mentions": [
     {
       "date": "Unknown",
-      "source": "oilburners.net",
-      "title": "WARNING about King Main Thrust Bearings",
-      "snippet": "Explicit buyer-warning thread titled as a warning about King main thrust bearings on a diesel truck forum. Title alone frames it as advising others against the part.",
-      "url": "https://www.oilburners.net/threads/warning-about-king-main-thrust-bearings.94987/",
+      "source": "e90post.com",
+      "title": "WARNING!! Check all KING brand bearings before install",
+      "snippet": "Explicit buyer-warning thread telling other builders to measure every King bearing before installation. Framed as a general warning about the brand, not a single bad part.",
+      "url": "https://www.e90post.com/forums/showthread.php?t=1550150",
       "severity": "high",
       "isNew": false,
       "replyStatus": "unreachable",
-      "replyNote": "Still returns HTTP 403 Forbidden; thread content could not be read.",
-      "lastChecked": "2026-09-02"
+      "replyNote": "WebFetch returned HTTP 403 Forbidden this time (previously connection refused); thread content still cannot be read.",
+      "lastChecked": "2026-08-30"
+    },
+    {
+      "date": "Unknown",
+      "source": "m5board.com",
+      "title": "King Main Bearings Defective",
+      "snippet": "King STDX thrust bearings reported over 1mm too narrow to fit BMW S85 and S65 blocks, confirmed across multiple separate blocks. Poster concludes King bearings cannot be trusted if a fundamental dimension is that far off.",
+      "url": "https://www.m5board.com/threads/king-main-bearings-defective.621301/",
+      "severity": "high",
+      "isNew": false,
+      "replyStatus": "unreachable",
+      "replyNote": "Still 307-redirects to the tollbit.m5board.com mirror instead of returning thread content; redirect not followed.",
+      "lastChecked": "2026-09-03"
     },
     {
       "date": "Unknown",
       "source": "speed-talk.com",
       "title": "King main and rod bearings marked STDX",
-      "snippet": "Search snippet reports a 2024 King main bearing found out of spec on free spread with an expert advising they be sent back, and says a 2025 production run had similar problems. Repeat-run defect claim, not a one-off.",
+      "snippet": "Free-spread spec called out as out of spec so the bearing does not seat tightly, with similar reports across both 2024 and 2025 production runs and no corrected run expected before January 2027.",
       "url": "https://www.speed-talk.com/forum/viewtopic.php?t=50776",
       "severity": "high",
       "isNew": false,
@@ -28,51 +40,39 @@
     },
     {
       "date": "Unknown",
-      "source": "m5board.com",
-      "title": "King Main Bearings Defective",
-      "snippet": "BMW builder reports King STDX thrust bearings over 1mm too narrow to fit, across both S85 and S65 blocks. Dimensional defect affecting more than one engine.",
-      "url": "https://www.m5board.com/threads/king-main-bearings-defective.621301/",
-      "severity": "medium",
+      "source": "oilburners.net",
+      "title": "WARNING about King Main Thrust Bearings",
+      "snippet": "Buyer-warning thread on King main thrust bearings in a diesel truck forum. Title is an explicit warning to other builders.",
+      "url": "https://www.oilburners.net/threads/warning-about-king-main-thrust-bearings.94987/",
+      "severity": "high",
       "isNew": false,
       "replyStatus": "unreachable",
-      "replyNote": "Still 307-redirects to the tollbit.m5board.com mirror instead of returning thread content; redirect not followed.",
-      "lastChecked": "2026-09-03"
-    },
-    {
-      "date": "Unknown",
-      "source": "nastyz28.com",
-      "title": "Got a set of King SI bearings with a defective bearing...awesome",
-      "snippet": "Buyer received a King SI main bearing shell malformed in production, crushed and twisted and roughly 1/8\" out of size; also reports machining shavings inside rod bearing packaging.",
-      "url": "https://nastyz28.com/threads/got-a-set-of-king-si-bearings-with-a-defective-bearing-awesome.212498/",
-      "severity": "medium",
-      "isNew": false,
-      "replyStatus": "no-reply",
-      "replyNote": "Thread read successfully; no official King representative has responded and it remains open and unresolved.",
+      "replyNote": "Still returns HTTP 403 Forbidden; thread content could not be read.",
       "lastChecked": "2026-09-02"
     },
     {
       "date": "Unknown",
-      "source": "honda-tech.com",
-      "title": "king Main&Rod Bearings?",
-      "snippet": "Poster reports spinning rod bearings twice in three months on a boosted build running King bearings; another mentions King mains and rods destroyed during initial break-in.",
-      "url": "https://honda-tech.com/forums/all-motor-naturally-aspirated-44/king-main-rod-bearings-3171210/",
+      "source": "dsmtuners.com",
+      "title": "Just call it what it is---King Bearings are no longer an option....",
+      "snippet": "Poster declares King bearings no longer a viable choice for 6-bolt builds, citing long-running availability and back-order problems since Covid alongside quality complaints.",
+      "url": "https://www.dsmtuners.com/threads/just-call-it-what-it-is-king-bearings-are-no-longer-an-option.547423/",
       "severity": "medium",
       "isNew": false,
       "replyStatus": "unreachable",
-      "replyNote": "WebFetch again returned HTTP 403 Forbidden; still cannot confirm whether King or anyone else has replied.",
-      "lastChecked": "2026-09-02"
+      "replyNote": "WebFetch again returned HTTP 403 Forbidden; thread content could not be read.",
+      "lastChecked": "2026-08-30"
     },
     {
       "date": "Unknown",
       "source": "racingjunk.com",
       "title": "King Bearing - lack of professional help for quality control problem",
-      "snippet": "Customer received a wrong/mixed bearing assortment in a sealed King package and says King declined to send a replacement half shell, directing them back to the supplier. Service-handling complaint as much as a QC one.",
+      "snippet": "Mixed bearing sizes found in a sealed package (8x .011 uppers, 7x .011 lowers, 1x .030 lower). Complaint is as much about the service response as the part itself.",
       "url": "https://www.racingjunk.com/forums/showthread.php?t=1289997",
       "severity": "medium",
       "isNew": false,
       "replyStatus": "unreachable",
       "replyNote": "Still returns HTTP 403 Forbidden; thread content could not be read.",
-      "lastChecked": "2026-08-28"
+      "lastChecked": "2026-09-04"
     }
   ]
 }
