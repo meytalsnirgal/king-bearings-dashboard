@@ -1,24 +1,24 @@
 {
-  "lastScanned": "2026-09-04T05:33:28Z",
+  "lastScanned": "2026-09-05T05:33:30Z",
   "newCount": 0,
   "mentions": [
     {
       "date": "Unknown",
-      "source": "e90post.com",
-      "title": "WARNING!! Check all KING brand bearings before install",
-      "snippet": "Explicit buyer-warning thread telling other builders to measure every King bearing before installation. Framed as a general warning about the brand, not a single bad part.",
-      "url": "https://www.e90post.com/forums/showthread.php?t=1550150",
+      "source": "oilburners.net",
+      "title": "WARNING about King Main Thrust Bearings",
+      "snippet": "Explicit buyer-warning thread on a diesel truck forum about King main thrust bearings. Title itself is a warning to other builders, which is the most damaging shape a mention can take.",
+      "url": "https://www.oilburners.net/threads/warning-about-king-main-thrust-bearings.94987/",
       "severity": "high",
       "isNew": false,
       "replyStatus": "unreachable",
-      "replyNote": "WebFetch returned HTTP 403 Forbidden this time (previously connection refused); thread content still cannot be read.",
-      "lastChecked": "2026-08-30"
+      "replyNote": "Still returns HTTP 403 Forbidden; thread content could not be read.",
+      "lastChecked": "2026-09-02"
     },
     {
       "date": "Unknown",
       "source": "m5board.com",
       "title": "King Main Bearings Defective",
-      "snippet": "King STDX thrust bearings reported over 1mm too narrow to fit BMW S85 and S65 blocks, confirmed across multiple separate blocks. Poster concludes King bearings cannot be trusted if a fundamental dimension is that far off.",
+      "snippet": "Reports that King STDX main bearings had thrust bearings over 1mm too narrow to fit multiple BMW blocks, across both S85 and S65 engines. A dimensional defect reproducing on more than one engine family.",
       "url": "https://www.m5board.com/threads/king-main-bearings-defective.621301/",
       "severity": "high",
       "isNew": false,
@@ -30,7 +30,7 @@
       "date": "Unknown",
       "source": "speed-talk.com",
       "title": "King main and rod bearings marked STDX",
-      "snippet": "Free-spread spec called out as out of spec so the bearing does not seat tightly, with similar reports across both 2024 and 2025 production runs and no corrected run expected before January 2027.",
+      "snippet": "Builder reports 2024 King thrust bearings out of spec on free spread, with a 2025 production run said to show the same problem. Repeat-batch manufacturing claim, not a one-off install error.",
       "url": "https://www.speed-talk.com/forum/viewtopic.php?t=50776",
       "severity": "high",
       "isNew": false,
@@ -40,39 +40,39 @@
     },
     {
       "date": "Unknown",
-      "source": "oilburners.net",
-      "title": "WARNING about King Main Thrust Bearings",
-      "snippet": "Buyer-warning thread on King main thrust bearings in a diesel truck forum. Title is an explicit warning to other builders.",
-      "url": "https://www.oilburners.net/threads/warning-about-king-main-thrust-bearings.94987/",
-      "severity": "high",
-      "isNew": false,
-      "replyStatus": "unreachable",
-      "replyNote": "Still returns HTTP 403 Forbidden; thread content could not be read.",
-      "lastChecked": "2026-09-02"
-    },
-    {
-      "date": "Unknown",
-      "source": "dsmtuners.com",
-      "title": "Just call it what it is---King Bearings are no longer an option....",
-      "snippet": "Poster declares King bearings no longer a viable choice for 6-bolt builds, citing long-running availability and back-order problems since Covid alongside quality complaints.",
-      "url": "https://www.dsmtuners.com/threads/just-call-it-what-it-is-king-bearings-are-no-longer-an-option.547423/",
-      "severity": "medium",
-      "isNew": false,
-      "replyStatus": "unreachable",
-      "replyNote": "WebFetch again returned HTTP 403 Forbidden; thread content could not be read.",
-      "lastChecked": "2026-08-30"
-    },
-    {
-      "date": "Unknown",
       "source": "racingjunk.com",
       "title": "King Bearing - lack of professional help for quality control problem",
-      "snippet": "Mixed bearing sizes found in a sealed package (8x .011 uppers, 7x .011 lowers, 1x .030 lower). Complaint is as much about the service response as the part itself.",
+      "snippet": "Customer received a sealed package with mismatched shell sizes (8 upper .011, 7 lower .011, 1 lower .030) and says King refused to send a replacement pair, redirecting him to the supplier. Packing defect plus a service complaint.",
       "url": "https://www.racingjunk.com/forums/showthread.php?t=1289997",
       "severity": "medium",
       "isNew": false,
       "replyStatus": "unreachable",
       "replyNote": "Still returns HTTP 403 Forbidden; thread content could not be read.",
       "lastChecked": "2026-09-04"
+    },
+    {
+      "date": "Unknown",
+      "source": "460ford.com",
+      "title": "King Bearing Failures?",
+      "snippet": "King main and rod bearings reported failing during initial startup and break-in with metal and debris in the oil filter, though other posters suggest another root cause for that build.",
+      "url": "https://www.460ford.com/forum/37-engine-tech/107388-king-bearing-failures.html",
+      "severity": "medium",
+      "isNew": false,
+      "replyStatus": "unreachable",
+      "replyNote": "Still 307-redirects to the tollbit.460ford.com mirror instead of returning thread content; redirect not followed.",
+      "lastChecked": "2026-09-04"
+    },
+    {
+      "date": "Unknown",
+      "source": "honda-tech.com",
+      "title": "king Main&Rod Bearings?",
+      "snippet": "Poster reports spinning King rod bearings twice in three months on a boosted setup. Credible repeat failure, though a boosted application leaves lubrication as a competing explanation.",
+      "url": "https://honda-tech.com/forums/all-motor-naturally-aspirated-44/king-main-rod-bearings-3171210/",
+      "severity": "medium",
+      "isNew": false,
+      "replyStatus": "unreachable",
+      "replyNote": "WebFetch again returned HTTP 403 Forbidden; still cannot confirm whether King or anyone else has replied.",
+      "lastChecked": "2026-09-02"
     }
   ]
 }
