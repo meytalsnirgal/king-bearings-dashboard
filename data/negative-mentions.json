@@ -1,12 +1,12 @@
 {
-  "lastScanned": "2026-09-05T05:33:30Z",
+  "lastScanned": "2026-09-06T05:34:28Z",
   "newCount": 0,
   "mentions": [
     {
       "date": "Unknown",
       "source": "oilburners.net",
       "title": "WARNING about King Main Thrust Bearings",
-      "snippet": "Explicit buyer-warning thread on a diesel truck forum about King main thrust bearings. Title itself is a warning to other builders, which is the most damaging shape a mention can take.",
+      "snippet": "Explicit buyer-warning thread about King main thrust bearings on diesel trucks. Titled as a warning to other builders, which makes it the highest-visibility negative thread in this set.",
       "url": "https://www.oilburners.net/threads/warning-about-king-main-thrust-bearings.94987/",
       "severity": "high",
       "isNew": false,
@@ -16,33 +16,33 @@
     },
     {
       "date": "Unknown",
-      "source": "m5board.com",
-      "title": "King Main Bearings Defective",
-      "snippet": "Reports that King STDX main bearings had thrust bearings over 1mm too narrow to fit multiple BMW blocks, across both S85 and S65 engines. A dimensional defect reproducing on more than one engine family.",
-      "url": "https://www.m5board.com/threads/king-main-bearings-defective.621301/",
+      "source": "speed-talk.com",
+      "title": "No more King XP bearings",
+      "snippet": "Builder reports King main bearings from 2024 production are out of spec on free spread, and says 2025 production mains had the same problem. A repeat-across-model-years quality claim, not a one-off.",
+      "url": "https://www.speed-talk.com/forum/viewtopic.php?t=68038",
       "severity": "high",
       "isNew": false,
       "replyStatus": "unreachable",
-      "replyNote": "Still 307-redirects to the tollbit.m5board.com mirror instead of returning thread content; redirect not followed.",
-      "lastChecked": "2026-09-03"
+      "replyNote": "WebFetch timed out after 60 seconds; thread content could not be read this run, so the previously recorded King reply could not be re-confirmed.",
+      "lastChecked": "2026-09-06"
     },
     {
       "date": "Unknown",
       "source": "speed-talk.com",
-      "title": "King main and rod bearings marked STDX",
-      "snippet": "Builder reports 2024 King thrust bearings out of spec on free spread, with a 2025 production run said to show the same problem. Repeat-batch manufacturing claim, not a one-off install error.",
-      "url": "https://www.speed-talk.com/forum/viewtopic.php?t=50776",
+      "title": "King Bearings?",
+      "snippet": "Multiple independent builders in one thread: a BMW shop found King STDX thrust bearings over 1mm too narrow across several S85/S65 blocks and concluded King bearings 'cannot be trusted period'; others report defective SI shells and machining shavings in the packaging.",
+      "url": "https://www.speed-talk.com/forum/viewtopic.php?t=44264",
       "severity": "high",
       "isNew": false,
       "replyStatus": "no-reply",
-      "replyNote": "Thread read successfully; no King or official brand representative has replied, and it remains open and unresolved.",
-      "lastChecked": "2026-09-03"
+      "replyNote": "Thread read successfully; no King or official brand representative has replied and it remains open and unresolved.",
+      "lastChecked": "2026-09-04"
     },
     {
       "date": "Unknown",
       "source": "racingjunk.com",
       "title": "King Bearing - lack of professional help for quality control problem",
-      "snippet": "Customer received a sealed package with mismatched shell sizes (8 upper .011, 7 lower .011, 1 lower .030) and says King refused to send a replacement pair, redirecting him to the supplier. Packing defect plus a service complaint.",
+      "snippet": "Customer reports an XP-series package with the wrong mix of sizes (8 upper .011, 7 lower .011, 1 lower .030) and complains specifically about the lack of support in getting it resolved. Service complaint on top of a product complaint.",
       "url": "https://www.racingjunk.com/forums/showthread.php?t=1289997",
       "severity": "medium",
       "isNew": false,
@@ -52,26 +52,26 @@
     },
     {
       "date": "Unknown",
-      "source": "460ford.com",
-      "title": "King Bearing Failures?",
-      "snippet": "King main and rod bearings reported failing during initial startup and break-in with metal and debris in the oil filter, though other posters suggest another root cause for that build.",
-      "url": "https://www.460ford.com/forum/37-engine-tech/107388-king-bearing-failures.html",
+      "source": "m5board.com",
+      "title": "King Main Bearings Defective",
+      "snippet": "BMW M5 owner thread titled as a flat defect claim on King main bearings. Credible single-source complaint about a real product fault.",
+      "url": "https://www.m5board.com/threads/king-main-bearings-defective.621301/",
       "severity": "medium",
       "isNew": false,
       "replyStatus": "unreachable",
-      "replyNote": "Still 307-redirects to the tollbit.460ford.com mirror instead of returning thread content; redirect not followed.",
-      "lastChecked": "2026-09-04"
+      "replyNote": "Still 307-redirects to the tollbit.m5board.com mirror instead of returning thread content; redirect not followed.",
+      "lastChecked": "2026-09-03"
     },
     {
       "date": "Unknown",
-      "source": "honda-tech.com",
-      "title": "king Main&Rod Bearings?",
-      "snippet": "Poster reports spinning King rod bearings twice in three months on a boosted setup. Credible repeat failure, though a boosted application leaves lubrication as a competing explanation.",
-      "url": "https://honda-tech.com/forums/all-motor-naturally-aspirated-44/king-main-rod-bearings-3171210/",
+      "source": "nastyz28.com",
+      "title": "Got a set of King SI bearings with a defective bearing...awesome",
+      "snippet": "Builder received a King SI bi-metal main bearing shell crushed and twisted in production so badly it would not fit the crank, plus rod bearings packaged with bearing shavings and oil.",
+      "url": "https://nastyz28.com/threads/got-a-set-of-king-si-bearings-with-a-defective-bearing-awesome.212498/",
       "severity": "medium",
       "isNew": false,
-      "replyStatus": "unreachable",
-      "replyNote": "WebFetch again returned HTTP 403 Forbidden; still cannot confirm whether King or anyone else has replied.",
+      "replyStatus": "no-reply",
+      "replyNote": "Thread read successfully; no official King representative has responded and it remains open and unresolved.",
       "lastChecked": "2026-09-02"
     }
   ]
