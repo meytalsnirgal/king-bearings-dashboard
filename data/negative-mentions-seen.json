@@ -78,8 +78,8 @@
       "firstSeen": "2026-08-10",
       "source": "e90post.com",
       "replyStatus": "unreachable",
-      "replyNote": "WebFetch returned HTTP 403 Forbidden this time (previously connection refused); thread content still cannot be read.",
-      "lastChecked": "2026-08-31"
+      "replyNote": "Still returns HTTP 403 Forbidden; thread content could not be read.",
+      "lastChecked": "2026-09-07"
     },
     {
       "url": "https://www.yellowbullet.com/threads/kings-engine-bearings-anybody-have-problems.900498/",
@@ -87,15 +87,15 @@
       "source": "yellowbullet.com",
       "replyStatus": "unreachable",
       "replyNote": "Still 307-redirects to the tollbit.yellowbullet.com mirror instead of returning thread content; redirect not followed.",
-      "lastChecked": "2026-08-31"
+      "lastChecked": "2026-09-07"
     },
     {
       "url": "https://www.forbbodiesonly.com/moparforum/threads/king-bearings-quality.192421/",
       "firstSeen": "2026-08-12",
       "source": "forbbodiesonly.com",
       "replyStatus": "king-replied",
-      "replyNote": "An official King Bearings rep replied in post #17 dated 2026-08-12 inviting the poster to send the part number and photos for the technical team to review; thread remains open and unresolved.",
-      "lastChecked": "2026-08-31"
+      "replyNote": "Re-confirmed: King Bearings replied officially in post #17 dated 2026-08-12 adding clarification for future readers; thread remains open and unresolved.",
+      "lastChecked": "2026-09-07"
     },
     {
       "url": "https://honda-tech.com/forums/all-motor-naturally-aspirated-44/king-main-rod-bearings-3171210/",
