@@ -14,8 +14,8 @@
       "firstSeen": "2026-07-13",
       "source": "nastyz28.com",
       "replyStatus": "no-reply",
-      "replyNote": "Thread read successfully; no official King representative has responded and it remains open and unresolved.",
-      "lastChecked": "2026-09-02"
+      "replyNote": "Thread read successfully; still no King or official brand reply and it remains open and unresolved since 2013.",
+      "lastChecked": "2026-09-09"
     },
     {
       "url": "https://www.oilburners.net/threads/warning-about-king-main-thrust-bearings.94987/",
@@ -116,7 +116,10 @@
     {
       "url": "https://www.dsmtuners.com/threads/spun-a-bearing-whats-it-look-like.243957/",
       "firstSeen": "2026-09-08",
-      "source": "dsmtuners.com"
+      "source": "dsmtuners.com",
+      "replyStatus": "unreachable",
+      "replyNote": "First reply check on this mention returned HTTP 403 Forbidden, consistent with the other dsmtuners threads in the ledger; thread content could not be read.",
+      "lastChecked": "2026-09-09"
     }
   ]
 }
