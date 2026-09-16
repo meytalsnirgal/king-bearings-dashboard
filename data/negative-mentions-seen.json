@@ -111,7 +111,11 @@
       "source": "speed-talk.com",
       "replyStatus": "no-reply",
       "replyNote": "Thread read successfully; no King or official brand representative has replied, and it remains open and unresolved.",
-      "lastChecked": "2026-09-03"
+      "lastChecked": "2026-09-03",
+      "dismissed": true,
+      "dismissedOn": "2026-09-16",
+      "dismissedBy": "Meytal, 2026-09-03",
+      "dismissedReason": "NOT A NEGATIVE MENTION. Her words: 'just a general question that was addressed correctly by forum users'. A question is not a complaint. Gate 3 exists because of this one."
     },
     {
       "url": "https://www.dsmtuners.com/threads/spun-a-bearing-whats-it-look-like.243957/",
@@ -119,7 +123,11 @@
       "source": "dsmtuners.com",
       "replyStatus": "unreachable",
       "replyNote": "First reply check on this mention returned HTTP 403 Forbidden, consistent with the other dsmtuners threads in the ledger; thread content could not be read.",
-      "lastChecked": "2026-09-09"
+      "lastChecked": "2026-09-09",
+      "dismissed": true,
+      "dismissedOn": "2026-09-16",
+      "dismissedBy": "Guy Haynie, 2026-09-08",
+      "dismissedReason": "FALSE POSITIVE, and the worst kind. The thread does not mention King at all and was posted in 2006. The scan matched the tail of a censored profanity, 'did I pull this ***king motor for nothing?'. The alert then asserted the poster was 'running King bearings', which the source never said, and the reply check had already returned 403 so the thread was never even read. Three failures: substring match, no age limit, and a fabricated summary. Gates 1, 2 and 4 in SKILL.md exist because of this one."
     }
   ]
 }
