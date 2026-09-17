@@ -128,6 +128,11 @@
       "dismissedOn": "2026-09-16",
       "dismissedBy": "Guy Haynie, 2026-09-08",
       "dismissedReason": "FALSE POSITIVE, and the worst kind. The thread does not mention King at all and was posted in 2006. The scan matched the tail of a censored profanity, 'did I pull this ***king motor for nothing?'. The alert then asserted the poster was 'running King bearings', which the source never said, and the reply check had already returned 403 so the thread was never even read. Three failures: substring match, no age limit, and a fabricated summary. Gates 1, 2 and 4 in SKILL.md exist because of this one."
+    },
+    {
+      "url": "https://theamcforum.com/forum/king-bearing-defect_topic116046.html",
+      "firstSeen": "2026-09-17",
+      "source": "theamcforum.com"
     }
   ]
 }
