@@ -21,9 +21,9 @@
       "url": "https://www.oilburners.net/threads/warning-about-king-main-thrust-bearings.94987/",
       "firstSeen": "2026-07-13",
       "source": "oilburners.net",
-      "replyStatus": "unreachable",
-      "replyNote": "Still returns HTTP 403 Forbidden; thread content could not be read.",
-      "lastChecked": "2026-09-02"
+      "replyStatus": "no-reply",
+      "replyNote": "Readable today for the first time after months of 403s: no King or official reply, thread still open and unresolved, last post dated 3 June 2026.",
+      "lastChecked": "2026-09-18"
     },
     {
       "url": "https://www.460ford.com/forum/37-engine-tech/107388-king-bearing-failures.html",
@@ -102,8 +102,8 @@
       "firstSeen": "2026-08-16",
       "source": "honda-tech.com",
       "replyStatus": "unreachable",
-      "replyNote": "WebFetch again returned HTTP 403 Forbidden; still cannot confirm whether King or anyone else has replied.",
-      "lastChecked": "2026-09-02"
+      "replyNote": "Still returns HTTP 403 Forbidden; thread content could not be read.",
+      "lastChecked": "2026-09-18"
     },
     {
       "url": "https://www.speed-talk.com/forum/viewtopic.php?t=50776",
@@ -132,7 +132,10 @@
     {
       "url": "https://theamcforum.com/forum/king-bearing-defect_topic116046.html",
       "firstSeen": "2026-09-17",
-      "source": "theamcforum.com"
+      "source": "theamcforum.com",
+      "replyStatus": "no-reply",
+      "replyNote": "First reply check on this mention: no King or official response, thread not locked or marked resolved, and the original poster says he worked around the issue himself.",
+      "lastChecked": "2026-09-18"
     }
   ]
 }
