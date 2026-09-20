@@ -63,7 +63,7 @@
       "source": "e90post.com",
       "replyStatus": "unreachable",
       "replyNote": "Still returns HTTP 403 Forbidden; thread content could not be read.",
-      "lastChecked": "2026-09-06"
+      "lastChecked": "2026-09-20"
     },
     {
       "url": "https://www.dsmtuners.com/threads/just-call-it-what-it-is-king-bearings-are-no-longer-an-option.547423/",
@@ -71,7 +71,7 @@
       "source": "dsmtuners.com",
       "replyStatus": "unreachable",
       "replyNote": "Still returns HTTP 403 Forbidden; thread content could not be read.",
-      "lastChecked": "2026-09-06"
+      "lastChecked": "2026-09-20"
     },
     {
       "url": "https://www.e90post.com/forums/showthread.php?p=23935223",
@@ -87,7 +87,7 @@
       "source": "yellowbullet.com",
       "replyStatus": "unreachable",
       "replyNote": "Still 307-redirects to the tollbit.yellowbullet.com mirror instead of returning thread content; redirect not followed.",
-      "lastChecked": "2026-09-07"
+      "lastChecked": "2026-09-20"
     },
     {
       "url": "https://www.forbbodiesonly.com/moparforum/threads/king-bearings-quality.192421/",
