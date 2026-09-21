@@ -1,12 +1,24 @@
 {
-  "lastScanned": "2026-09-20T05:33:47Z",
+  "lastScanned": "2026-09-21T05:33:27Z",
   "newCount": 0,
   "mentions": [
     {
       "date": "Unknown",
+      "source": "e90post.com",
+      "title": "WARNING!! Check all KING brand bearings before install",
+      "snippet": "An explicit buyer-warning thread on the BMW e90post forum telling other builders to inspect King-brand bearings before installing them. The title alone is a direct caution against the brand, which makes it the most damaging item in today's set.",
+      "url": "https://www.e90post.com/forums/showthread.php?p=23935223",
+      "severity": "high",
+      "isNew": false,
+      "replyStatus": "unreachable",
+      "replyNote": "Still returns HTTP 403 Forbidden; thread content could not be read.",
+      "lastChecked": "2026-09-21"
+    },
+    {
+      "date": "Unknown",
       "source": "oilburners.net",
       "title": "WARNING about King Main Thrust Bearings",
-      "snippet": "Explicit buyer-warning thread about King main thrust bearings. Search results describe a King main bearing found out of spec on the free spread spec, and a later one also reported bad, raising the question of a manufacturing process problem. Thread was still active in June 2026.",
+      "snippet": "A buyer-warning thread on a diesel truck forum specifically about King main thrust bearings. Framed as a warning to other builders rather than a question, and the thread remains open and unresolved.",
       "url": "https://www.oilburners.net/threads/warning-about-king-main-thrust-bearings.94987/",
       "severity": "high",
       "isNew": false,
@@ -18,9 +30,9 @@
       "date": "Unknown",
       "source": "m5board.com",
       "title": "King Main Bearings Defective",
-      "snippet": "Poster reports King STDX thrust bearings measuring over 1mm too narrow to fit the block, and says the same issue was found across multiple BMW S65 and S85 blocks. A dimensional defect claim, not an install error.",
+      "snippet": "BMW M5/M6 forum thread reporting King STDX thrust bearings measuring over 1mm too narrow to fit multiple different engine blocks, across both S85 and S65 engines. More than one build affected, which points at a part-spec problem rather than a single bad set.",
       "url": "https://www.m5board.com/threads/king-main-bearings-defective.621301/",
-      "severity": "medium",
+      "severity": "high",
       "isNew": false,
       "replyStatus": "unreachable",
       "replyNote": "Still 307-redirects to the tollbit.m5board.com mirror instead of returning thread content; redirect not followed.",
@@ -28,33 +40,9 @@
     },
     {
       "date": "Unknown",
-      "source": "dsmtuners.com",
-      "title": "Just call it what it is---King Bearings are no longer an option....",
-      "snippet": "Thread title is an outright recommendation against King. Results reference long-running back-order and availability problems on 6-bolt King bearings alongside quality-control concerns.",
-      "url": "https://www.dsmtuners.com/threads/just-call-it-what-it-is-king-bearings-are-no-longer-an-option.547423/",
-      "severity": "medium",
-      "isNew": false,
-      "replyStatus": "unreachable",
-      "replyNote": "Still returns HTTP 403 Forbidden; thread content could not be read.",
-      "lastChecked": "2026-09-20"
-    },
-    {
-      "date": "Unknown",
-      "source": "460ford.com",
-      "title": "King Bearing Failures?",
-      "snippet": "Forum thread asking about King bearing failures; surfaces repeatedly on failure-term searches alongside the other open complaint threads. Content not readable, the site serves a mirror redirect.",
-      "url": "https://www.460ford.com/forum/37-engine-tech/107388-king-bearing-failures.html",
-      "severity": "medium",
-      "isNew": false,
-      "replyStatus": "unreachable",
-      "replyNote": "Still 307-redirects to the tollbit.460ford.com mirror instead of returning thread content; redirect not followed.",
-      "lastChecked": "2026-09-19"
-    },
-    {
-      "date": "Unknown",
       "source": "speed-talk.com",
       "title": "King Bearings?",
-      "snippet": "Long-running builder discussion of King bearings that mixes positive reports with criticism, including comments that King bearings run fat when hot and need extra cold clearance in steel rod and iron block builds.",
+      "snippet": "Speed-Talk thread in which a builder reports a 2024-production King main bearing that King technical support confirmed was out of specification on free spread, and says he would not use them; he raises concern that 2025 production may share the issue. Other posters in the same thread report no problems.",
       "url": "https://www.speed-talk.com/forum/viewtopic.php?t=44264",
       "severity": "medium",
       "isNew": false,
@@ -64,15 +52,27 @@
     },
     {
       "date": "Unknown",
-      "source": "speed-talk.com",
-      "title": "No more King XP bearings",
-      "snippet": "Thread about King XP bearings no longer being available; results attached to this search also mention bearing delamination in some high-performance applications. A King representative has already replied in this thread.",
-      "url": "https://www.speed-talk.com/forum/viewtopic.php?t=68038",
-      "severity": "low",
+      "source": "racingjunk.com",
+      "title": "King Bearing - lack of professional help for quality control problem",
+      "snippet": "A customer received an unopened King package containing a wrong mix of bearing sizes and says King directed him to his supplier rather than resolving it. The complaint is about the service response as much as the part, and the title itself is damaging in search results.",
+      "url": "https://www.racingjunk.com/forums/showthread.php?t=1289997",
+      "severity": "medium",
       "isNew": false,
-      "replyStatus": "king-replied",
-      "replyNote": "Re-confirmed after last run's timeout: an official King Bearings representative replied near the end of the thread, noting it was an older thread recently brought to their attention and offering to investigate the specific bearings if details were provided.",
-      "lastChecked": "2026-09-17"
+      "replyStatus": "unreachable",
+      "replyNote": "Still returns HTTP 403 Forbidden; thread content could not be read.",
+      "lastChecked": "2026-09-19"
+    },
+    {
+      "date": "Unknown",
+      "source": "dsmtuners.com",
+      "title": "Just call it what it is---King Bearings are no longer an option....",
+      "snippet": "DSM forum thread arguing King bearings are effectively off the table for 6-bolt engines because of long-running back-order and availability problems since COVID. One poster notes the 7-bolt MB5209XP appears to have returned after more than a year unavailable.",
+      "url": "https://www.dsmtuners.com/threads/just-call-it-what-it-is-king-bearings-are-no-longer-an-option.547423/",
+      "severity": "medium",
+      "isNew": false,
+      "replyStatus": "unreachable",
+      "replyNote": "Still returns HTTP 403 Forbidden; thread content could not be read.",
+      "lastChecked": "2026-09-20"
     }
   ]
 }
