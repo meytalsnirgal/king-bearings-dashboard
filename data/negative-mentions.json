@@ -1,36 +1,21 @@
 {
-  "lastScanned": "2026-09-22T05:33:31Z",
-  "newCount": 0,
+  "lastScanned": "2026-09-23T05:33:44Z",
+  "newCount": 1,
   "mentions": [
     {
       "date": "Unknown",
-      "source": "e90post.com",
-      "title": "WARNING!! Check all KING brand bearings before install",
-      "snippet": "Explicit buyer-warning thread telling builders to inspect King bearings before installation. Framed as a pre-install check owners should not skip.",
-      "url": "https://www.e90post.com/forums/showthread.php?t=1550150",
-      "severity": "high",
-      "isNew": false,
-      "replyStatus": "unreachable",
-      "replyNote": "Still returns HTTP 403 Forbidden; thread content could not be read.",
-      "lastChecked": "2026-09-20"
-    },
-    {
-      "date": "Unknown",
-      "source": "oilburners.net",
-      "title": "WARNING about King Main Thrust Bearings",
-      "snippet": "Buyer-warning thread on King main thrust bearings, with posters describing free-spread specification problems on 2024 and 2025 production and bearings that do not seat tightly.",
-      "url": "https://www.oilburners.net/threads/warning-about-king-main-thrust-bearings.94987/",
-      "severity": "high",
-      "isNew": false,
-      "replyStatus": "no-reply",
-      "replyNote": "Readable today for the first time after months of 403s: no King or official reply, thread still open and unresolved, last post dated 3 June 2026.",
-      "lastChecked": "2026-09-18"
+      "source": "ls1tech.com",
+      "title": "King main bearings setting up loose?",
+      "snippet": "Builder reports a 2024 King main bearing measuring out of spec on free spread, and says a 2025 main bearing appears to have the same issue, suggesting a manufacturing process problem rather than a one-off. Next production run cited as January 2027.",
+      "url": "https://ls1tech.com/forums/generation-iv-internal-engine/1917951-king-main-bearings-setting-up-loose.html",
+      "severity": "medium",
+      "isNew": true
     },
     {
       "date": "Unknown",
       "source": "m5board.com",
       "title": "King Main Bearings Defective",
-      "snippet": "Poster reports King STDX thrust bearings over 1mm too narrow to fit BMW S85 and S65 blocks and concludes King main bearings should not be used on those engines.",
+      "snippet": "Poster reports King STDX thrust bearings measured over 1mm too narrow to fit BMW S85 and S65 blocks, and concludes King main bearings should not be used for those engines. Explicit buyer warning framing.",
       "url": "https://www.m5board.com/threads/king-main-bearings-defective.621301/",
       "severity": "high",
       "isNew": false,
@@ -40,9 +25,21 @@
     },
     {
       "date": "Unknown",
+      "source": "oilburners.net",
+      "title": "WARNING about King Main Thrust Bearings",
+      "snippet": "Buyer-warning thread on a diesel truck forum about King main thrust bearings. Title itself is an explicit warning to other builders.",
+      "url": "https://www.oilburners.net/threads/warning-about-king-main-thrust-bearings.94987/",
+      "severity": "high",
+      "isNew": false,
+      "replyStatus": "no-reply",
+      "replyNote": "Readable today for the first time after months of 403s: no King or official reply, thread still open and unresolved, last post dated 3 June 2026.",
+      "lastChecked": "2026-09-18"
+    },
+    {
+      "date": "Unknown",
       "source": "racingjunk.com",
       "title": "King Bearing - lack of professional help for quality control problem",
-      "snippet": "Complaint about a mis-sorted King bearing package (wrong mix of undersizes in an unopened set) and, more pointedly, about the support response to it.",
+      "snippet": "Customer received an unopened King package with mismatched shell sizes and says King declined to supply a replacement half shell, directing him back to the supplier. Complaint is about service response as much as the part.",
       "url": "https://www.racingjunk.com/forums/showthread.php?t=1289997",
       "severity": "medium",
       "isNew": false,
@@ -52,27 +49,27 @@
     },
     {
       "date": "Unknown",
-      "source": "nastyz28.com",
-      "title": "Got a set of King SI bearings with a defective bearing...awesome",
-      "snippet": "Buyer received a King SI main bearing shell malformed in production, crushed and twisted so it would not fit the block; also reports shaving material in the rod bearing packaging.",
-      "url": "https://nastyz28.com/threads/got-a-set-of-king-si-bearings-with-a-defective-bearing-awesome.212498/",
-      "severity": "medium",
-      "isNew": false,
-      "replyStatus": "no-reply",
-      "replyNote": "Thread read successfully; no King or official brand representative has replied and it remains open and unresolved.",
-      "lastChecked": "2026-09-21"
-    },
-    {
-      "date": "Unknown",
       "source": "dsmtuners.com",
       "title": "Just call it what it is---King Bearings are no longer an option....",
-      "snippet": "Thread arguing King bearings are effectively unavailable for 6-bolt engines, described as on back-order since the COVID period. Availability complaint rather than a product fault.",
+      "snippet": "Thread arguing King bearings are no longer a viable choice for 6-bolt builds, citing repeatedly extended back-order dates. Availability complaint with a dismissive stance on the brand.",
       "url": "https://www.dsmtuners.com/threads/just-call-it-what-it-is-king-bearings-are-no-longer-an-option.547423/",
       "severity": "medium",
       "isNew": false,
       "replyStatus": "unreachable",
       "replyNote": "Still returns HTTP 403 Forbidden; thread content could not be read.",
       "lastChecked": "2026-09-20"
+    },
+    {
+      "date": "Unknown",
+      "source": "460ford.com",
+      "title": "King Bearing Failures?",
+      "snippet": "Thread on King main and rod bearings failing during initial startup and break-in of a high compression engine. Other posters suggest contributing factors beyond the bearings.",
+      "url": "https://www.460ford.com/forum/37-engine-tech/107388-king-bearing-failures.html",
+      "severity": "medium",
+      "isNew": false,
+      "replyStatus": "unreachable",
+      "replyNote": "Still 307-redirects to the tollbit.460ford.com mirror instead of returning thread content; redirect not followed.",
+      "lastChecked": "2026-09-19"
     }
   ]
 }
