@@ -22,8 +22,8 @@
       "firstSeen": "2026-07-13",
       "source": "oilburners.net",
       "replyStatus": "no-reply",
-      "replyNote": "Readable today for the first time after months of 403s: no King or official reply, thread still open and unresolved, last post dated 3 June 2026.",
-      "lastChecked": "2026-09-18"
+      "replyNote": "Read successfully again: no King or official reply, thread still open and unresolved, most recent post still 3 June 2026 where the poster reports NOS Clevite thrust bearings measured in spec.",
+      "lastChecked": "2026-09-25"
     },
     {
       "url": "https://www.460ford.com/forum/37-engine-tech/107388-king-bearing-failures.html",
@@ -103,7 +103,7 @@
       "source": "honda-tech.com",
       "replyStatus": "unreachable",
       "replyNote": "Still returns HTTP 403 Forbidden; thread content could not be read.",
-      "lastChecked": "2026-09-18"
+      "lastChecked": "2026-09-25"
     },
     {
       "url": "https://www.speed-talk.com/forum/viewtopic.php?t=50776",
@@ -133,9 +133,9 @@
       "url": "https://theamcforum.com/forum/king-bearing-defect_topic116046.html",
       "firstSeen": "2026-09-17",
       "source": "theamcforum.com",
-      "replyStatus": "no-reply",
-      "replyNote": "First reply check on this mention: no King or official response, thread not locked or marked resolved, and the original poster says he worked around the issue himself.",
-      "lastChecked": "2026-09-18"
+      "replyStatus": "unreachable",
+      "replyNote": "Returned HTTP 403 Forbidden today, unlike the successful read on 2026-09-18; thread content could not be re-checked.",
+      "lastChecked": "2026-09-25"
     }
   ]
 }

@@ -1,35 +1,47 @@
 {
-  "lastScanned": "2026-09-24T05:33:53Z",
+  "lastScanned": "2026-09-25T05:34:10Z",
   "newCount": 1,
   "mentions": [
     {
       "date": "Unknown",
       "source": "ls1tech.com",
       "title": "King main bearings setting up loose?",
-      "snippet": "A builder reports a 2024-production King main bearing measuring out of spec on free spread, and says the concern carried into a 2025 production run; other posters note they have used King mains since 2024 without problems.",
+      "snippet": "Builder reports King main bearings setting up loose on assembly. Search results returned this alongside reports of out-of-spec 'free spread' on King main bearings; the free-spread detail is attributed to the result set, not read in-thread.",
       "url": "https://ls1tech.com/forums/generation-iv-internal-engine/1917951-king-main-bearings-setting-up-loose.html",
       "severity": "medium",
       "isNew": true
     },
     {
       "date": "Unknown",
+      "source": "e90post.com",
+      "title": "WARNING!! Check all KING brand bearings before install",
+      "snippet": "An explicit buyer-warning thread telling builders to measure every King bearing before installing it. Warning-style titles aimed at other buyers are the most damaging format for the brand.",
+      "url": "https://www.e90post.com/forums/showthread.php?t=1550150",
+      "severity": "high",
+      "isNew": false,
+      "replyStatus": "unreachable",
+      "replyNote": "Still returns HTTP 403 Forbidden; thread content could not be read.",
+      "lastChecked": "2026-09-20"
+    },
+    {
+      "date": "Unknown",
       "source": "oilburners.net",
       "title": "WARNING about King Main Thrust Bearings",
-      "snippet": "An explicit buyer-warning thread about King main thrust bearings. The title itself is framed as a warning to other builders.",
+      "snippet": "Buyer-warning thread about King main thrust bearings; the poster ended up sourcing NOS Clevite thrust bearings and reported those measured in spec. Still open with no King reply.",
       "url": "https://www.oilburners.net/threads/warning-about-king-main-thrust-bearings.94987/",
       "severity": "high",
       "isNew": false,
       "replyStatus": "no-reply",
-      "replyNote": "Readable today for the first time after months of 403s: no King or official reply, thread still open and unresolved, last post dated 3 June 2026.",
-      "lastChecked": "2026-09-18"
+      "replyNote": "Read successfully again: no King or official reply, thread still open and unresolved, most recent post still 3 June 2026 where the poster reports NOS Clevite thrust bearings measured in spec.",
+      "lastChecked": "2026-09-25"
     },
     {
       "date": "Unknown",
       "source": "m5board.com",
       "title": "King Main Bearings Defective",
-      "snippet": "A shop reports King STDX thrust bearings for BMW S85/S65 engines measuring over 1mm too narrow to fit, with the same result across multiple bearing sets and multiple blocks.",
+      "snippet": "Reports King STDX thrust bearings measuring over 1mm too narrow to fit BMW S85 and S65 blocks, with more than one block showing the same result. A dimensional defect claim, not an install error.",
       "url": "https://www.m5board.com/threads/king-main-bearings-defective.621301/",
-      "severity": "medium",
+      "severity": "high",
       "isNew": false,
       "replyStatus": "unreachable",
       "replyNote": "Still 307-redirects to the tollbit.m5board.com mirror instead of returning thread content; redirect not followed.",
@@ -37,21 +49,9 @@
     },
     {
       "date": "Unknown",
-      "source": "nastyz28.com",
-      "title": "Got a set of King SI bearings with a defective bearing...awesome",
-      "snippet": "A buyer reports one King SI main shell malformed in production, crushed and twisted so it fits poorly, plus machining shavings and oil found in the packaging of the rod bearings.",
-      "url": "https://nastyz28.com/threads/got-a-set-of-king-si-bearings-with-a-defective-bearing-awesome.212498/",
-      "severity": "medium",
-      "isNew": false,
-      "replyStatus": "no-reply",
-      "replyNote": "Thread read successfully; no King or official brand representative has replied and it remains open and unresolved.",
-      "lastChecked": "2026-09-21"
-    },
-    {
-      "date": "Unknown",
       "source": "racingjunk.com",
       "title": "King Bearing - lack of professional help for quality control problem",
-      "snippet": "A customer received a King XP set containing a mismatched half shell and reports being told to return the set to the supplier rather than being sent a replacement pair; the complaint is about service as much as the part.",
+      "snippet": "A customer reports receiving a sealed package with the wrong mix of bearing sizes and criticises the support he got resolving it. Complaint is about service response as much as the part.",
       "url": "https://www.racingjunk.com/forums/showthread.php?t=1289997",
       "severity": "medium",
       "isNew": false,
@@ -61,15 +61,15 @@
     },
     {
       "date": "Unknown",
-      "source": "speed-talk.com",
-      "title": "No more King XP bearings",
-      "snippet": "A thread titled as a decision to stop using King XP bearings. King replied in-thread with a technical explanation about the eccentric profile and offered to investigate the specific parts.",
-      "url": "https://www.speed-talk.com/forum/viewtopic.php?t=68038",
+      "source": "nastyz28.com",
+      "title": "Got a set of King SI bearings with a defective bearing...awesome",
+      "snippet": "One shell in a King SI main set arrived crushed and twisted and out of size; the poster also reports machining shavings in the rod bearing packaging. Single credible defect report, no King reply.",
+      "url": "https://nastyz28.com/threads/got-a-set-of-king-si-bearings-with-a-defective-bearing-awesome.212498/",
       "severity": "medium",
       "isNew": false,
-      "replyStatus": "king-replied",
-      "replyNote": "Re-confirmed: King replied in-thread explaining the eccentric bearing profile and offering to investigate the specific parts if details are provided.",
-      "lastChecked": "2026-09-24"
+      "replyStatus": "no-reply",
+      "replyNote": "Thread read successfully; no King or official brand representative has replied and it remains open and unresolved.",
+      "lastChecked": "2026-09-21"
     }
   ]
 }
