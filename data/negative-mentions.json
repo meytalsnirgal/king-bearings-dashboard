@@ -1,12 +1,21 @@
 {
-  "lastScanned": "2026-10-02T05:33:47Z",
-  "newCount": 0,
+  "lastScanned": "2026-10-03T05:33:50Z",
+  "newCount": 1,
   "mentions": [
     {
-      "date": "2026-06-03",
+      "date": "Unknown",
+      "source": "yellowbullet.com",
+      "title": "King bearings",
+      "snippet": "Thread reporting bearing delamination with King bearings in high-horsepower applications, including a high-boost engine said to be giving off bearing material in the oil, which the poster says stopped after switching brands.",
+      "url": "https://www.yellowbullet.com/threads/king-bearings.2600679/",
+      "severity": "medium",
+      "isNew": true
+    },
+    {
+      "date": "Unknown",
       "source": "oilburners.net",
       "title": "WARNING about King Main Thrust Bearings",
-      "snippet": "Explicit buyer-warning thread claiming 2024-production King main thrust bearings are out of spec, sliding onto the main cap and block side groove too easily and risking a spun thrust bearing for lack of interference fit. Still open and unanswered by King; most recent post 3 June 2026.",
+      "snippet": "Explicit buyer-warning thread: King main thrust bearings produced since 2024 reported out of spec, slipping into the cap and block groove without proper interference fit, with a stated risk of spinning the thrust main. Poster says King technical staff confirmed the parts should not be used.",
       "url": "https://www.oilburners.net/threads/warning-about-king-main-thrust-bearings.94987/",
       "severity": "high",
       "isNew": false,
@@ -16,63 +25,51 @@
     },
     {
       "date": "Unknown",
+      "source": "e90post.com",
+      "title": "WARNING!! Check all KING brand bearings before install",
+      "snippet": "Buyer-warning thread reporting 0.25 oversize bearings packed in boxes labelled and stamped standard, mixed in with correct standard shells. Poster urges everyone to measure every King bearing before installation.",
+      "url": "https://www.e90post.com/forums/showthread.php?t=1550150",
+      "severity": "high",
+      "isNew": false,
+      "replyStatus": "unreachable",
+      "replyNote": "Still returns HTTP 403 Forbidden; thread content could not be read.",
+      "lastChecked": "2026-09-27"
+    },
+    {
+      "date": "Unknown",
       "source": "m5board.com",
       "title": "King Main Bearings Defective",
-      "snippet": "Builder reports King STDX undersize bearings for a BMW engine where the thrust bearings were over 1mm too narrow to fit the block, and says the problem repeated across multiple blocks.",
+      "snippet": "Builder reports King STDX thrust bearings for the BMW S85 measuring over 1mm too narrow to fit the block, consistent across multiple blocks, and advises against King main bearings for S85/S65 on the grounds that a dimensional error this basic undermines trust in the brand.",
       "url": "https://www.m5board.com/threads/king-main-bearings-defective.621301/",
-      "severity": "medium",
+      "severity": "high",
       "isNew": false,
       "replyStatus": "unreachable",
       "replyNote": "Still 307-redirects to the tollbit.m5board.com mirror instead of returning thread content; redirect not followed.",
-      "lastChecked": "2026-09-26"
+      "lastChecked": "2026-10-03"
     },
     {
       "date": "Unknown",
       "source": "racingjunk.com",
       "title": "King Bearing - lack of professional help for quality control problem",
-      "snippet": "Complaint combining a quality-control defect with poor service response; the title itself is a service complaint about not getting professional help on the problem.",
+      "snippet": "Complaint about King XP series main and rod bearings supplied in an unopened package containing the wrong sizes, compounded by a complaint about the support response. A second poster reports two cases out of roughly 1,000 rebuilds where shells boxed and stamped .50mm measured .75mm.",
       "url": "https://www.racingjunk.com/forums/showthread.php?t=1289997",
       "severity": "medium",
       "isNew": false,
       "replyStatus": "unreachable",
       "replyNote": "Still returns HTTP 403 Forbidden; thread content could not be read.",
-      "lastChecked": "2026-09-26"
-    },
-    {
-      "date": "Unknown",
-      "source": "460ford.com",
-      "title": "King Bearing Failures?",
-      "snippet": "Engine-tech thread asking about King bearing failures; surfaced again on the 'spun / out of spec' search alongside other failure reports.",
-      "url": "https://www.460ford.com/forum/37-engine-tech/107388-king-bearing-failures.html",
-      "severity": "medium",
-      "isNew": false,
-      "replyStatus": "unreachable",
-      "replyNote": "Still 307-redirects to the tollbit.460ford.com mirror instead of returning thread content; redirect not followed.",
-      "lastChecked": "2026-09-26"
+      "lastChecked": "2026-10-03"
     },
     {
       "date": "Unknown",
       "source": "nastyz28.com",
       "title": "Got a set of King SI bearings with a defective bearing...awesome",
-      "snippet": "Buyer reports a King SI bi-metal main bearing shell malformed in production, crushed and twisted and significantly out of size.",
+      "snippet": "Buyer received a King SI main bearing shell malformed in production, crushed and twisted so it would not seat in the block, and reports bearing shaving material and oil inside the shrink wrap of the rod bearing set.",
       "url": "https://nastyz28.com/threads/got-a-set-of-king-si-bearings-with-a-defective-bearing-awesome.212498/",
       "severity": "medium",
       "isNew": false,
       "replyStatus": "unreachable",
       "replyNote": "Previously readable, but today it 307-redirects to the tollbit.nastyz28.com mirror instead of returning thread content; redirect not followed.",
       "lastChecked": "2026-09-29"
-    },
-    {
-      "date": "Unknown",
-      "source": "forbbodiesonly.com",
-      "title": "King Bearings Quality?",
-      "snippet": "Mopar forum thread questioning King bearing quality, specifically narrowed bearings. King has already replied officially in the thread and discussion continued without escalating.",
-      "url": "https://www.forbbodiesonly.com/moparforum/threads/king-bearings-quality.192421/",
-      "severity": "low",
-      "isNew": false,
-      "replyStatus": "king-replied",
-      "replyNote": "Re-confirmed: an official King representative replied on 12 August 2026 explaining the narrowed bearings are intentional for larger fillet radii and offering to review part numbers; thread remains open with discussion continuing to 19 September 2026.",
-      "lastChecked": "2026-10-01"
     }
   ]
 }
