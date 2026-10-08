@@ -1,33 +1,30 @@
 {
-  "lastScanned": "2026-10-07T05:33:39Z",
-  "newCount": 1,
+  "lastScanned": "2026-10-08T05:34:06Z",
+  "newCount": 2,
   "mentions": [
+    {
+      "date": "Unknown",
+      "source": "m3post.com",
+      "title": "King Bearings",
+      "snippet": "BMW M3 forum thread in which a poster reports machining and manufacturing errors across three sets of King bearings, and King STDX thrust bearings measuring too narrow to fit S65 blocks. Credible repeat-defect report from a single builder.",
+      "url": "https://www.m3post.com/forums/showthread.php?t=1899931",
+      "severity": "medium",
+      "isNew": true
+    },
     {
       "date": "Unknown",
       "source": "board.moparts.org",
       "title": "King bearings problem",
-      "snippet": "Thread on the Moparts board titled as a King bearings problem. Only the title was visible in the search result, so the specific fault is not established; the thread is new to the ledger and reads as a product complaint rather than a general question.",
+      "snippet": "Moparts thread titled as a problem report on King bearings. Appeared alongside results describing misaligned King locating notches putting bearing halves out of alignment, but that detail is not confirmed as coming from this thread.",
       "url": "https://board.moparts.org/ubbthreads/ubbthreads.php/topics/2182865/king-bearings-problem.html",
       "severity": "medium",
       "isNew": true
     },
     {
       "date": "Unknown",
-      "source": "e90post.com",
-      "title": "WARNING!! Check all KING brand bearings before install",
-      "snippet": "Explicit buyer-warning thread telling owners to inspect every King bearing before installation. Search snippet describes a case of incorrectly sized bearings found mixed into standard-marked packaging. High severity because it is framed as a warning to all buyers, not a single complaint.",
-      "url": "https://www.e90post.com/forums/showthread.php?t=1550150",
-      "severity": "high",
-      "isNew": false,
-      "replyStatus": "unreachable",
-      "replyNote": "Still returns HTTP 403 Forbidden; thread content could not be read.",
-      "lastChecked": "2026-10-04"
-    },
-    {
-      "date": "Unknown",
       "source": "oilburners.net",
       "title": "WARNING about King Main Thrust Bearings",
-      "snippet": "Buyer-warning thread claiming King main thrust bearings produced since 2024 are out of spec on free spread, sliding into the block and cap too easily and risking a spun thrust bearing. The snippet states a King technical representative said he would not use them.",
+      "snippet": "Explicit buyer-warning thread claiming King main thrust bearings produced since 2024 are out of spec on free spread, and that the thrust main slips into the cap and block groove too easily instead of being an interference fit, creating a risk of spinning the thrust bearing.",
       "url": "https://www.oilburners.net/threads/warning-about-king-main-thrust-bearings.94987/",
       "severity": "high",
       "isNew": false,
@@ -37,9 +34,21 @@
     },
     {
       "date": "Unknown",
+      "source": "e90post.com",
+      "title": "WARNING!! Check all KING brand bearings before install",
+      "snippet": "Buyer-warning thread reporting that a King box labelled standard contained a mix of standard and 0.25 bearings shrink-wrapped together, with the poster urging everyone to measure every bearing before installing.",
+      "url": "https://www.e90post.com/forums/showthread.php?t=1550150",
+      "severity": "high",
+      "isNew": false,
+      "replyStatus": "unreachable",
+      "replyNote": "Still returns HTTP 403 Forbidden; thread content could not be read.",
+      "lastChecked": "2026-10-04"
+    },
+    {
+      "date": "Unknown",
       "source": "m5board.com",
       "title": "King Main Bearings Defective",
-      "snippet": "Owner reports King STDX main/thrust bearings for a BMW engine measuring over 1mm too narrow to fit the block, with the fit problem reproduced across more than one block.",
+      "snippet": "Thread titled as a defect report on King main bearings on the BMW M5 board. Page itself is unreadable (307 redirect to a scraper mirror), so judged from the title alone.",
       "url": "https://www.m5board.com/threads/king-main-bearings-defective.621301/",
       "severity": "medium",
       "isNew": false,
@@ -49,21 +58,9 @@
     },
     {
       "date": "Unknown",
-      "source": "nastyz28.com",
-      "title": "Got a set of King SI bearings with a defective bearing...awesome",
-      "snippet": "Builder reports a King SI main bearing shell malformed in production, crushed and twisted so the size is badly off. Single-set manufacturing defect report.",
-      "url": "https://nastyz28.com/threads/got-a-set-of-king-si-bearings-with-a-defective-bearing-awesome.212498/",
-      "severity": "medium",
-      "isNew": false,
-      "replyStatus": "unreachable",
-      "replyNote": "Still 307-redirects to the tollbit.nastyz28.com mirror instead of returning thread content; redirect not followed.",
-      "lastChecked": "2026-10-06"
-    },
-    {
-      "date": "Unknown",
       "source": "racingjunk.com",
       "title": "King Bearing - lack of professional help for quality control problem",
-      "snippet": "Complaint thread about both a quality-control problem with a King bearing set and the service response the poster received. Criticism is of King support as well as the product.",
+      "snippet": "Complaint thread whose title alleges both a quality control problem with King bearings and poor support in resolving it. Page returns 403 so judged from the title alone.",
       "url": "https://www.racingjunk.com/forums/showthread.php?t=1289997",
       "severity": "medium",
       "isNew": false,
