@@ -1,22 +1,22 @@
 {
-  "lastScanned": "2026-10-08T05:34:06Z",
+  "lastScanned": "2026-10-09T05:33:34Z",
   "newCount": 2,
   "mentions": [
     {
       "date": "Unknown",
-      "source": "m3post.com",
-      "title": "King Bearings",
-      "snippet": "BMW M3 forum thread in which a poster reports machining and manufacturing errors across three sets of King bearings, and King STDX thrust bearings measuring too narrow to fit S65 blocks. Credible repeat-defect report from a single builder.",
-      "url": "https://www.m3post.com/forums/showthread.php?t=1899931",
+      "source": "moparts.org",
+      "title": "King bearings problem",
+      "snippet": "Thread titled as a King bearings problem; the reported fault is locating notches positioned incorrectly so the bearing halves sit about .060 out of alignment, close to protruding past the rod. Credible single-builder manufacturing complaint.",
+      "url": "https://board.moparts.org/ubbthreads/ubbthreads.php/topics/2182865/king-bearings-problem.html",
       "severity": "medium",
       "isNew": true
     },
     {
       "date": "Unknown",
-      "source": "board.moparts.org",
-      "title": "King bearings problem",
-      "snippet": "Moparts thread titled as a problem report on King bearings. Appeared alongside results describing misaligned King locating notches putting bearing halves out of alignment, but that detail is not confirmed as coming from this thread.",
-      "url": "https://board.moparts.org/ubbthreads/ubbthreads.php/topics/2182865/king-bearings-problem.html",
+      "source": "e90post.com",
+      "title": "King Rod bearings - BMW 3-Series (E90 E92) Forum",
+      "snippet": "Mostly a recommendation thread, but members report inconsistency with King rod bearings, including one who found King had packed 0.25 oversize shells in a box labelled STD. Packaging/labelling error rather than a material failure.",
+      "url": "https://www.e90post.com/forums/showthread.php?t=1902012",
       "severity": "medium",
       "isNew": true
     },
@@ -24,19 +24,19 @@
       "date": "Unknown",
       "source": "oilburners.net",
       "title": "WARNING about King Main Thrust Bearings",
-      "snippet": "Explicit buyer-warning thread claiming King main thrust bearings produced since 2024 are out of spec on free spread, and that the thrust main slips into the cap and block groove too easily instead of being an interference fit, creating a risk of spinning the thrust bearing.",
+      "snippet": "Buyer-warning thread about King main thrust bearings made since 2024 measuring out of spec; poster says the thrust mains slip onto the cap and block groove too easily instead of being an interference fit, raising the risk of spinning the thrust bearing. An experienced builder in the thread says he would not use them.",
       "url": "https://www.oilburners.net/threads/warning-about-king-main-thrust-bearings.94987/",
       "severity": "high",
       "isNew": false,
       "replyStatus": "no-reply",
-      "replyNote": "Read successfully: no King or official reply, thread still open and unresolved, most recent post still 3 June 2026 where the poster reports in-spec measurements on replacement thrust bearings.",
-      "lastChecked": "2026-10-02"
+      "replyNote": "Read successfully: still no King or official reply, thread open and unresolved, most recent post still 3 June 2026 where the poster reports receiving in-spec NOS Clevite thrust bearings.",
+      "lastChecked": "2026-10-09"
     },
     {
       "date": "Unknown",
       "source": "e90post.com",
       "title": "WARNING!! Check all KING brand bearings before install",
-      "snippet": "Buyer-warning thread reporting that a King box labelled standard contained a mix of standard and 0.25 bearings shrink-wrapped together, with the poster urging everyone to measure every bearing before installing.",
+      "snippet": "Explicit buyer-warning thread telling BMW builders to measure every King bearing before installing. Reported problems include King STDX thrust bearings too narrow for S85 blocks and mis-packed sizes in standard boxes.",
       "url": "https://www.e90post.com/forums/showthread.php?t=1550150",
       "severity": "high",
       "isNew": false,
@@ -48,9 +48,9 @@
       "date": "Unknown",
       "source": "m5board.com",
       "title": "King Main Bearings Defective",
-      "snippet": "Thread titled as a defect report on King main bearings on the BMW M5 board. Page itself is unreadable (307 redirect to a scraper mirror), so judged from the title alone.",
+      "snippet": "Builder reports King STDX main bearing thrusts over 1mm too narrow to fit BMW S85 blocks, confirmed on two further S85 blocks in the same shop, and the same issue on the S65 set. He advises against King mains for these engines and says a fundamental error like this costs trust in the brand.",
       "url": "https://www.m5board.com/threads/king-main-bearings-defective.621301/",
-      "severity": "medium",
+      "severity": "high",
       "isNew": false,
       "replyStatus": "unreachable",
       "replyNote": "Still 307-redirects to the tollbit.m5board.com mirror instead of returning thread content; redirect not followed.",
@@ -58,15 +58,15 @@
     },
     {
       "date": "Unknown",
-      "source": "racingjunk.com",
-      "title": "King Bearing - lack of professional help for quality control problem",
-      "snippet": "Complaint thread whose title alleges both a quality control problem with King bearings and poor support in resolving it. Page returns 403 so judged from the title alone.",
-      "url": "https://www.racingjunk.com/forums/showthread.php?t=1289997",
+      "source": "nastyz28.com",
+      "title": "Got a set of King SI bearings with a defective bearing...awesome",
+      "snippet": "Customer received a King SI bi-metal main bearing set containing a shell crushed and twisted in production so it would not seat in the block, and reports bearing shaving debris and oil inside the shrink-wrapped rod bearing pack.",
+      "url": "https://nastyz28.com/threads/got-a-set-of-king-si-bearings-with-a-defective-bearing-awesome.212498/",
       "severity": "medium",
       "isNew": false,
       "replyStatus": "unreachable",
-      "replyNote": "Still returns HTTP 403 Forbidden; thread content could not be read.",
-      "lastChecked": "2026-10-03"
+      "replyNote": "Still 307-redirects to the tollbit.nastyz28.com mirror instead of returning thread content; redirect not followed.",
+      "lastChecked": "2026-10-06"
     }
   ]
 }

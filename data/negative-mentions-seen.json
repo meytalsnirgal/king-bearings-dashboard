@@ -22,8 +22,8 @@
       "firstSeen": "2026-07-13",
       "source": "oilburners.net",
       "replyStatus": "no-reply",
-      "replyNote": "Read successfully: no King or official reply, thread still open and unresolved, most recent post still 3 June 2026 where the poster reports in-spec measurements on replacement thrust bearings.",
-      "lastChecked": "2026-10-02"
+      "replyNote": "Read successfully: still no King or official reply, thread open and unresolved, most recent post still 3 June 2026 where the poster reports receiving in-spec NOS Clevite thrust bearings.",
+      "lastChecked": "2026-10-09"
     },
     {
       "url": "https://www.460ford.com/forum/37-engine-tech/107388-king-bearing-failures.html",
@@ -102,8 +102,8 @@
       "firstSeen": "2026-08-16",
       "source": "honda-tech.com",
       "replyStatus": "unreachable",
-      "replyNote": "Still returns HTTP 403 Forbidden; thread content could not be read.",
-      "lastChecked": "2026-10-02"
+      "replyNote": "Returned HTTP 403 Forbidden again, same as the 2026-10-02 check; thread content could not be read.",
+      "lastChecked": "2026-10-09"
     },
     {
       "url": "https://www.speed-talk.com/forum/viewtopic.php?t=50776",
@@ -134,8 +134,8 @@
       "firstSeen": "2026-09-17",
       "source": "theamcforum.com",
       "replyStatus": "unreachable",
-      "replyNote": "Returned HTTP 403 Forbidden again, same as the 2026-09-25 check; thread content could not be re-read.",
-      "lastChecked": "2026-10-02"
+      "replyNote": "Returned HTTP 403 Forbidden again, consistent with the 2026-10-02 and 2026-09-25 checks; thread content could not be read.",
+      "lastChecked": "2026-10-09"
     }
   ]
 }
