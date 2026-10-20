@@ -1,12 +1,12 @@
 {
-  "lastScanned": "2026-10-19T05:33:58Z",
+  "lastScanned": "2026-10-20T05:33:37Z",
   "newCount": 0,
   "mentions": [
     {
-      "date": "2026-06-03",
+      "date": "Unknown",
       "source": "oilburners.net",
       "title": "WARNING about King Main Thrust Bearings",
-      "snippet": "Explicit buyer-warning thread: poster reports King main thrust bearings from 2024 production as out of spec, with too little free spread so the thrust bearing slips onto the cap and block groove and risks spinning. Snippet states a King technical representative advised returning them.",
+      "snippet": "Buyer-warning thread about King main thrust bearings produced since 2024: thrust mains reported to slip onto the main cap and block side groove too easily rather than being an interference fit, with a spun-thrust risk. The thread reports a King technician confirming a free-spread spec problem on 2024 bearings.",
       "url": "https://www.oilburners.net/threads/warning-about-king-main-thrust-bearings.94987/",
       "severity": "high",
       "isNew": false,
@@ -18,19 +18,19 @@
       "date": "Unknown",
       "source": "e90post.com",
       "title": "WARNING!! Check all KING brand bearings before install",
-      "snippet": "Buyer-warning thread: poster reports a King box of standard-size bearings that contained a 0.25 oversize shell mixed in with standard ones, and tells readers to measure every bearing before install.",
+      "snippet": "Explicit buyer-warning thread telling BMW builders to measure King bearings before fitting, after a set shipped in a STD box was found to contain 0.25 undersize shells on two journals.",
       "url": "https://www.e90post.com/forums/showthread.php?t=1550150",
       "severity": "high",
       "isNew": false,
       "replyStatus": "unreachable",
       "replyNote": "Still returns HTTP 403 Forbidden; thread content could not be read.",
-      "lastChecked": "2026-10-11"
+      "lastChecked": "2026-10-20"
     },
     {
       "date": "Unknown",
       "source": "m5board.com",
       "title": "King Main Bearings Defective",
-      "snippet": "Thread reporting King main bearings as defective. Search snippet describes a main bearing set that would not fit the block correctly; details beyond the title were not readable from the result.",
+      "snippet": "A shop reports King STDX main bearings with thrust faces over 1mm too narrow to fit the block, and says the same was found on further S85 blocks. Reads as a dimensional defect claim, not an install error.",
       "url": "https://www.m5board.com/threads/king-main-bearings-defective.621301/",
       "severity": "medium",
       "isNew": false,
@@ -40,27 +40,39 @@
     },
     {
       "date": "Unknown",
-      "source": "nastyz28.com",
-      "title": "Got a set of King SI bearings with a defective bearing...awesome",
-      "snippet": "Single credible defect report: one shell in a King SI bi-metal main bearing set was malformed in production, twisted and roughly 1/8 inch out of size, so it would not fit the block. Poster says he would not use that King line again.",
-      "url": "https://nastyz28.com/threads/got-a-set-of-king-si-bearings-with-a-defective-bearing-awesome.212498/",
+      "source": "dsmtuners.com",
+      "title": "Just call it what it is---King Bearings are no longer an option....",
+      "snippet": "Thread written as a buyer warning telling DSM builders to stop specifying King, citing long-running back-order and supply problems on 6-bolt sets rather than a product defect.",
+      "url": "https://www.dsmtuners.com/threads/just-call-it-what-it-is-king-bearings-are-no-longer-an-option.547423/",
       "severity": "medium",
       "isNew": false,
       "replyStatus": "unreachable",
-      "replyNote": "Still 307-redirects to the tollbit.nastyz28.com mirror instead of returning thread content; redirect not followed.",
-      "lastChecked": "2026-10-13"
+      "replyNote": "Still returns HTTP 403 Forbidden; thread content could not be read.",
+      "lastChecked": "2026-10-20"
     },
     {
       "date": "Unknown",
       "source": "theamcforum.com",
       "title": "King bearing defect??",
-      "snippet": "Thread raising a suspected defect in a King bearing. Negative framing is in the title; no further detail was visible in the search result.",
+      "snippet": "Poster raises a suspected defect in a King bearing set. Thread has never been readable on re-check, so only the defect claim in the title is confirmed.",
       "url": "https://theamcforum.com/forum/king-bearing-defect_topic116046.html",
       "severity": "medium",
       "isNew": false,
       "replyStatus": "unreachable",
       "replyNote": "Returned HTTP 403 Forbidden again, consistent with every prior check; thread content could not be read.",
       "lastChecked": "2026-10-18"
+    },
+    {
+      "date": "Unknown",
+      "source": "460ford.com",
+      "title": "King Bearing Failures?",
+      "snippet": "Thread collecting reported King bearing failures in big-block Ford builds. Surfaces repeatedly on complaint searches.",
+      "url": "https://www.460ford.com/forum/37-engine-tech/107388-king-bearing-failures.html",
+      "severity": "medium",
+      "isNew": false,
+      "replyStatus": "unreachable",
+      "replyNote": "Still 307-redirects to the tollbit.460ford.com mirror instead of returning thread content; redirect not followed.",
+      "lastChecked": "2026-10-19"
     }
   ]
 }
