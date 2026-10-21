@@ -15,7 +15,7 @@
       "source": "nastyz28.com",
       "replyStatus": "unreachable",
       "replyNote": "Still 307-redirects to the tollbit.nastyz28.com mirror instead of returning thread content; redirect not followed.",
-      "lastChecked": "2026-10-13"
+      "lastChecked": "2026-10-21"
     },
     {
       "url": "https://www.oilburners.net/threads/warning-about-king-main-thrust-bearings.94987/",
@@ -78,8 +78,8 @@
       "firstSeen": "2026-08-10",
       "source": "e90post.com",
       "replyStatus": "unreachable",
-      "replyNote": "Connection refused (ECONNREFUSED) rather than the usual 403 this time; thread content could not be read.",
-      "lastChecked": "2026-10-13"
+      "replyNote": "Back to HTTP 403 Forbidden (the 2026-10-13 check got a connection refusal instead); thread content could not be read.",
+      "lastChecked": "2026-10-21"
     },
     {
       "url": "https://www.yellowbullet.com/threads/kings-engine-bearings-anybody-have-problems.900498/",
