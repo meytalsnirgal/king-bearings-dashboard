@@ -1,24 +1,12 @@
 {
-  "lastScanned": "2026-10-21T05:33:59Z",
+  "lastScanned": "2026-10-21T07:48:44Z",
   "newCount": 0,
   "mentions": [
     {
       "date": "Unknown",
-      "source": "oilburners.net",
-      "title": "WARNING about King Main Thrust Bearings",
-      "snippet": "Explicit buyer-warning thread: poster reports King main thrust bearings slip onto the cap and block side groove too easily rather than being an interference fit, risking a spun thrust main, and says King technical support told him the 2024 production is out of spec. Strongest live complaint on file.",
-      "url": "https://www.oilburners.net/threads/warning-about-king-main-thrust-bearings.94987/",
-      "severity": "high",
-      "isNew": false,
-      "replyStatus": "no-reply",
-      "replyNote": "Read successfully: still no King or official reply, thread open and unresolved, most recent post still 3 June 2026 where the poster reports receiving in-spec NOS Clevite thrust bearings.",
-      "lastChecked": "2026-10-18"
-    },
-    {
-      "date": "Unknown",
       "source": "e90post.com",
       "title": "WARNING!! Check all KING brand bearings before install",
-      "snippet": "Buyer-warning thread telling BMW builders to measure every King bearing before installing, after a sealed set was found to contain mixed sizes. Title itself is a warning, which is what makes it carry.",
+      "snippet": "Explicit buyer-warning thread telling builders to inspect every King set before installation. Still the most serious framing of any King mention in circulation.",
       "url": "https://www.e90post.com/forums/showthread.php?t=1550150",
       "severity": "high",
       "isNew": false,
@@ -28,21 +16,21 @@
     },
     {
       "date": "Unknown",
-      "source": "dsmtuners.com",
-      "title": "Just call it what it is---King Bearings are no longer an option....",
-      "snippet": "Thread title is a flat buyer recommendation against the brand for DSM builds. Thread body not readable (403 on every check), so severity judged from the title alone.",
-      "url": "https://www.dsmtuners.com/threads/just-call-it-what-it-is-king-bearings-are-no-longer-an-option.547423/",
-      "severity": "medium",
+      "source": "oilburners.net",
+      "title": "WARNING about King Main Thrust Bearings",
+      "snippet": "Reports that King thrust mains produced since 2024 slip into the cap and block groove with no interference fit, raising a spun-thrust risk; the poster says King technical support confirmed 2024 production mains are out of spec on free spread. Safety and warranty implications, still unanswered by King.",
+      "url": "https://www.oilburners.net/threads/warning-about-king-main-thrust-bearings.94987/",
+      "severity": "high",
       "isNew": false,
-      "replyStatus": "unreachable",
-      "replyNote": "Still returns HTTP 403 Forbidden; thread content could not be read.",
-      "lastChecked": "2026-10-20"
+      "replyStatus": "no-reply",
+      "replyNote": "Read successfully: still no King or official reply, thread open and unresolved, most recent post still 3 June 2026 where the poster reports receiving in-spec NOS Clevite thrust bearings.",
+      "lastChecked": "2026-10-18"
     },
     {
       "date": "Unknown",
       "source": "nastyz28.com",
       "title": "Got a set of King SI bearings with a defective bearing...awesome",
-      "snippet": "Single builder reporting a defective shell in a King SI set, described as malformed and a poor fit. Credible single-unit defect report rather than a pattern.",
+      "snippet": "A King SI main set shipped with one shell malformed in production, crushed and twisted enough that it would not pass over the crank journal. Single credible defect report.",
       "url": "https://nastyz28.com/threads/got-a-set-of-king-si-bearings-with-a-defective-bearing-awesome.212498/",
       "severity": "medium",
       "isNew": false,
@@ -52,27 +40,39 @@
     },
     {
       "date": "Unknown",
-      "source": "racingjunk.com",
-      "title": "King Bearing - lack of professional help for quality control problem",
-      "snippet": "Complaint is about service as much as product: an unopened package contained a mismatched set of uppers and lowers, and the poster says he could not get a useful response from King. Service complaints age badly if unanswered.",
-      "url": "https://www.racingjunk.com/forums/showthread.php?t=1289997",
+      "source": "m5board.com",
+      "title": "King Main Bearings Defective",
+      "snippet": "Defect report on King main bearings in a BMW application. Thread title states the complaint directly; content not readable by the scanner.",
+      "url": "https://www.m5board.com/threads/king-main-bearings-defective.621301/",
       "severity": "medium",
       "isNew": false,
       "replyStatus": "unreachable",
-      "replyNote": "Still returns HTTP 403 Forbidden; thread content could not be read.",
+      "replyNote": "Still 307-redirects to the tollbit.m5board.com mirror instead of returning thread content; redirect not followed.",
       "lastChecked": "2026-10-19"
     },
     {
       "date": "Unknown",
       "source": "theamcforum.com",
       "title": "King bearing defect??",
-      "snippet": "Poster questioning whether a King bearing he received is defective. Thread never readable (403 on every check), so judged from title only.",
+      "snippet": "Builder questioning a suspected defect in a King set. Title is the only confirmed fact; the thread has never been readable by the scanner.",
       "url": "https://theamcforum.com/forum/king-bearing-defect_topic116046.html",
       "severity": "medium",
       "isNew": false,
       "replyStatus": "unreachable",
       "replyNote": "Returned HTTP 403 Forbidden again, consistent with every prior check; thread content could not be read.",
       "lastChecked": "2026-10-18"
+    },
+    {
+      "date": "Unknown",
+      "source": "racingjunk.com",
+      "title": "King Bearing - lack of professional help for quality control problem",
+      "snippet": "Complaint about King's handling of a quality-control issue, not just the part itself. Service-side criticism, which is rarer and harder to answer than a defect report.",
+      "url": "https://www.racingjunk.com/forums/showthread.php?t=1289997",
+      "severity": "medium",
+      "isNew": false,
+      "replyStatus": "unreachable",
+      "replyNote": "Still returns HTTP 403 Forbidden; thread content could not be read.",
+      "lastChecked": "2026-10-19"
     }
   ]
 }
