@@ -146,6 +146,11 @@
       "alertedAt": "2026-10-21",
       "alertNote": "Added to the ledger ONLY after the alert actually reached Guy, verified in Sent Items at 07:45Z on 2026-10-21, not because the script claimed success. This entry was reported as \"1 new\" on 18 Sep, 1 Oct, 8 Oct, 11 Oct and 14 Oct and the alert failed every time: send-alert.ps1 threw on the Outlook Session 0 error instead of queueing, and the scan correctly left this ledger untouched so it would retry, which is why the same thread kept reappearing as new. The sender now queues to the outbox on failure, so a failed alert is delayed rather than lost. Guy has been asked to open it from his own network and report what the complaint actually is; if it is nothing, dismiss this entry.",
       "lastChecked": "2026-10-21"
+    },
+    {
+      "url": "https://www.e90post.com/forums/showthread.php?t=1924628",
+      "firstSeen": "2026-10-24",
+      "source": "e90post.com"
     }
   ]
 }
