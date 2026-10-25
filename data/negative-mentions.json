@@ -1,45 +1,12 @@
 {
-  "lastScanned": "2026-10-24T05:34:01Z",
-  "newCount": 1,
+  "lastScanned": "2026-10-25T05:34:24Z",
+  "newCount": 0,
   "mentions": [
     {
       "date": "Unknown",
       "source": "e90post.com",
-      "title": "N55 rod bearings recommendation",
-      "snippet": "In a rod-bearing recommendation thread, one poster reports King brand rod bearings on an N54 leading to complete engine seizure. Single account inside an otherwise neutral thread.",
-      "url": "https://www.e90post.com/forums/showthread.php?t=1924628",
-      "severity": "medium",
-      "isNew": true
-    },
-    {
-      "date": "2026-06-03",
-      "source": "oilburners.net",
-      "title": "WARNING about King Main Thrust Bearings",
-      "snippet": "Explicit buyer-warning thread: King main thrust bearings produced since 2024 are reported out of spec, with a tech rep quoted as saying they would not personally use them. Poster reports thrust bearings slipping onto grooves too easily, raising spin risk.",
-      "url": "https://www.oilburners.net/threads/warning-about-king-main-thrust-bearings.94987/",
-      "severity": "high",
-      "isNew": false,
-      "replyStatus": "no-reply",
-      "replyNote": "Read successfully: still no King or official reply, thread open and unresolved, most recent post still 3 June 2026 where the poster reports receiving in-spec NOS Clevite thrust bearings.",
-      "lastChecked": "2026-10-18"
-    },
-    {
-      "date": "Unknown",
-      "source": "e90post.com",
       "title": "WARNING!! Check all KING brand bearings before install",
-      "snippet": "Buyer-warning thread telling BMW builders to inspect every King bearing before installation. Still ranking on the first page of brand searches.",
-      "url": "https://www.e90post.com/forums/showthread.php?p=23935223",
-      "severity": "high",
-      "isNew": false,
-      "replyStatus": "unreachable",
-      "replyNote": "Back to HTTP 403 Forbidden (the 2026-10-13 check got a connection refusal instead); thread content could not be read.",
-      "lastChecked": "2026-10-21"
-    },
-    {
-      "date": "Unknown",
-      "source": "e90post.com",
-      "title": "WARNING!! Check all KING brand bearings before install",
-      "snippet": "Thread-level URL for the same e90post buyer-warning thread, surfaced separately in search results.",
+      "snippet": "Explicit buyer-warning thread telling BMW owners to inspect every King set before installing, after a factory box labelled standard was found to contain oversized 0.25 bearings mixed in. Packaging/QC complaint rather than a material failure, but the title itself is a warning to buyers.",
       "url": "https://www.e90post.com/forums/showthread.php?t=1550150",
       "severity": "high",
       "isNew": false,
@@ -48,12 +15,24 @@
       "lastChecked": "2026-10-20"
     },
     {
+      "date": "2026-06-03",
+      "source": "oilburners.net",
+      "title": "WARNING about King Main Thrust Bearings",
+      "snippet": "Buyer-warning thread claiming King main thrust bearings produced since 2024 are out of spec, slipping onto the main cap and block side groove too easily instead of being an interference fit, with a stated risk of spinning the thrust main. Still open and unanswered by King.",
+      "url": "https://www.oilburners.net/threads/warning-about-king-main-thrust-bearings.94987/",
+      "severity": "high",
+      "isNew": false,
+      "replyStatus": "no-reply",
+      "replyNote": "Read successfully again: still no King or official reply, thread open and unresolved, most recent post still 3 June 2026.",
+      "lastChecked": "2026-10-25"
+    },
+    {
       "date": "Unknown",
       "source": "dsmtuners.com",
       "title": "Just call it what it is---King Bearings are no longer an option....",
-      "snippet": "Thread declaring King no longer a viable choice for DSM builds, citing availability and back-order problems since COVID alongside quality doubts. Title itself reads as a buyer warning.",
+      "snippet": "Thread title is a flat verdict that King is no longer a viable choice for DSM builds. Reads as one builder's conclusion rather than a documented defect report, and the thread has never been readable from here to see whether others agreed.",
       "url": "https://www.dsmtuners.com/threads/just-call-it-what-it-is-king-bearings-are-no-longer-an-option.547423/",
-      "severity": "high",
+      "severity": "medium",
       "isNew": false,
       "replyStatus": "unreachable",
       "replyNote": "Still returns HTTP 403 Forbidden; thread content could not be read.",
@@ -63,13 +42,37 @@
       "date": "Unknown",
       "source": "nastyz28.com",
       "title": "Got a set of King SI bearings with a defective bearing...awesome",
-      "snippet": "Defect report: a King SI main bearing described as malformed in production, crushed and twisted and badly out of size, plus machining shavings on the rod bearings requiring extensive hand cleaning.",
+      "snippet": "Single buyer reporting a defective shell in a King SI set, with related reports in the same search of malformed SI shells crushed or twisted in production and machining shavings left on rod bearings. Credible single-unit QC complaint.",
       "url": "https://nastyz28.com/threads/got-a-set-of-king-si-bearings-with-a-defective-bearing-awesome.212498/",
       "severity": "medium",
       "isNew": false,
       "replyStatus": "unreachable",
       "replyNote": "Still 307-redirects to the tollbit.nastyz28.com mirror instead of returning thread content; redirect not followed.",
       "lastChecked": "2026-10-21"
+    },
+    {
+      "date": "Unknown",
+      "source": "honda-tech.com",
+      "title": "king Main&Rod Bearings?",
+      "snippet": "Opens as a brand question but carries a serious claim in the replies: a mechanic reporting that every Honda engine he built on King bearings destroyed its crank journals within a few thousand miles. Crank damage is the costly end of a bearing complaint.",
+      "url": "https://honda-tech.com/forums/all-motor-naturally-aspirated-44/king-main-rod-bearings-3171210/",
+      "severity": "medium",
+      "isNew": false,
+      "replyStatus": "unreachable",
+      "replyNote": "Returned HTTP 403 Forbidden again, same as the 2026-10-09 and 2026-10-02 checks; thread content could not be read.",
+      "lastChecked": "2026-10-18"
+    },
+    {
+      "date": "Unknown",
+      "source": "yellowbullet.com",
+      "title": "Kings Engine Bearings.... anybody have problems??",
+      "snippet": "Problem-solicitation thread asking the racing community to report King failures, which draws complaints rather than answering a technical question. Associated reports include inconsistent thickness, excessive crush and dents on the backs of shells.",
+      "url": "https://www.yellowbullet.com/threads/kings-engine-bearings-anybody-have-problems.900498/",
+      "severity": "medium",
+      "isNew": false,
+      "replyStatus": "unreachable",
+      "replyNote": "Still 307-redirects to the tollbit.yellowbullet.com mirror instead of returning thread content; redirect not followed.",
+      "lastChecked": "2026-10-20"
     }
   ]
 }

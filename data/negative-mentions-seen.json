@@ -22,8 +22,8 @@
       "firstSeen": "2026-07-13",
       "source": "oilburners.net",
       "replyStatus": "no-reply",
-      "replyNote": "Read successfully: still no King or official reply, thread open and unresolved, most recent post still 3 June 2026 where the poster reports receiving in-spec NOS Clevite thrust bearings.",
-      "lastChecked": "2026-10-18"
+      "replyNote": "Read successfully again: still no King or official reply, thread open and unresolved, most recent post still 3 June 2026.",
+      "lastChecked": "2026-10-25"
     },
     {
       "url": "https://www.460ford.com/forum/37-engine-tech/107388-king-bearing-failures.html",
@@ -150,7 +150,10 @@
     {
       "url": "https://www.e90post.com/forums/showthread.php?t=1924628",
       "firstSeen": "2026-10-24",
-      "source": "e90post.com"
+      "source": "e90post.com",
+      "replyStatus": "unreachable",
+      "replyNote": "First reply check on this mention returned HTTP 403 Forbidden, consistent with every other e90post thread in the ledger; thread content has never been read.",
+      "lastChecked": "2026-10-25"
     }
   ]
 }
