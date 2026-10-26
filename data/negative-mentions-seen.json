@@ -102,8 +102,8 @@
       "firstSeen": "2026-08-16",
       "source": "honda-tech.com",
       "replyStatus": "unreachable",
-      "replyNote": "Returned HTTP 403 Forbidden again, same as the 2026-10-09 and 2026-10-02 checks; thread content could not be read.",
-      "lastChecked": "2026-10-18"
+      "replyNote": "Returned HTTP 403 Forbidden again, same as every prior check; thread content still never read.",
+      "lastChecked": "2026-10-26"
     },
     {
       "url": "https://www.speed-talk.com/forum/viewtopic.php?t=50776",
@@ -134,8 +134,8 @@
       "firstSeen": "2026-09-17",
       "source": "theamcforum.com",
       "replyStatus": "unreachable",
-      "replyNote": "Returned HTTP 403 Forbidden again, consistent with every prior check; thread content could not be read.",
-      "lastChecked": "2026-10-18"
+      "replyNote": "Returned HTTP 403 Forbidden again, consistent with every prior check; thread content still never read.",
+      "lastChecked": "2026-10-26"
     },
     {
       "url": "https://board.moparts.org/ubbthreads/ubbthreads.php/topics/2182865/king-bearings-problem.html",
