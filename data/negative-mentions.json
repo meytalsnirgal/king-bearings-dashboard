@@ -1,12 +1,12 @@
 {
-  "lastScanned": "2026-10-28T05:34:21Z",
+  "lastScanned": "2026-10-29T05:33:49Z",
   "newCount": 0,
   "mentions": [
     {
       "date": "Unknown",
       "source": "oilburners.net",
       "title": "WARNING about King Main Thrust Bearings",
-      "snippet": "Explicit buyer-warning thread stating King main thrust bearings produced since 2024 were found out of spec, slipping onto the main cap and block side groove too easily, raising a risk of spinning the thrust main for lack of interference fit.",
+      "snippet": "Explicit buyer-warning thread: King main thrust bearings produced since 2024 are described as out of spec, slipping onto the main cap and block side groove too easily instead of being an interference fit, with a stated risk of spinning the thrust main.",
       "url": "https://www.oilburners.net/threads/warning-about-king-main-thrust-bearings.94987/",
       "severity": "high",
       "isNew": false,
@@ -18,7 +18,7 @@
       "date": "Unknown",
       "source": "e90post.com",
       "title": "WARNING!! Check all KING brand bearings before install",
-      "snippet": "Buyer-warning thread telling builders to measure every King bearing before install; poster reports King shipped wrong-size bearings in standard-marked boxes, with 0.25 and standard shells mixed in one package.",
+      "snippet": "Buyer-warning thread telling others to measure every King bearing before installation after the factory allegedly packed the wrong parts in a standard box, with one top and one bottom half being 0.25 oversize.",
       "url": "https://www.e90post.com/forums/showthread.php?t=1550150",
       "severity": "high",
       "isNew": false,
@@ -28,51 +28,51 @@
     },
     {
       "date": "Unknown",
+      "source": "e90post.com",
+      "title": "WARNING!! Check all KING brand bearings before install",
+      "snippet": "Same buyer-warning discussion reached via a direct post link; wrong bearing sizes found inside a correctly labelled King box, with a general warning to check all King brand bearings before install.",
+      "url": "https://www.e90post.com/forums/showthread.php?p=23935223",
+      "severity": "high",
+      "isNew": false,
+      "replyStatus": "unreachable",
+      "replyNote": "Returned HTTP 403 Forbidden again, consistent with every other e90post thread in the ledger; thread content still never read.",
+      "lastChecked": "2026-10-29"
+    },
+    {
+      "date": "Unknown",
+      "source": "m5board.com",
+      "title": "King Main Bearings Defective",
+      "snippet": "Thread titled as a straight defect report on King main bearings in a BMW M5 application. Thread body has never been readable by the scanner, so only the title supports the negative read.",
+      "url": "https://www.m5board.com/threads/king-main-bearings-defective.621301/",
+      "severity": "medium",
+      "isNew": false,
+      "replyStatus": "unreachable",
+      "replyNote": "Still 307-redirects to the tollbit.m5board.com mirror instead of serving thread content; redirect not followed.",
+      "lastChecked": "2026-10-27"
+    },
+    {
+      "date": "Unknown",
+      "source": "board.moparts.org",
+      "title": "King bearings problem",
+      "snippet": "Problem thread associated in search results with a King bearing whose locating notch sat about 0.060 inch to one side, leaving the bearing halves out of alignment. Still awaiting Guy's read of the actual thread.",
+      "url": "https://board.moparts.org/ubbthreads/ubbthreads.php/topics/2182865/king-bearings-problem.html",
+      "severity": "medium",
+      "isNew": false,
+      "replyStatus": "unreachable",
+      "replyNote": "Returned HTTP 403 Forbidden again; the thread content still has never been read by the scanner.",
+      "lastChecked": "2026-10-29"
+    },
+    {
+      "date": "Unknown",
       "source": "racingjunk.com",
       "title": "King Bearing - lack of professional help for quality control problem",
-      "snippet": "Complaint combining a King quality-control problem with a service grievance: the poster says he could not get professional help resolving it. Thread body has never been readable (403 on every check).",
+      "snippet": "Service complaint: a customer received the wrong bearing quantity in an order and reports difficulty getting it resolved through King's standard return channels. The title itself is a criticism of King's support.",
       "url": "https://www.racingjunk.com/forums/showthread.php?t=1289997",
       "severity": "medium",
       "isNew": false,
       "replyStatus": "unreachable",
       "replyNote": "Still returns HTTP 403 Forbidden; thread content could not be read.",
       "lastChecked": "2026-10-27"
-    },
-    {
-      "date": "Unknown",
-      "source": "dsmtuners.com",
-      "title": "Just call it what it is---King Bearings are no longer an option....",
-      "snippet": "A builder declaring King bearings no longer a viable choice for DSM engines. Title is an outright brand dismissal; thread body unreadable (403 on every check) so the specific fault behind it is unconfirmed.",
-      "url": "https://www.dsmtuners.com/threads/just-call-it-what-it-is-king-bearings-are-no-longer-an-option.547423/",
-      "severity": "medium",
-      "isNew": false,
-      "replyStatus": "unreachable",
-      "replyNote": "Returned HTTP 403 Forbidden again, same as every prior check; thread content still never read.",
-      "lastChecked": "2026-10-28"
-    },
-    {
-      "date": "Unknown",
-      "source": "yellowbullet.com",
-      "title": "Kings Engine Bearings.... anybody have problems??",
-      "snippet": "Thread soliciting problem reports on King engine bearings; search coverage associates it with reports of inconsistent thickness, excess crush and dents on the backs of the shells.",
-      "url": "https://www.yellowbullet.com/threads/kings-engine-bearings-anybody-have-problems.900498/",
-      "severity": "medium",
-      "isNew": false,
-      "replyStatus": "unreachable",
-      "replyNote": "Still 307-redirects to the tollbit.yellowbullet.com mirror instead of returning thread content; redirect not followed.",
-      "lastChecked": "2026-10-28"
-    },
-    {
-      "date": "Unknown",
-      "source": "board.moparts.org",
-      "title": "King bearings problem",
-      "snippet": "Thread titled as a King bearings problem on the Moparts board. Still never readable by the scanner (403 on every check); Guy was asked on 21 Oct to open it from his own network and report what the complaint actually is.",
-      "url": "https://board.moparts.org/ubbthreads/ubbthreads.php/topics/2182865/king-bearings-problem.html",
-      "severity": "medium",
-      "isNew": false,
-      "replyStatus": "unreachable",
-      "replyNote": "Returned HTTP 403 Forbidden again; the thread content still has never been read by the scanner.",
-      "lastChecked": "2026-10-21"
     }
   ]
 }
