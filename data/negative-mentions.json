@@ -1,12 +1,12 @@
 {
-  "lastScanned": "2026-10-29T05:33:49Z",
+  "lastScanned": "2026-10-30T05:34:11Z",
   "newCount": 0,
   "mentions": [
     {
       "date": "Unknown",
       "source": "oilburners.net",
       "title": "WARNING about King Main Thrust Bearings",
-      "snippet": "Explicit buyer-warning thread: King main thrust bearings produced since 2024 are described as out of spec, slipping onto the main cap and block side groove too easily instead of being an interference fit, with a stated risk of spinning the thrust main.",
+      "snippet": "Explicit buyer-warning thread: poster reports King main thrust bearings from 2024 production measuring out of spec and slipping into the groove too easily instead of being an interference fit, with a concern about spinning the thrust. Claims King's own technical staff advised against using them.",
       "url": "https://www.oilburners.net/threads/warning-about-king-main-thrust-bearings.94987/",
       "severity": "high",
       "isNew": false,
@@ -18,7 +18,7 @@
       "date": "Unknown",
       "source": "e90post.com",
       "title": "WARNING!! Check all KING brand bearings before install",
-      "snippet": "Buyer-warning thread telling others to measure every King bearing before installation after the factory allegedly packed the wrong parts in a standard box, with one top and one bottom half being 0.25 oversize.",
+      "snippet": "Buyer-warning thread telling BMW owners to measure King bearings before fitting them; the stated reason is a packaging/labelling error in which the factory boxed 0.25 bearings in a box marked STD.",
       "url": "https://www.e90post.com/forums/showthread.php?t=1550150",
       "severity": "high",
       "isNew": false,
@@ -29,10 +29,10 @@
     {
       "date": "Unknown",
       "source": "e90post.com",
-      "title": "WARNING!! Check all KING brand bearings before install",
-      "snippet": "Same buyer-warning discussion reached via a direct post link; wrong bearing sizes found inside a correctly labelled King box, with a general warning to check all King brand bearings before install.",
+      "title": "WARNING!! Check all KING brand bearings before install (post link)",
+      "snippet": "Direct post link into the same e90post buyer-warning discussion about King bearings being mis-boxed, advising owners to check sizes before install.",
       "url": "https://www.e90post.com/forums/showthread.php?p=23935223",
-      "severity": "high",
+      "severity": "medium",
       "isNew": false,
       "replyStatus": "unreachable",
       "replyNote": "Returned HTTP 403 Forbidden again, consistent with every other e90post thread in the ledger; thread content still never read.",
@@ -40,39 +40,39 @@
     },
     {
       "date": "Unknown",
-      "source": "m5board.com",
-      "title": "King Main Bearings Defective",
-      "snippet": "Thread titled as a straight defect report on King main bearings in a BMW M5 application. Thread body has never been readable by the scanner, so only the title supports the negative read.",
-      "url": "https://www.m5board.com/threads/king-main-bearings-defective.621301/",
+      "source": "dsmtuners.com",
+      "title": "Just call it what it is---King Bearings are no longer an option....",
+      "snippet": "Thread title is an outright rejection of the brand for DSM builds, framed as availability and option loss. Still reads as a negative brand statement to anyone searching the name.",
+      "url": "https://www.dsmtuners.com/threads/just-call-it-what-it-is-king-bearings-are-no-longer-an-option.547423/",
       "severity": "medium",
       "isNew": false,
       "replyStatus": "unreachable",
-      "replyNote": "Still 307-redirects to the tollbit.m5board.com mirror instead of serving thread content; redirect not followed.",
-      "lastChecked": "2026-10-27"
-    },
-    {
-      "date": "Unknown",
-      "source": "board.moparts.org",
-      "title": "King bearings problem",
-      "snippet": "Problem thread associated in search results with a King bearing whose locating notch sat about 0.060 inch to one side, leaving the bearing halves out of alignment. Still awaiting Guy's read of the actual thread.",
-      "url": "https://board.moparts.org/ubbthreads/ubbthreads.php/topics/2182865/king-bearings-problem.html",
-      "severity": "medium",
-      "isNew": false,
-      "replyStatus": "unreachable",
-      "replyNote": "Returned HTTP 403 Forbidden again; the thread content still has never been read by the scanner.",
-      "lastChecked": "2026-10-29"
+      "replyNote": "Returned HTTP 403 Forbidden again, same as every prior check; thread content still never read.",
+      "lastChecked": "2026-10-28"
     },
     {
       "date": "Unknown",
       "source": "racingjunk.com",
       "title": "King Bearing - lack of professional help for quality control problem",
-      "snippet": "Service complaint: a customer received the wrong bearing quantity in an order and reports difficulty getting it resolved through King's standard return channels. The title itself is a criticism of King's support.",
+      "snippet": "Complaint about both a quality control problem and the service response to it: poster reports boxes stamped .50 mm containing .75 mm bearings and says King did not address it properly.",
       "url": "https://www.racingjunk.com/forums/showthread.php?t=1289997",
       "severity": "medium",
       "isNew": false,
       "replyStatus": "unreachable",
       "replyNote": "Still returns HTTP 403 Forbidden; thread content could not be read.",
       "lastChecked": "2026-10-27"
+    },
+    {
+      "date": "Unknown",
+      "source": "honda-tech.com",
+      "title": "king Main&Rod Bearings?",
+      "snippet": "Contains a critical claim from a mechanic that every Honda engine he had seen running King bearings destroyed the crank journals within a few thousand miles. Single source, contested elsewhere in the thread.",
+      "url": "https://honda-tech.com/forums/all-motor-naturally-aspirated-44/king-main-rod-bearings-3171210/",
+      "severity": "medium",
+      "isNew": false,
+      "replyStatus": "unreachable",
+      "replyNote": "Returned HTTP 403 Forbidden again, same as every prior check; thread content still never read.",
+      "lastChecked": "2026-10-26"
     }
   ]
 }
