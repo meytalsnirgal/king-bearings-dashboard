@@ -1,24 +1,21 @@
 {
-  "lastScanned": "2026-10-30T05:34:11Z",
-  "newCount": 0,
+  "lastScanned": "2026-10-31T05:34:09Z",
+  "newCount": 1,
   "mentions": [
     {
       "date": "Unknown",
-      "source": "oilburners.net",
-      "title": "WARNING about King Main Thrust Bearings",
-      "snippet": "Explicit buyer-warning thread: poster reports King main thrust bearings from 2024 production measuring out of spec and slipping into the groove too easily instead of being an interference fit, with a concern about spinning the thrust. Claims King's own technical staff advised against using them.",
-      "url": "https://www.oilburners.net/threads/warning-about-king-main-thrust-bearings.94987/",
-      "severity": "high",
-      "isNew": false,
-      "replyStatus": "no-reply",
-      "replyNote": "Read successfully again: still no King or official reply, thread open and unresolved, most recent post still 3 June 2026.",
-      "lastChecked": "2026-10-25"
+      "source": "m3post.com",
+      "title": "King Bearings",
+      "snippet": "BMW M3 forum thread surfaced on a complaint/defect query. Search snippet describes King STDX undersize sets for the S65/S85 whose thrust bearings were reported over 1mm too narrow to fit the block on more than one example, with posters advising against King for those applications. NEW - not previously in the ledger.",
+      "url": "https://www.m3post.com/forums/showthread.php?t=1899931",
+      "severity": "medium",
+      "isNew": true
     },
     {
       "date": "Unknown",
       "source": "e90post.com",
       "title": "WARNING!! Check all KING brand bearings before install",
-      "snippet": "Buyer-warning thread telling BMW owners to measure King bearings before fitting them; the stated reason is a packaging/labelling error in which the factory boxed 0.25 bearings in a box marked STD.",
+      "snippet": "Explicit buyer-warning thread telling others to inspect every King set before installation. Search snippet reports wrong-size shells mixed into correctly labelled packaging (0.25 found inside an STD shrink-wrapped pack).",
       "url": "https://www.e90post.com/forums/showthread.php?t=1550150",
       "severity": "high",
       "isNew": false,
@@ -28,51 +25,51 @@
     },
     {
       "date": "Unknown",
-      "source": "e90post.com",
-      "title": "WARNING!! Check all KING brand bearings before install (post link)",
-      "snippet": "Direct post link into the same e90post buyer-warning discussion about King bearings being mis-boxed, advising owners to check sizes before install.",
-      "url": "https://www.e90post.com/forums/showthread.php?p=23935223",
+      "source": "oilburners.net",
+      "title": "WARNING about King Main Thrust Bearings",
+      "snippet": "Buyer-warning thread claiming King main thrust bearings produced since 2024 are out of spec on free spread, with the poster saying King's own tech line confirmed it and advised returning them. Also reports the thrust bearing slipping into the cap and block groove with no interference fit, raising a spin risk.",
+      "url": "https://www.oilburners.net/threads/warning-about-king-main-thrust-bearings.94987/",
+      "severity": "high",
+      "isNew": false,
+      "replyStatus": "no-reply",
+      "replyNote": "Read successfully again: still no King or official reply, thread open and unresolved, most recent post still 3 June 2026.",
+      "lastChecked": "2026-10-25"
+    },
+    {
+      "date": "Unknown",
+      "source": "m5board.com",
+      "title": "King Main Bearings Defective",
+      "snippet": "Thread titled as an outright defect report on King main bearings on the BMW M5 board. Content not readable from the snippet beyond the defect claim in the title.",
+      "url": "https://www.m5board.com/threads/king-main-bearings-defective.621301/",
       "severity": "medium",
       "isNew": false,
       "replyStatus": "unreachable",
-      "replyNote": "Returned HTTP 403 Forbidden again, consistent with every other e90post thread in the ledger; thread content still never read.",
+      "replyNote": "Still 307-redirects to the tollbit.m5board.com mirror instead of serving thread content; redirect not followed.",
+      "lastChecked": "2026-10-27"
+    },
+    {
+      "date": "Unknown",
+      "source": "nastyz28.com",
+      "title": "Got a set of King SI bearings with a defective bearing...awesome",
+      "snippet": "Builder reports a King SI bi-metal main shell arriving crushed and twisted so it would not seat, plus bearing shaving debris and oil inside the rod bearing shrink wrap. Single credible complaint about a real product and packaging fault.",
+      "url": "https://nastyz28.com/threads/got-a-set-of-king-si-bearings-with-a-defective-bearing-awesome.212498/",
+      "severity": "medium",
+      "isNew": false,
+      "replyStatus": "unreachable",
+      "replyNote": "Still 307-redirects to the tollbit.nastyz28.com mirror instead of returning thread content; redirect not followed.",
       "lastChecked": "2026-10-29"
     },
     {
       "date": "Unknown",
       "source": "dsmtuners.com",
       "title": "Just call it what it is---King Bearings are no longer an option....",
-      "snippet": "Thread title is an outright rejection of the brand for DSM builds, framed as availability and option loss. Still reads as a negative brand statement to anyone searching the name.",
+      "snippet": "Title is a flat buyer-rejection statement about King as a brand on the DSM tuner board. Thread body has never been readable (403 on every fetch), so judged on the title alone.",
       "url": "https://www.dsmtuners.com/threads/just-call-it-what-it-is-king-bearings-are-no-longer-an-option.547423/",
       "severity": "medium",
       "isNew": false,
       "replyStatus": "unreachable",
       "replyNote": "Returned HTTP 403 Forbidden again, same as every prior check; thread content still never read.",
       "lastChecked": "2026-10-28"
-    },
-    {
-      "date": "Unknown",
-      "source": "racingjunk.com",
-      "title": "King Bearing - lack of professional help for quality control problem",
-      "snippet": "Complaint about both a quality control problem and the service response to it: poster reports boxes stamped .50 mm containing .75 mm bearings and says King did not address it properly.",
-      "url": "https://www.racingjunk.com/forums/showthread.php?t=1289997",
-      "severity": "medium",
-      "isNew": false,
-      "replyStatus": "unreachable",
-      "replyNote": "Still returns HTTP 403 Forbidden; thread content could not be read.",
-      "lastChecked": "2026-10-27"
-    },
-    {
-      "date": "Unknown",
-      "source": "honda-tech.com",
-      "title": "king Main&Rod Bearings?",
-      "snippet": "Contains a critical claim from a mechanic that every Honda engine he had seen running King bearings destroyed the crank journals within a few thousand miles. Single source, contested elsewhere in the thread.",
-      "url": "https://honda-tech.com/forums/all-motor-naturally-aspirated-44/king-main-rod-bearings-3171210/",
-      "severity": "medium",
-      "isNew": false,
-      "replyStatus": "unreachable",
-      "replyNote": "Returned HTTP 403 Forbidden again, same as every prior check; thread content still never read.",
-      "lastChecked": "2026-10-26"
     }
   ]
 }

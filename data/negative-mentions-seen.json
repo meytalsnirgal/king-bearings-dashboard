@@ -154,6 +154,11 @@
       "replyStatus": "unreachable",
       "replyNote": "First reply check on this mention returned HTTP 403 Forbidden, consistent with every other e90post thread in the ledger; thread content has never been read.",
       "lastChecked": "2026-10-25"
+    },
+    {
+      "url": "https://www.m3post.com/forums/showthread.php?t=1899931",
+      "firstSeen": "2026-10-31",
+      "source": "m3post.com"
     }
   ]
 }
