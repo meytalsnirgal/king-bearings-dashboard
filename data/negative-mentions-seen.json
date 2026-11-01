@@ -22,8 +22,8 @@
       "firstSeen": "2026-07-13",
       "source": "oilburners.net",
       "replyStatus": "no-reply",
-      "replyNote": "Read successfully again: still no King or official reply, thread open and unresolved, most recent post still 3 June 2026.",
-      "lastChecked": "2026-10-25"
+      "replyNote": "Read successfully again: still no King or official brand reply, thread open and not locked, most recent post still 3 June 2026 where the OP reports switching to NOS Clevite thrust bearings that measured in spec.",
+      "lastChecked": "2026-11-01"
     },
     {
       "url": "https://www.460ford.com/forum/37-engine-tech/107388-king-bearing-failures.html",
@@ -152,13 +152,21 @@
       "firstSeen": "2026-10-24",
       "source": "e90post.com",
       "replyStatus": "unreachable",
-      "replyNote": "First reply check on this mention returned HTTP 403 Forbidden, consistent with every other e90post thread in the ledger; thread content has never been read.",
-      "lastChecked": "2026-10-25"
+      "replyNote": "Returned HTTP 403 Forbidden again, consistent with every other e90post thread in the ledger; thread content still never read.",
+      "lastChecked": "2026-11-01"
     },
     {
       "url": "https://www.m3post.com/forums/showthread.php?t=1899931",
       "firstSeen": "2026-10-31",
-      "source": "m3post.com"
+      "source": "m3post.com",
+      "replyStatus": "unreachable",
+      "replyNote": "First reply check on this mention returned HTTP 403 Forbidden, consistent with the other BIMMERPOST boards in the ledger; thread content has never been read.",
+      "lastChecked": "2026-11-01"
+    },
+    {
+      "url": "https://www.yellowbullet.com/threads/king-bearings.2600679/",
+      "firstSeen": "2026-11-01",
+      "source": "yellowbullet.com"
     }
   ]
 }
