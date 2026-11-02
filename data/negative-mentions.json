@@ -1,21 +1,12 @@
 {
-  "lastScanned": "2026-11-01T05:34:15Z",
-  "newCount": 1,
+  "lastScanned": "2026-11-02T05:34:29Z",
+  "newCount": 0,
   "mentions": [
     {
       "date": "Unknown",
-      "source": "yellowbullet.com",
-      "title": "King bearings",
-      "snippet": "New to this scan. Surfaced in the failure search alongside a report that bearing delamination in a high-performance application was narrowed down to King bearings, with material coming off into the oil. Thread itself not read, so the attribution is from the result snippet only.",
-      "url": "https://www.yellowbullet.com/threads/king-bearings.2600679/",
-      "severity": "medium",
-      "isNew": true
-    },
-    {
-      "date": "2026-06-03",
       "source": "oilburners.net",
       "title": "WARNING about King Main Thrust Bearings",
-      "snippet": "Explicit buyer-warning thread: King main thrust bearings produced since 2024 reported as out of spec, slipping onto the grooves rather than holding an interference fit, with a stated risk of spinning the thrust main. Poster says King technical support recommended returning them. Thread still open and unresolved.",
+      "snippet": "Explicit buyer-warning thread: main thrust bearings from the 2024 production run reported as out of spec with insufficient interference fit, raising the risk of the thrust main spinning. The poster reports King technical support acknowledged the out-of-spec run and advised returning them.",
       "url": "https://www.oilburners.net/threads/warning-about-king-main-thrust-bearings.94987/",
       "severity": "high",
       "isNew": false,
@@ -27,7 +18,7 @@
       "date": "Unknown",
       "source": "e90post.com",
       "title": "WARNING!! Check all KING brand bearings before install",
-      "snippet": "Buyer-warning thread on the BMW N54: the King factory shipped wrong-size bearings mixed into a standard shrink-wrapped set, with 0.25 shells in place of STD. Thread tells readers to inspect every King set before installing.",
+      "snippet": "Buyer-warning thread telling other builders to inspect every King bearing before installation. Thread body has never been readable by the scanner (403), so the specific defect is known only from the title.",
       "url": "https://www.e90post.com/forums/showthread.php?t=1550150",
       "severity": "high",
       "isNew": false,
@@ -39,9 +30,9 @@
       "date": "Unknown",
       "source": "m5board.com",
       "title": "King Main Bearings Defective",
-      "snippet": "King STDX main bearings reported with thrust bearings over 1mm too narrow to fit the BMW S85/S65 block. Thread concludes with a recommendation not to use King main bearings on those engines.",
+      "snippet": "Defect report on King main bearings posted to the BMW M5 board. Thread body has never been readable by the scanner (tollbit redirect), so detail is limited to the title.",
       "url": "https://www.m5board.com/threads/king-main-bearings-defective.621301/",
-      "severity": "high",
+      "severity": "medium",
       "isNew": false,
       "replyStatus": "unreachable",
       "replyNote": "Still 307-redirects to the tollbit.m5board.com mirror instead of serving thread content; redirect not followed.",
@@ -49,9 +40,21 @@
     },
     {
       "date": "Unknown",
+      "source": "nastyz28.com",
+      "title": "Got a set of King SI bearings with a defective bearing...awesome",
+      "snippet": "Builder reports one shell in a King SI main set was malformed in production and arrived crushed and slightly twisted, and that King SI rod bearings came with machining shavings and oil in the shrink wrap. Other posters note a single bad shell in a box happens with other manufacturers too.",
+      "url": "https://nastyz28.com/threads/got-a-set-of-king-si-bearings-with-a-defective-bearing-awesome.212498/",
+      "severity": "medium",
+      "isNew": false,
+      "replyStatus": "unreachable",
+      "replyNote": "Still 307-redirects to the tollbit.nastyz28.com mirror instead of returning thread content; redirect not followed.",
+      "lastChecked": "2026-10-29"
+    },
+    {
+      "date": "Unknown",
       "source": "racingjunk.com",
       "title": "King Bearing - lack of professional help for quality control problem",
-      "snippet": "Complaint about both a quality-control problem on a King bearing set and the support response the customer received. The title itself is a service criticism, not only a product one.",
+      "snippet": "Complaint about an incorrect bearing specification found in an XP series package, with the poster saying King should be embarrassed by a quality error of this kind. Warranty coverage was declined because the bearings came from a third-party distributor rather than King directly, which is the 'lack of professional help' the title refers to.",
       "url": "https://www.racingjunk.com/forums/showthread.php?t=1289997",
       "severity": "medium",
       "isNew": false,
@@ -61,15 +64,15 @@
     },
     {
       "date": "Unknown",
-      "source": "dsmtuners.com",
-      "title": "Just call it what it is---King Bearings are no longer an option....",
-      "snippet": "Buyer-warning thread title declaring King bearings no longer a viable choice for the DSM community. Thread body has never been readable from here (403), so judged on the title alone.",
-      "url": "https://www.dsmtuners.com/threads/just-call-it-what-it-is-king-bearings-are-no-longer-an-option.547423/",
+      "source": "board.moparts.org",
+      "title": "King bearings problem",
+      "snippet": "Problem report on King bearings on the Moparts board. The thread has returned 403 on every check, so the nature of the complaint is still unverified; Guy was asked on 21 Oct to open it from his own network and report back.",
+      "url": "https://board.moparts.org/ubbthreads/ubbthreads.php/topics/2182865/king-bearings-problem.html",
       "severity": "medium",
       "isNew": false,
       "replyStatus": "unreachable",
-      "replyNote": "Returned HTTP 403 Forbidden again, same as every prior check; thread content still never read.",
-      "lastChecked": "2026-10-28"
+      "replyNote": "Returned HTTP 403 Forbidden again; the thread content still has never been read by the scanner.",
+      "lastChecked": "2026-10-29"
     }
   ]
 }
