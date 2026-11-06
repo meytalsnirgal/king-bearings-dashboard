@@ -1,12 +1,12 @@
 {
-  "lastScanned": "2026-11-05T05:34:45Z",
+  "lastScanned": "2026-11-06T05:34:21Z",
   "newCount": 0,
   "mentions": [
     {
-      "date": "Unknown",
+      "date": "2026-06-03",
       "source": "oilburners.net",
       "title": "WARNING about King Main Thrust Bearings",
-      "snippet": "Explicit buyer-warning thread: poster reports King main thrust bearings slipping onto the main cap and block side groove too easily, with a risk of spinning the thrust bearing without an interference fit, and says King's own tech line called the recent main bearings out of spec. Warranty and safety implications make this the most serious item on file.",
+      "snippet": "Explicit buyer-warning thread: poster reports King main thrust bearings produced since 2024 are out of spec, slipping into the cap and block groove without interference fit, with a risk of spinning the thrust main. Poster says King technical support confirmed the 2024 mains are out of specification.",
       "url": "https://www.oilburners.net/threads/warning-about-king-main-thrust-bearings.94987/",
       "severity": "high",
       "isNew": false,
@@ -18,7 +18,7 @@
       "date": "Unknown",
       "source": "e90post.com",
       "title": "WARNING!! Check all KING brand bearings before install",
-      "snippet": "Buyer-warning thread telling BMW builders to inspect every King-brand bearing before installing it. Thread body has never been readable (403 on every check), so the judgement rests on the warning title alone.",
+      "snippet": "Explicit buyer-warning thread telling BMW builders to measure every King bearing before installing. Title alone is a direct warning to other buyers; thread body has never been readable (403).",
       "url": "https://www.e90post.com/forums/showthread.php?t=1550150",
       "severity": "high",
       "isNew": false,
@@ -28,33 +28,21 @@
     },
     {
       "date": "Unknown",
-      "source": "e90post.com",
-      "title": "WARNING!! Check all KING brand bearings before install",
-      "snippet": "Post permalink into the same e90post buyer-warning about checking King-brand bearings before install. Tracked separately because the URL differs; content still unreadable behind 403.",
-      "url": "https://www.e90post.com/forums/showthread.php?p=23935223",
+      "source": "m5board.com",
+      "title": "King Main Bearings Defective",
+      "snippet": "King STDX main bearings ordered for BMW S85 engines; the thrust bearings measured over 1mm too narrow to fit the block, reported across more than one block.",
+      "url": "https://www.m5board.com/threads/king-main-bearings-defective.621301/",
       "severity": "high",
       "isNew": false,
       "replyStatus": "unreachable",
-      "replyNote": "Returned HTTP 403 Forbidden again, consistent with every other e90post thread in the ledger; thread content still never read.",
-      "lastChecked": "2026-10-29"
-    },
-    {
-      "date": "Unknown",
-      "source": "theamcforum.com",
-      "title": "King bearing defect??",
-      "snippet": "Thread asking about a suspected defect in a King bearing. Page has returned 403 on every check, so only the defect-framed title is known.",
-      "url": "https://theamcforum.com/forum/king-bearing-defect_topic116046.html",
-      "severity": "medium",
-      "isNew": false,
-      "replyStatus": "unreachable",
-      "replyNote": "Returned HTTP 403 Forbidden again with no response body, consistent with every prior check; thread content still never read.",
-      "lastChecked": "2026-11-02"
+      "replyNote": "Still 307-redirects to the tollbit.m5board.com mirror instead of serving thread content; redirect not followed.",
+      "lastChecked": "2026-11-03"
     },
     {
       "date": "Unknown",
       "source": "racingjunk.com",
       "title": "King Bearing - lack of professional help for quality control problem",
-      "snippet": "Complaint about a King quality-control problem combined with a service complaint about the help received. Title names both a product fault and a support failure.",
+      "snippet": "Complaint about both a packaging/sizing error and King's handling of it: an XP series order arrived with mixed sizes (8 x .011 uppers, 7 x .011 lowers, 1 x .030 lower) when only .011 was ordered. A participant says King should be embarrassed by a quality error of this kind.",
       "url": "https://www.racingjunk.com/forums/showthread.php?t=1289997",
       "severity": "medium",
       "isNew": false,
@@ -64,15 +52,27 @@
     },
     {
       "date": "Unknown",
+      "source": "theamcforum.com",
+      "title": "King bearing defect??",
+      "snippet": "Defect report thread about a King bearing. Thread body has never been readable (403), so the detail is unverified; title names the brand and a suspected defect.",
+      "url": "https://theamcforum.com/forum/king-bearing-defect_topic116046.html",
+      "severity": "medium",
+      "isNew": false,
+      "replyStatus": "unreachable",
+      "replyNote": "Returned HTTP 403 Forbidden again with no response body, consistent with every prior check; thread content still never read.",
+      "lastChecked": "2026-11-02"
+    },
+    {
+      "date": "Unknown",
       "source": "board.moparts.org",
       "title": "King bearings problem",
-      "snippet": "Mopar forum thread titled as a King bearings problem. Still unread behind a 403; Guy was asked to open it from his own network and report what the complaint actually is.",
+      "snippet": "Problem report naming King bearings. Thread body has never been readable (403); Guy has been asked to open it from his own network and report what the complaint actually is.",
       "url": "https://board.moparts.org/ubbthreads/ubbthreads.php/topics/2182865/king-bearings-problem.html",
       "severity": "medium",
       "isNew": false,
       "replyStatus": "unreachable",
-      "replyNote": "Returned HTTP 403 Forbidden again; the thread content still has never been read by the scanner.",
-      "lastChecked": "2026-10-29"
+      "replyNote": "Returned HTTP 403 Forbidden with no response body again; the thread content still has never been read by the scanner.",
+      "lastChecked": "2026-11-06"
     }
   ]
 }
