@@ -1,24 +1,12 @@
 {
-  "lastScanned": "2026-11-06T05:34:21Z",
+  "lastScanned": "2026-11-07T05:33:58Z",
   "newCount": 0,
   "mentions": [
-    {
-      "date": "2026-06-03",
-      "source": "oilburners.net",
-      "title": "WARNING about King Main Thrust Bearings",
-      "snippet": "Explicit buyer-warning thread: poster reports King main thrust bearings produced since 2024 are out of spec, slipping into the cap and block groove without interference fit, with a risk of spinning the thrust main. Poster says King technical support confirmed the 2024 mains are out of specification.",
-      "url": "https://www.oilburners.net/threads/warning-about-king-main-thrust-bearings.94987/",
-      "severity": "high",
-      "isNew": false,
-      "replyStatus": "no-reply",
-      "replyNote": "Read successfully again: still no King or official brand reply, thread open and not locked, most recent post still 3 June 2026 where the OP reports switching to NOS Clevite thrust bearings that measured in spec.",
-      "lastChecked": "2026-11-01"
-    },
     {
       "date": "Unknown",
       "source": "e90post.com",
       "title": "WARNING!! Check all KING brand bearings before install",
-      "snippet": "Explicit buyer-warning thread telling BMW builders to measure every King bearing before installing. Title alone is a direct warning to other buyers; thread body has never been readable (403).",
+      "snippet": "Explicit buyer-warning thread telling owners to inspect King brand bearings before installation. Title alone is a warning to other buyers, which is the most damaging shape a mention can take.",
       "url": "https://www.e90post.com/forums/showthread.php?t=1550150",
       "severity": "high",
       "isNew": false,
@@ -28,33 +16,45 @@
     },
     {
       "date": "Unknown",
-      "source": "m5board.com",
-      "title": "King Main Bearings Defective",
-      "snippet": "King STDX main bearings ordered for BMW S85 engines; the thrust bearings measured over 1mm too narrow to fit the block, reported across more than one block.",
-      "url": "https://www.m5board.com/threads/king-main-bearings-defective.621301/",
+      "source": "e90post.com",
+      "title": "WARNING!! Check all KING brand bearings before install",
+      "snippet": "Direct post link into the same e90post buyer-warning thread about checking King brand bearings before install. Still surfacing on the first page of brand searches.",
+      "url": "https://www.e90post.com/forums/showthread.php?p=23935223",
       "severity": "high",
       "isNew": false,
       "replyStatus": "unreachable",
-      "replyNote": "Still 307-redirects to the tollbit.m5board.com mirror instead of serving thread content; redirect not followed.",
-      "lastChecked": "2026-11-03"
+      "replyNote": "Returned HTTP 403 Forbidden with no response body again, consistent with every other e90post thread in the ledger; thread content still never read.",
+      "lastChecked": "2026-11-06"
     },
     {
       "date": "Unknown",
-      "source": "racingjunk.com",
-      "title": "King Bearing - lack of professional help for quality control problem",
-      "snippet": "Complaint about both a packaging/sizing error and King's handling of it: an XP series order arrived with mixed sizes (8 x .011 uppers, 7 x .011 lowers, 1 x .030 lower) when only .011 was ordered. A participant says King should be embarrassed by a quality error of this kind.",
-      "url": "https://www.racingjunk.com/forums/showthread.php?t=1289997",
+      "source": "oilburners.net",
+      "title": "WARNING about King Main Thrust Bearings",
+      "snippet": "Buyer-warning thread about King main thrust bearings. Search snippet reports concern that the thrust main slipped onto the cap and block side groove too easily rather than being an interference fit, raising a spun-thrust risk.",
+      "url": "https://www.oilburners.net/threads/warning-about-king-main-thrust-bearings.94987/",
+      "severity": "high",
+      "isNew": false,
+      "replyStatus": "no-reply",
+      "replyNote": "Read successfully again: still no King or official brand reply, thread open and not locked, most recent post still 3 June 2026 where the OP reports switching to NOS Clevite thrust bearings that measured in spec.",
+      "lastChecked": "2026-11-01"
+    },
+    {
+      "date": "Unknown",
+      "source": "board.moparts.org",
+      "title": "King bearings problem",
+      "snippet": "Moparts thread titled as a King bearings problem. Content has never been readable by the scanner (403), so the nature of the complaint is still unknown; Guy was asked to open it from his own network.",
+      "url": "https://board.moparts.org/ubbthreads/ubbthreads.php/topics/2182865/king-bearings-problem.html",
       "severity": "medium",
       "isNew": false,
       "replyStatus": "unreachable",
-      "replyNote": "Still returns HTTP 403 Forbidden with no response body; thread content could not be read.",
-      "lastChecked": "2026-11-03"
+      "replyNote": "Returned HTTP 403 Forbidden with no response body again; the thread content still has never been read by the scanner.",
+      "lastChecked": "2026-11-06"
     },
     {
       "date": "Unknown",
       "source": "theamcforum.com",
       "title": "King bearing defect??",
-      "snippet": "Defect report thread about a King bearing. Thread body has never been readable (403), so the detail is unverified; title names the brand and a suspected defect.",
+      "snippet": "AMC Forum thread raising a suspected King bearing defect. Thread body has never been readable by the scanner, so only the title supports the defect claim.",
       "url": "https://theamcforum.com/forum/king-bearing-defect_topic116046.html",
       "severity": "medium",
       "isNew": false,
@@ -64,15 +64,15 @@
     },
     {
       "date": "Unknown",
-      "source": "board.moparts.org",
-      "title": "King bearings problem",
-      "snippet": "Problem report naming King bearings. Thread body has never been readable (403); Guy has been asked to open it from his own network and report what the complaint actually is.",
-      "url": "https://board.moparts.org/ubbthreads/ubbthreads.php/topics/2182865/king-bearings-problem.html",
+      "source": "racingjunk.com",
+      "title": "King Bearing - lack of professional help for quality control problem",
+      "snippet": "Complaint thread about both a quality control problem and the service response to it. Snippet describes an unopened package of King XP series bearings containing mismatched sizes rather than matching pairs.",
+      "url": "https://www.racingjunk.com/forums/showthread.php?t=1289997",
       "severity": "medium",
       "isNew": false,
       "replyStatus": "unreachable",
-      "replyNote": "Returned HTTP 403 Forbidden with no response body again; the thread content still has never been read by the scanner.",
-      "lastChecked": "2026-11-06"
+      "replyNote": "Still returns HTTP 403 Forbidden with no response body; thread content could not be read.",
+      "lastChecked": "2026-11-03"
     }
   ]
 }
