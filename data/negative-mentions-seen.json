@@ -103,7 +103,7 @@
       "source": "honda-tech.com",
       "replyStatus": "unreachable",
       "replyNote": "Returned HTTP 403 Forbidden again with no response body, consistent with every prior check; thread content still never read.",
-      "lastChecked": "2026-11-02"
+      "lastChecked": "2026-11-09"
     },
     {
       "url": "https://www.speed-talk.com/forum/viewtopic.php?t=50776",
@@ -152,16 +152,16 @@
       "firstSeen": "2026-10-24",
       "source": "e90post.com",
       "replyStatus": "unreachable",
-      "replyNote": "Returned HTTP 403 Forbidden again, consistent with every other e90post thread in the ledger; thread content still never read.",
-      "lastChecked": "2026-11-01"
+      "replyNote": "Returned HTTP 403 Forbidden again with no response body, consistent with every other e90post thread in the ledger; thread content still never read.",
+      "lastChecked": "2026-11-09"
     },
     {
       "url": "https://www.m3post.com/forums/showthread.php?t=1899931",
       "firstSeen": "2026-10-31",
       "source": "m3post.com",
       "replyStatus": "unreachable",
-      "replyNote": "First reply check on this mention returned HTTP 403 Forbidden, consistent with the other BIMMERPOST boards in the ledger; thread content has never been read.",
-      "lastChecked": "2026-11-01"
+      "replyNote": "Returned HTTP 403 Forbidden again, consistent with every BIMMERPOST board in the ledger; thread content still never read.",
+      "lastChecked": "2026-11-09"
     },
     {
       "url": "https://www.yellowbullet.com/threads/king-bearings.2600679/",
@@ -170,6 +170,11 @@
       "replyStatus": "unreachable",
       "replyNote": "First reply check on this mention returned HTTP 307 redirecting to the tollbit.yellowbullet.com mirror; redirect not followed, so the thread has never been read.",
       "lastChecked": "2026-11-02"
+    },
+    {
+      "url": "https://forums.nasioc.com/forums/showthread.php?t=2839777",
+      "firstSeen": "2026-11-09",
+      "source": "forums.nasioc.com"
     }
   ]
 }
