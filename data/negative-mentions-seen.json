@@ -22,8 +22,8 @@
       "firstSeen": "2026-07-13",
       "source": "oilburners.net",
       "replyStatus": "no-reply",
-      "replyNote": "Read successfully again: still no King or official brand reply, thread open and not locked, and the newest post is unchanged at 3 June 2026 where the OP reports his replacement NOS Clevite thrust bearings measured in spec.",
-      "lastChecked": "2026-11-08"
+      "replyNote": "Read successfully: still no King or official brand reply, thread open and not locked, and the newest post is unchanged at 3 June 2026 where the OP reports his replacement NOS Clevite thrust bearings measured in spec.",
+      "lastChecked": "2026-11-16"
     },
     {
       "url": "https://www.460ford.com/forum/37-engine-tech/107388-king-bearing-failures.html",
@@ -103,7 +103,7 @@
       "source": "honda-tech.com",
       "replyStatus": "unreachable",
       "replyNote": "Returned HTTP 403 Forbidden again with no response body, consistent with every prior check; thread content still never read.",
-      "lastChecked": "2026-11-09"
+      "lastChecked": "2026-11-16"
     },
     {
       "url": "https://www.speed-talk.com/forum/viewtopic.php?t=50776",
@@ -152,8 +152,8 @@
       "firstSeen": "2026-10-24",
       "source": "e90post.com",
       "replyStatus": "unreachable",
-      "replyNote": "Returned HTTP 403 Forbidden again with no response body, consistent with every other e90post thread in the ledger; thread content still never read.",
-      "lastChecked": "2026-11-09"
+      "replyNote": "Returned HTTP 403 Forbidden again with no response body, consistent with every other e90post and BIMMERPOST thread in the ledger; thread content still never read.",
+      "lastChecked": "2026-11-16"
     },
     {
       "url": "https://www.m3post.com/forums/showthread.php?t=1899931",
