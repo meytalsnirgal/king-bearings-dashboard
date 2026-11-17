@@ -134,8 +134,8 @@
       "firstSeen": "2026-09-17",
       "source": "theamcforum.com",
       "replyStatus": "unreachable",
-      "replyNote": "Returned HTTP 403 Forbidden again with no response body, consistent with every prior check; thread content still never read.",
-      "lastChecked": "2026-11-10"
+      "replyNote": "Returned HTTP 403 Forbidden again with no response body, same as every prior check; thread content still never read.",
+      "lastChecked": "2026-11-17"
     },
     {
       "url": "https://board.moparts.org/ubbthreads/ubbthreads.php/topics/2182865/king-bearings-problem.html",
@@ -160,8 +160,8 @@
       "firstSeen": "2026-10-31",
       "source": "m3post.com",
       "replyStatus": "unreachable",
-      "replyNote": "Returned HTTP 403 Forbidden again, consistent with every BIMMERPOST board in the ledger; thread content still never read.",
-      "lastChecked": "2026-11-09"
+      "replyNote": "Returned HTTP 403 Forbidden again with no response body, consistent with every BIMMERPOST board in the ledger; thread content still never read.",
+      "lastChecked": "2026-11-17"
     },
     {
       "url": "https://www.yellowbullet.com/threads/king-bearings.2600679/",
@@ -169,7 +169,7 @@
       "source": "yellowbullet.com",
       "replyStatus": "unreachable",
       "replyNote": "Still 307-redirects to the tollbit.yellowbullet.com mirror instead of serving thread content; redirect not followed.",
-      "lastChecked": "2026-11-10"
+      "lastChecked": "2026-11-17"
     },
     {
       "url": "https://forums.nasioc.com/forums/showthread.php?t=2839777",

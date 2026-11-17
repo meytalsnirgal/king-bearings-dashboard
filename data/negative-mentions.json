@@ -1,12 +1,12 @@
 {
-  "lastScanned": "2026-11-16T05:34:13Z",
+  "lastScanned": "2026-11-17T05:34:20Z",
   "newCount": 0,
   "mentions": [
     {
-      "date": "2026-06-03",
+      "date": "Unknown",
       "source": "oilburners.net",
       "title": "WARNING about King Main Thrust Bearings",
-      "snippet": "Owner reports King main thrust bearings from 2024 and 2025 production slipping into the block and cap far too easily due to out-of-spec free spread; he says King's own tech line confirmed the 2024 part was out of spec and advised returning it. Several members chimed in; the OP ended up sourcing NOS Clevite bearings that measured in spec. Thread read directly today: open, unlocked, no King reply posted, newest post 3 June 2026.",
+      "snippet": "Explicit buyer-warning thread: builders report King main thrust bearings from recent production slipping into the block and cap grooves with no interference fit, raising the risk of a spun thrust main. The snippet states King technical support acknowledged a free-spread spec issue on the affected bearings.",
       "url": "https://www.oilburners.net/threads/warning-about-king-main-thrust-bearings.94987/",
       "severity": "high",
       "isNew": false,
@@ -18,7 +18,7 @@
       "date": "Unknown",
       "source": "e90post.com",
       "title": "WARNING!! Check all KING brand bearings before install",
-      "snippet": "Explicit buyer-warning thread on the BMW E90 board telling builders to measure every King bearing before fitting it. Search results tie it to a packaging error in which 0.25 oversize shells were found inside a shrink-wrapped STD box. Thread itself has never been readable (persistent 403).",
+      "snippet": "Buyer-warning thread on a BMW forum telling members to measure every King bearing before installation, after a box labelled standard size was found to contain mixed oversize shells. Packaging and size-consistency complaint rather than a material failure.",
       "url": "https://www.e90post.com/forums/showthread.php?t=1550150",
       "severity": "high",
       "isNew": false,
@@ -28,33 +28,21 @@
     },
     {
       "date": "Unknown",
-      "source": "m3post.com",
-      "title": "King Bearings",
-      "snippet": "Thread on the BIMMERPOST M3 board. Search results associate it with a report that King STDX thrust bearings were well over 1mm too narrow for BMW S85/S65 blocks, with the poster concluding King mains should not be used on those engines. Thread content has never been directly read (persistent 403), so this is the search snippet only.",
-      "url": "https://www.m3post.com/forums/showthread.php?t=1899931",
+      "source": "racingjunk.com",
+      "title": "King Bearing - lack of professional help for quality control problem",
+      "snippet": "Complaint covering both a product fault and King's service response: bearings boxed and stamped 0.50 mm measured at 0.75 mm, reportedly twice in a row, and the poster's grievance is the handling of the quality-control issue.",
+      "url": "https://www.racingjunk.com/forums/showthread.php?t=1289997",
       "severity": "medium",
       "isNew": false,
       "replyStatus": "unreachable",
-      "replyNote": "Returned HTTP 403 Forbidden again, consistent with every BIMMERPOST board in the ledger; thread content still never read.",
-      "lastChecked": "2026-11-09"
-    },
-    {
-      "date": "Unknown",
-      "source": "dsmtuners.com",
-      "title": "Just call it what it is---King Bearings are no longer an option....",
-      "snippet": "Builder declaring he will no longer use King bearings. Search results mention bearing delamination in high-boost applications in this context. Thread content has never been readable (persistent 403), so severity is judged from the title alone.",
-      "url": "https://www.dsmtuners.com/threads/just-call-it-what-it-is-king-bearings-are-no-longer-an-option.547423/",
-      "severity": "medium",
-      "isNew": false,
-      "replyStatus": "unreachable",
-      "replyNote": "Returned HTTP 403 Forbidden again with no response body, same as every prior check; thread content still never read.",
-      "lastChecked": "2026-11-13"
+      "replyNote": "Still returns HTTP 403 Forbidden with no response body; thread content could not be read.",
+      "lastChecked": "2026-11-11"
     },
     {
       "date": "Unknown",
       "source": "m5board.com",
       "title": "King Main Bearings Defective",
-      "snippet": "Defect report on King main bearings on the M5 board. Thread has never been readable (redirects to a tollbit mirror), so the detail of the complaint is still unknown.",
+      "snippet": "Single-builder defect report on a BMW M5 forum, titled as defective King main bearings. Thread content has never been readable by the scanner, so only the title supports this.",
       "url": "https://www.m5board.com/threads/king-main-bearings-defective.621301/",
       "severity": "medium",
       "isNew": false,
@@ -66,13 +54,25 @@
       "date": "Unknown",
       "source": "nastyz28.com",
       "title": "Got a set of King SI bearings with a defective bearing...awesome",
-      "snippet": "Buyer reports one shell in a King SI bi-metal main set malformed in production - crushed or twisted - and complains about shell-thickness tolerance. Thread has never been readable (tollbit mirror redirect).",
+      "snippet": "Builder reports a King SI set shipped with a main shell malformed in production, described as crushed and twisted. Credible single complaint about a visible manufacturing defect.",
       "url": "https://nastyz28.com/threads/got-a-set-of-king-si-bearings-with-a-defective-bearing-awesome.212498/",
       "severity": "medium",
       "isNew": false,
       "replyStatus": "unreachable",
       "replyNote": "Still 307-redirects to the tollbit.nastyz28.com mirror instead of serving thread content; redirect not followed.",
       "lastChecked": "2026-11-14"
+    },
+    {
+      "date": "Unknown",
+      "source": "forums.nasioc.com",
+      "title": "King bearing defect? Please help...mid assembly.",
+      "snippet": "Subaru builder stopped mid-assembly over a suspected defect in a King bearing and is asking the forum whether the part is usable. Reads as a genuine defect report, though the thread has never been readable to confirm how it was resolved.",
+      "url": "https://forums.nasioc.com/forums/showthread.php?t=2839777",
+      "severity": "medium",
+      "isNew": false,
+      "replyStatus": "unreachable",
+      "replyNote": "First reply check on this mention returned HTTP 403 Forbidden with no response body; thread content has never been read.",
+      "lastChecked": "2026-11-10"
     }
   ]
 }
