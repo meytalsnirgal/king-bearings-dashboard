@@ -7,7 +7,7 @@
       "source": "m5board.com",
       "replyStatus": "unreachable",
       "replyNote": "Still 307-redirects to the tollbit.m5board.com mirror instead of serving thread content; redirect not followed.",
-      "lastChecked": "2026-11-11"
+      "lastChecked": "2026-11-18"
     },
     {
       "url": "https://nastyz28.com/threads/got-a-set-of-king-si-bearings-with-a-defective-bearing-awesome.212498/",
@@ -31,7 +31,7 @@
       "source": "460ford.com",
       "replyStatus": "unreachable",
       "replyNote": "Still 307-redirects to the tollbit.460ford.com mirror instead of serving thread content; redirect not followed.",
-      "lastChecked": "2026-11-11"
+      "lastChecked": "2026-11-18"
     },
     {
       "url": "https://www.racingjunk.com/forums/showthread.php?t=1289997",
@@ -176,8 +176,8 @@
       "firstSeen": "2026-11-09",
       "source": "forums.nasioc.com",
       "replyStatus": "unreachable",
-      "replyNote": "First reply check on this mention returned HTTP 403 Forbidden with no response body; thread content has never been read.",
-      "lastChecked": "2026-11-10"
+      "replyNote": "Returned HTTP 403 Forbidden again with no response body; thread content has still never been read.",
+      "lastChecked": "2026-11-18"
     }
   ]
 }
