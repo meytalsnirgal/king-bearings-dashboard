@@ -38,8 +38,8 @@
       "firstSeen": "2026-07-13",
       "source": "racingjunk.com",
       "replyStatus": "unreachable",
-      "replyNote": "Still returns HTTP 403 Forbidden with no response body; thread content could not be read.",
-      "lastChecked": "2026-11-11"
+      "replyNote": "Returned HTTP 403 Forbidden again with no response body, same as every prior check; thread content still never read.",
+      "lastChecked": "2026-11-19"
     },
     {
       "url": "https://www.speed-talk.com/forum/viewtopic.php?t=44264",
