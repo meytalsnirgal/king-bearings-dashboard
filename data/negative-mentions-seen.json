@@ -46,16 +46,16 @@
       "firstSeen": "2026-07-27",
       "source": "speed-talk.com",
       "replyStatus": "no-reply",
-      "replyNote": "Read again: still no King or official brand reply, thread open and unresolved, and the newest post is unchanged at 31 Aug 2015, well outside the 24-month window.",
-      "lastChecked": "2026-11-15"
+      "replyNote": "Page 1 (posts 1-15 of 33) read: no King or official reply, no lock or resolved notice, newest visible post still 31 Aug 2015; pages 2-3 not fetched under the one-fetch budget.",
+      "lastChecked": "2026-11-23"
     },
     {
       "url": "https://www.speed-talk.com/forum/viewtopic.php?t=68038",
       "firstSeen": "2026-08-02",
       "source": "speed-talk.com",
       "replyStatus": "king-replied",
-      "replyNote": "The official King Bearings reply of 4 Aug 2026 is still in place and is now the newest post in the thread, explaining the eccentric wall profile; thread open and not locked.",
-      "lastChecked": "2026-11-15"
+      "replyNote": "The kingbearings reply of 4 Aug 2026 on the eccentric wall profile is still live and the thread is open; page shows 18 posts but only 15 were readable on page 1, so any posts after the King reply were not checked.",
+      "lastChecked": "2026-11-23"
     },
     {
       "url": "https://www.e90post.com/forums/showthread.php?t=1550150",
@@ -94,8 +94,8 @@
       "firstSeen": "2026-08-12",
       "source": "forbbodiesonly.com",
       "replyStatus": "king-replied",
-      "replyNote": "The King representative reply of 12 Aug 2026 on material and surface-treatment appearance is still live, thread open and not locked, newest post unchanged at 19 Sep 2026.",
-      "lastChecked": "2026-11-15"
+      "replyNote": "The kingbearings reply of 12 Aug 2026 is still live, thread open and not locked, newest post unchanged at 19 Sep 2026 (a member calling King an excellent product).",
+      "lastChecked": "2026-11-23"
     },
     {
       "url": "https://honda-tech.com/forums/all-motor-naturally-aspirated-44/king-main-rod-bearings-3171210/",
