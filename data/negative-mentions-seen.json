@@ -22,8 +22,8 @@
       "firstSeen": "2026-07-13",
       "source": "oilburners.net",
       "replyStatus": "no-reply",
-      "replyNote": "Read successfully: still no King or official brand reply, thread open and not locked, and the newest post is unchanged at 3 June 2026 where the OP reports his replacement NOS Clevite thrust bearings measured in spec.",
-      "lastChecked": "2026-11-16"
+      "replyNote": "Read successfully (HTTP 200): 10 posts, still no King or official reply, no lock or resolved notice, newest post unchanged at 3 Jun 2026.",
+      "lastChecked": "2026-11-24"
     },
     {
       "url": "https://www.460ford.com/forum/37-engine-tech/107388-king-bearing-failures.html",
@@ -102,8 +102,8 @@
       "firstSeen": "2026-08-16",
       "source": "honda-tech.com",
       "replyStatus": "unreachable",
-      "replyNote": "Returned HTTP 403 Forbidden again with no response body, consistent with every prior check; thread content still never read.",
-      "lastChecked": "2026-11-16"
+      "replyNote": "Returned HTTP 403 Forbidden again, consistent with every prior check; thread content still never read.",
+      "lastChecked": "2026-11-24"
     },
     {
       "url": "https://www.speed-talk.com/forum/viewtopic.php?t=50776",
@@ -151,9 +151,9 @@
       "url": "https://www.e90post.com/forums/showthread.php?t=1924628",
       "firstSeen": "2026-10-24",
       "source": "e90post.com",
-      "replyStatus": "unreachable",
-      "replyNote": "Returned HTTP 403 Forbidden again with no response body, consistent with every other e90post and BIMMERPOST thread in the ledger; thread content still never read.",
-      "lastChecked": "2026-11-16"
+      "replyStatus": "king-replied",
+      "replyNote": "First successful read (HTTP 200) after repeated 403s: a 'kingbearings' account (joined Aug 2026) replied in post #22 offering to answer questions; thread open, newest post 26 Oct 2026. Caveat: post #22 sat in the summarized, not verbatim-read, part of the page.",
+      "lastChecked": "2026-11-24"
     },
     {
       "url": "https://www.m3post.com/forums/showthread.php?t=1899931",
