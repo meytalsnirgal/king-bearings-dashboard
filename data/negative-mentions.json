@@ -1,12 +1,12 @@
 {
-  "lastScanned": "2026-11-24T05:33:00Z",
+  "lastScanned": "2026-11-25T05:32:50Z",
   "newCount": 0,
   "mentions": [
     {
       "date": "Unknown",
       "source": "oilburners.net",
       "title": "WARNING about King Main Thrust Bearings",
-      "snippet": "Buyer-warning thread: a user says a machinist told him his King main thrust bearing made since 2024 was out of spec on free spread and advised returning it; the poster adds many people may have used them without issue.",
+      "snippet": "Buyer-warning thread: a poster says King main thrust bearings made since 2024 (sold repackaged as Engine Tech 7.3 IDI mains) have a free-spread problem and a machinist judged one out of spec; the poster concedes it may not cause issues in practice.",
       "url": "https://www.oilburners.net/threads/warning-about-king-main-thrust-bearings.94987/",
       "severity": "medium",
       "isNew": false,
@@ -18,7 +18,7 @@
       "date": "Unknown",
       "source": "dsmtuners.com",
       "title": "Just call it what it is: King bearings are no longer an option",
-      "snippet": "Availability complaint: posters say King 6-bolt DSM bearings are effectively unavailable; one commenter argues production is only irregular. About supply, not a quality defect.",
+      "snippet": "Availability complaint rather than a quality one: a vendor says King 6-bolt DSM bearings are effectively unavailable because production is irregular, though not technically discontinued.",
       "url": "https://www.dsmtuners.com/threads/just-call-it-what-it-is-king-bearings-are-no-longer-an-option.547423/",
       "severity": "low",
       "isNew": false,
