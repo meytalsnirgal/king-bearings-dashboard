@@ -178,6 +178,11 @@
       "replyStatus": "unreachable",
       "replyNote": "Returned HTTP 403 Forbidden again; thread content has still never been read.",
       "lastChecked": "2026-11-26"
+    },
+    {
+      "url": "https://hpacademy.com/forum/general-engine-building-discussion/show/vg30-premature-bearing-failure-help",
+      "firstSeen": "2026-11-26",
+      "source": "hpacademy.com"
     }
   ]
 }
