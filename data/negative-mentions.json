@@ -1,21 +1,12 @@
 {
-  "lastScanned": "2026-11-26T08:37:14Z",
-  "newCount": 1,
+  "lastScanned": "2026-11-27T05:34:27Z",
+  "newCount": 0,
   "mentions": [
-    {
-      "date": "Unknown",
-      "source": "hpacademy.com",
-      "title": "vg30 premature bearing failure help",
-      "snippet": "Single builder reports cap-side main bearings 2 and 3 failed on a Nissan VG30DETT running King XP mains, with wear on 1 and 4; the snippet gives no cause, so installation or oiling is not ruled out.",
-      "url": "https://hpacademy.com/forum/general-engine-building-discussion/show/vg30-premature-bearing-failure-help",
-      "severity": "low",
-      "isNew": true
-    },
     {
       "date": "Unknown",
       "source": "oilburners.net",
       "title": "WARNING about King Main Thrust Bearings",
-      "snippet": "Buyer-warning thread: poster says King main thrust bearings made since 2024 have a free-spread measurement a technician judged out of spec, and advises returning them, while conceding many may have used them without problems.",
+      "snippet": "Buyer-warning thread: a user says King main thrust bearings made since 2024 (also sold as Engine Tech 7.3 IDI bearings) were out of spec on free spread and an engine tech advised returning them; the poster concedes many people may have used them without problems.",
       "url": "https://www.oilburners.net/threads/warning-about-king-main-thrust-bearings.94987/",
       "severity": "medium",
       "isNew": false,
@@ -25,9 +16,21 @@
     },
     {
       "date": "Unknown",
+      "source": "hpacademy.com",
+      "title": "vg30 premature bearing failure help",
+      "snippet": "Single builder reports King XP M4104STDX main bearings 2 and 3 failed on the cap side in a Nissan VG30DETT; cause (install, lubrication, or part) not established, and the poster says King has been contacted and is awaiting a reply.",
+      "url": "https://hpacademy.com/forum/general-engine-building-discussion/show/vg30-premature-bearing-failure-help",
+      "severity": "medium",
+      "isNew": false,
+      "replyStatus": "no-reply",
+      "replyNote": "First reply check, read successfully (HTTP 200): 4 posts, none from King or an official rep, original poster says King has been contacted and is awaiting reply; thread open, no post dates visible.",
+      "lastChecked": "2026-11-27"
+    },
+    {
+      "date": "Unknown",
       "source": "dsmtuners.com",
       "title": "Just call it what it is: King bearings are no longer an option",
-      "snippet": "Availability complaint: thread argues King 6-bolt bearings are effectively gone; a reply says they are not discontinued, just irregularly produced. Supply frustration, not a quality defect.",
+      "snippet": "Thread argues King's 6-bolt DSM bearings are effectively discontinued; another member counters that production is irregular rather than dropped. An availability complaint, not a quality one.",
       "url": "https://www.dsmtuners.com/threads/just-call-it-what-it-is-king-bearings-are-no-longer-an-option.547423/",
       "severity": "low",
       "isNew": false,
